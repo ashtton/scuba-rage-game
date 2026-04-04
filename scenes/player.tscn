@@ -1,0 +1,69 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_player_script"]
+
+[sub_resource type="CapsuleShape2D" id="1_collider"]
+height = 70.0
+radius = 16.0
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_player_script")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
+rotation_degrees = 90.0
+shape = SubResource("1_collider")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+enabled = true
+position_smoothing_enabled = true
+position_smoothing_speed = 4.0
+limit_left = 0
+limit_top = 0
+limit_right = 2800
+limit_bottom = 1080
+
+[node name="AimLine" type="Line2D" parent="."]
+visible = false
+default_color = Color(0.419608, 0.839216, 0.964706, 1)
+width = 4.0
+points = PackedVector2Array(0, 0, 84, 0)
+
+[node name="ArrowHead" type="Polygon2D" parent="."]
+visible = false
+color = Color(0.419608, 0.839216, 0.964706, 1)
+polygon = PackedVector2Array(46, 0, 28, 9, 28, -9)
+
+[node name="CooldownMeter" type="Node2D" parent="."]
+visible = false
+position = Vector2(0, -48)
+
+[node name="CooldownBack" type="Polygon2D" parent="CooldownMeter"]
+color = Color(0.0470588, 0.0823529, 0.109804, 0.72)
+polygon = PackedVector2Array(-23, -5, 23, -5, 23, 5, -23, 5)
+
+[node name="CooldownFill" type="Polygon2D" parent="CooldownMeter"]
+color = Color(1, 0.701961, 0.419608, 1)
+polygon = PackedVector2Array(-21, -3.5, 21, -3.5, 21, 3.5, -21, 3.5)
+
+[node name="Visuals" type="Node2D" parent="."]
+
+[node name="BodyCore" type="Polygon2D" parent="Visuals"]
+color = Color(0.290196, 0.690196, 0.901961, 1)
+polygon = PackedVector2Array(-24, -12, 16, -12, 16, 12, -24, 12)
+
+[node name="NoseCap" type="Polygon2D" parent="Visuals"]
+color = Color(0.290196, 0.690196, 0.901961, 1)
+polygon = PackedVector2Array(16, -12, 28, -8, 34, 0, 28, 8, 16, 12)
+
+[node name="TailCap" type="Polygon2D" parent="Visuals"]
+color = Color(0.290196, 0.690196, 0.901961, 1)
+polygon = PackedVector2Array(-24, -12, -32, -8, -36, 0, -32, 8, -24, 12)
+
+[node name="Window" type="Polygon2D" parent="Visuals"]
+color = Color(0.882353, 0.968627, 1, 0.94)
+polygon = PackedVector2Array(-4, -8, 14, -8, 14, 8, -4, 8)
+
+[node name="Fin" type="Polygon2D" parent="Visuals"]
+color = Color(0.956863, 0.768627, 0.341176, 1)
+polygon = PackedVector2Array(-10, 12, -18, 24, 2, 12)

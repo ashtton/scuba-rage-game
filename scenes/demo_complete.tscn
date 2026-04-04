@@ -1,0 +1,62 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/demo_complete.gd" id="1_script"]
+
+[node name="DemoComplete" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="Backdrop" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0117647, 0.0901961, 0.141176, 1)
+
+[node name="Glow" type="ColorRect" parent="."]
+layout_mode = 1
+offset_left = 460.0
+offset_top = 220.0
+offset_right = 1460.0
+offset_bottom = 860.0
+color = Color(0.184314, 0.470588, 0.580392, 0.16)
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 472.0
+offset_top = 244.0
+offset_right = 1448.0
+offset_bottom = 836.0
+
+[node name="Title" type="Label" parent="Panel"]
+offset_left = 86.0
+offset_top = 96.0
+offset_right = 854.0
+offset_bottom = 180.0
+theme_override_font_sizes/font_size = 42
+theme_override_colors/font_color = Color(0.972549, 0.968627, 0.878431, 1)
+text = "Three Dives Cleared"
+
+[node name="Body" type="Label" parent="Panel"]
+offset_left = 86.0
+offset_top = 214.0
+offset_right = 888.0
+offset_bottom = 450.0
+theme_override_font_sizes/font_size = 24
+theme_override_colors/font_color = Color(0.784314, 0.921569, 0.972549, 1)
+text = "Level 1 taught current riding, Level 2 punished battery drain, and Level 3 demanded rhythm through surge locks.\n\nPress R, Space, or Enter to restart the climb."
+autowrap_mode = 3
+
+[node name="Footer" type="Label" parent="Panel"]
+offset_left = 86.0
+offset_top = 494.0
+offset_right = 880.0
+offset_bottom = 542.0
+theme_override_colors/font_color = Color(0.980392, 0.815686, 0.45098, 1)
+text = "Checkpoint chain stabilized."
