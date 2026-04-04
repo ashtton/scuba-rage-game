@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://jnydgx6w57fr"]
+
+[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="1_jt2hw"]
+[ext_resource type="PackedScene" path="res://scenes/components/spike_strip.tscn" id="1_vlcp2"]
+[ext_resource type="PackedScene" path="res://scenes/components/solid_block.tscn" id="2_xixfx"]
+
+[node name="Level 1 Redone" type="Node2D" unique_id=771356984]
+
+[node name="World" type="Node2D" parent="." unique_id=340625508]
+
+[node name="Hazards" type="Node2D" parent="World" unique_id=455956040]
+position = Vector2(-2676, 485)
+
+[node name="L1GiantJellyCeiling" parent="World/Hazards" unique_id=1217200783 instance=ExtResource("1_vlcp2")]
+position = Vector2(1160, 1360)
+rotation = 3.1415927
+size = Vector2(980, 58)
+contact_mode = 1
+jellyfish_bounce_speed = 1180.0
+jellyfish_stun_duration = 2.5
+
+[node name="L1GiantJellyRidgeA" parent="World/Hazards" unique_id=338657896 instance=ExtResource("1_vlcp2")]
+position = Vector2(560, 1670)
+rotation = -0.2617994
+size = Vector2(420, 52)
+contact_mode = 1
+jellyfish_bounce_speed = 1020.0
+jellyfish_stun_duration = 2.2
+
+[node name="L1GiantJellyRidgeB" parent="World/Hazards" unique_id=792541133 instance=ExtResource("1_vlcp2")]
+position = Vector2(1380, 1600)
+rotation = 0.13962634
+size = Vector2(460, 56)
+contact_mode = 1
+jellyfish_bounce_speed = 1060.0
+jellyfish_stun_duration = 2.35
+
+[node name="L1GiantJellyRightWall" parent="World/Hazards" unique_id=1553250556 instance=ExtResource("1_vlcp2")]
+position = Vector2(2280, 1490)
+rotation = 1.5358897
+size = Vector2(760, 50)
+contact_mode = 1
+jellyfish_bounce_speed = 1120.0
+jellyfish_stun_duration = 2.6
+
+[node name="L2GiantJellyFloor" parent="World/Hazards" unique_id=2097818066 instance=ExtResource("1_vlcp2")]
+position = Vector2(1340, 360)
+size = Vector2(1160, 60)
+contact_mode = 1
+jellyfish_bounce_speed = 1140.0
+jellyfish_stun_duration = 2.6
+
+[node name="L2GiantJellyCeiling" parent="World/Hazards" unique_id=1669138432 instance=ExtResource("1_vlcp2")]
+position = Vector2(1300, -220)
+rotation = 3.1415927
+size = Vector2(1180, 60)
+contact_mode = 1
+jellyfish_bounce_speed = 1120.0
+jellyfish_stun_duration = 2.45
+
+[node name="L2WallJellyLeft" parent="World/Hazards" unique_id=1922873668 instance=ExtResource("1_vlcp2")]
+position = Vector2(480, -760)
+rotation = -1.6057029
+size = Vector2(520, 46)
+contact_mode = 1
+jellyfish_bounce_speed = 1020.0
+jellyfish_stun_duration = 2.1
+
+[node name="L2WallJellyRight" parent="World/Hazards" unique_id=1919335441 instance=ExtResource("1_vlcp2")]
+position = Vector2(2090, -610)
+rotation = 1.5707964
+size = Vector2(540, 46)
+contact_mode = 1
+jellyfish_bounce_speed = 1020.0
+jellyfish_stun_duration = 2.1
+
+[node name="Walls" type="Node2D" parent="World" unique_id=1345264029]
+
+[node name="Ceiling" parent="World/Walls" unique_id=265458051 instance=ExtResource("2_xixfx")]
+position = Vector2(1692, -112)
+size = Vector2(4000, 120)
+
+[node name="Floor" parent="World/Walls" unique_id=1369240518 instance=ExtResource("2_xixfx")]
+position = Vector2(1701, 1161)
+size = Vector2(4000, 120)
+
+[node name="Left Wall" parent="World/Walls" unique_id=1033195109 instance=ExtResource("2_xixfx")]
+position = Vector2(87, 440)
+rotation = -1.5606186
+size = Vector2(1000, 120)
+
+[node name="Player" parent="World" unique_id=1886926597 instance=ExtResource("1_jt2hw")]
+position = Vector2(255, 829)
