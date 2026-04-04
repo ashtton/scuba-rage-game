@@ -1,6 +1,6 @@
-[gd_scene load_steps=10 format=3]
+[gd_scene format=3 uid="uid://cqf2kjrurtfc"]
 
-[ext_resource type="Script" path="res://scripts/climb_level.gd" id="1_level_script"]
+[ext_resource type="Script" uid="uid://dhgiosxestv8n" path="res://scripts/climb_level.gd" id="1_level_script"]
 [ext_resource type="PackedScene" path="res://scenes/player.tscn" id="2_player"]
 [ext_resource type="PackedScene" path="res://scenes/components/solid_block.tscn" id="3_block"]
 [ext_resource type="PackedScene" path="res://scenes/components/slip_stream_zone.tscn" id="4_current"]
@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" path="res://scenes/components/goal_battery.tscn" id="8_goal"]
 [ext_resource type="PackedScene" path="res://scenes/components/level_hud.tscn" id="9_hud"]
 
-[node name="Level01" type="Node2D"]
+[node name="Level01" type="Node2D" unique_id=2068859070]
 script = ExtResource("1_level_script")
 next_scene_path = "res://scenes/level_03.tscn"
 level_title = "LEVEL STACK"
@@ -22,302 +22,305 @@ camera_top = -1900
 camera_right = 2720
 camera_bottom = 2680
 
-[node name="World" type="Node2D" parent="."]
+[node name="World" type="Node2D" parent="." unique_id=1151366793]
 
-[node name="Backdrop" type="Polygon2D" parent="World"]
+[node name="Backdrop" type="Polygon2D" parent="World" unique_id=290192902]
 color = Color(0.0117647, 0.101961, 0.129412, 1)
 polygon = PackedVector2Array(-120, -1940, 2760, -1940, 2760, 2700, -120, 2700)
 
-[node name="GlowLayer" type="Polygon2D" parent="World"]
+[node name="GlowLayer" type="Polygon2D" parent="World" unique_id=326416244]
 color = Color(0.0823529, 0.380392, 0.419608, 0.24)
 polygon = PackedVector2Array(20, 2520, 620, 1640, 340, 920, 1080, 640, 680, -160, 1480, -760, 1300, -1600, 2300, -1180, 2540, 240, 2460, 2480)
 
-[node name="CaveShadow" type="Polygon2D" parent="World"]
+[node name="CaveShadow" type="Polygon2D" parent="World" unique_id=1474337756]
 color = Color(0, 0.0470588, 0.0823529, 0.6)
 polygon = PackedVector2Array(-40, 2640, 700, 2580, 1240, 2200, 1660, 2450, 2230, 2190, 2750, 2630, 2740, 2710, -80, 2710)
 
-[node name="Player" parent="World" instance=ExtResource("2_player")]
+[node name="Player" parent="World" unique_id=1587586148 instance=ExtResource("2_player")]
 position = Vector2(300, 2360)
-max_battery = 320.0
-boost_cooldown = 1.25
 bounce_restitution = 0.58
+boost_cooldown = 1.25
+max_battery = 320.0
 
-[node name="LevelStack" type="Node2D" parent="World"]
+[node name="LevelStack" type="Node2D" parent="World" unique_id=752891961]
 
-[node name="Level01Path" type="Node2D" parent="World/LevelStack"]
-position = Vector2(0, 0)
+[node name="Level01Path" type="Node2D" parent="World/LevelStack" unique_id=166234054]
 
-[node name="Level02Path" type="Node2D" parent="World/LevelStack"]
+[node name="Level02Path" type="Node2D" parent="World/LevelStack" unique_id=729382343]
 position = Vector2(0, -1240)
 
-[node name="Solids" type="Node2D" parent="World"]
+[node name="Solids" type="Node2D" parent="World" unique_id=82158712]
 
-[node name="LowerBed" parent="World/Solids" instance=ExtResource("3_block")]
+[node name="LowerBed" parent="World/Solids" unique_id=2037289365 instance=ExtResource("3_block")]
 position = Vector2(1320, 2570)
 size = Vector2(2760, 118)
 fill_color = Color(0.109804, 0.180392, 0.2, 1)
 border_color = Color(0.215686, 0.388235, 0.435294, 1)
 
-[node name="TopBed" parent="World/Solids" instance=ExtResource("3_block")]
+[node name="TopBed" parent="World/Solids" unique_id=783743655 instance=ExtResource("3_block")]
 position = Vector2(1320, -1830)
 size = Vector2(2760, 118)
 fill_color = Color(0.109804, 0.180392, 0.2, 1)
 border_color = Color(0.215686, 0.388235, 0.435294, 1)
 
-[node name="LeftCaveColumn" parent="World/Solids" instance=ExtResource("3_block")]
+[node name="LeftCaveColumn" parent="World/Solids" unique_id=895950101 instance=ExtResource("3_block")]
 position = Vector2(40, 330)
 size = Vector2(120, 4400)
 fill_color = Color(0.0980392, 0.172549, 0.196078, 1)
 
-[node name="RightCaveColumn" parent="World/Solids" instance=ExtResource("3_block")]
+[node name="RightCaveColumn" parent="World/Solids" unique_id=1620715134 instance=ExtResource("3_block")]
 position = Vector2(2600, 330)
 size = Vector2(140, 4400)
 fill_color = Color(0.0980392, 0.172549, 0.196078, 1)
 
-[node name="L1CaveRidgeA" parent="World/Solids" instance=ExtResource("3_block")]
+[node name="L1CaveRidgeA" parent="World/Solids" unique_id=1945850872 instance=ExtResource("3_block")]
 position = Vector2(560, 1990)
-rotation_degrees = -15.0
+rotation = -0.2617994
 size = Vector2(430, 860)
 fill_color = Color(0.14902, 0.243137, 0.258824, 1)
 
-[node name="L1CaveRidgeB" parent="World/Solids" instance=ExtResource("3_block")]
+[node name="L1CaveRidgeB" parent="World/Solids" unique_id=1808285336 instance=ExtResource("3_block")]
 position = Vector2(1360, 2010)
-rotation_degrees = 8.0
+rotation = 0.13962634
 size = Vector2(470, 900)
 fill_color = Color(0.14902, 0.243137, 0.258824, 1)
 
-[node name="L1CaveRidgeC" parent="World/Solids" instance=ExtResource("3_block")]
+[node name="L1CaveRidgeC" parent="World/Solids" unique_id=941416613 instance=ExtResource("3_block")]
 position = Vector2(2100, 1820)
-rotation_degrees = -12.0
+rotation = -0.20943952
 size = Vector2(460, 820)
 fill_color = Color(0.14902, 0.243137, 0.258824, 1)
 
-[node name="L1CeilingToothA" parent="World/Solids" instance=ExtResource("3_block")]
+[node name="L1CeilingToothA" parent="World/Solids" unique_id=1602755450 instance=ExtResource("3_block")]
 position = Vector2(820, 1160)
-rotation_degrees = 17.0
+rotation = 0.29670596
 size = Vector2(380, 760)
 fill_color = Color(0.129412, 0.223529, 0.25098, 1)
 
-[node name="L1CeilingToothB" parent="World/Solids" instance=ExtResource("3_block")]
+[node name="L1CeilingToothB" parent="World/Solids" unique_id=1996237960 instance=ExtResource("3_block")]
 position = Vector2(1760, 980)
-rotation_degrees = -12.0
+rotation = -0.20943952
 size = Vector2(420, 800)
 fill_color = Color(0.129412, 0.223529, 0.25098, 1)
 
-[node name="L2FloorShelf" parent="World/Solids" instance=ExtResource("3_block")]
+[node name="L2FloorShelf" parent="World/Solids" unique_id=1902385818 instance=ExtResource("3_block")]
 position = Vector2(1980, 520)
 size = Vector2(460, 80)
 fill_color = Color(0.192157, 0.313726, 0.333333, 1)
 
-[node name="L2TunnelSpine" parent="World/Solids" instance=ExtResource("3_block")]
+[node name="L2TunnelSpine" parent="World/Solids" unique_id=222148001 instance=ExtResource("3_block")]
 position = Vector2(1260, 160)
 size = Vector2(900, 210)
 fill_color = Color(0.145098, 0.25098, 0.270588, 1)
 
-[node name="L2TunnelToothLeft" parent="World/Solids" instance=ExtResource("3_block")]
+[node name="L2TunnelToothLeft" parent="World/Solids" unique_id=415876488 instance=ExtResource("3_block")]
 position = Vector2(640, 60)
-rotation_degrees = 14.0
+rotation = 0.2443461
 size = Vector2(430, 620)
 fill_color = Color(0.141176, 0.235294, 0.258824, 1)
 
-[node name="L2TunnelToothRight" parent="World/Solids" instance=ExtResource("3_block")]
+[node name="L2TunnelToothRight" parent="World/Solids" unique_id=161526978 instance=ExtResource("3_block")]
 position = Vector2(1930, -80)
-rotation_degrees = -16.0
+rotation = -0.27925268
 size = Vector2(440, 620)
 fill_color = Color(0.141176, 0.235294, 0.258824, 1)
 
-[node name="L2UpperShelfA" parent="World/Solids" instance=ExtResource("3_block")]
+[node name="L2UpperShelfA" parent="World/Solids" unique_id=1539284430 instance=ExtResource("3_block")]
 position = Vector2(1780, -520)
 size = Vector2(380, 80)
 fill_color = Color(0.227451, 0.364706, 0.388235, 1)
 
-[node name="L2UpperShelfB" parent="World/Solids" instance=ExtResource("3_block")]
+[node name="L2UpperShelfB" parent="World/Solids" unique_id=278441092 instance=ExtResource("3_block")]
 position = Vector2(1020, -860)
 size = Vector2(380, 80)
 fill_color = Color(0.227451, 0.364706, 0.388235, 1)
 
-[node name="L2UpperShelfC" parent="World/Solids" instance=ExtResource("3_block")]
+[node name="L2UpperShelfC" parent="World/Solids" unique_id=1848198696 instance=ExtResource("3_block")]
 position = Vector2(400, -1160)
 size = Vector2(360, 80)
 fill_color = Color(0.227451, 0.364706, 0.388235, 1)
 
-[node name="UpperGoalShelf" parent="World/Solids" instance=ExtResource("3_block")]
+[node name="UpperGoalShelf" parent="World/Solids" unique_id=885744967 instance=ExtResource("3_block")]
 position = Vector2(250, -1510)
 size = Vector2(300, 80)
 fill_color = Color(0.282353, 0.466667, 0.54902, 1)
 
-[node name="ConnectorLip" parent="World/Solids" instance=ExtResource("3_block")]
+[node name="ConnectorLip" parent="World/Solids" unique_id=744207609 instance=ExtResource("3_block")]
 position = Vector2(2200, 700)
 size = Vector2(350, 70)
 fill_color = Color(0.203922, 0.329412, 0.341176, 1)
 
-[node name="Currents" type="Node2D" parent="World"]
+[node name="Currents" type="Node2D" parent="World" unique_id=1788627820]
 
-[node name="L1PushbackA" parent="World/Currents" instance=ExtResource("4_current")]
+[node name="L1PushbackA" parent="World/Currents" unique_id=728022711 instance=ExtResource("4_current")]
 position = Vector2(1080, 2050)
 size = Vector2(1900, 340)
 flow_vector = Vector2(-240, 0)
 speed_scale = 0.9
 fill_color = Color(0.12549, 0.627451, 0.74902, 0.18)
 
-[node name="L1PushbackB" parent="World/Currents" instance=ExtResource("4_current")]
+[node name="L1PushbackB" parent="World/Currents" unique_id=1539360430 instance=ExtResource("4_current")]
 position = Vector2(1540, 1540)
 size = Vector2(1660, 300)
 flow_vector = Vector2(-310, 0)
 speed_scale = 1.15
 fill_color = Color(0.12549, 0.627451, 0.74902, 0.2)
 
-[node name="L1VentLift" parent="World/Currents" instance=ExtResource("4_current")]
+[node name="L1VentLift" parent="World/Currents" unique_id=156837068 instance=ExtResource("4_current")]
 position = Vector2(2140, 980)
 size = Vector2(260, 690)
 flow_vector = Vector2(0, -1060)
 fill_color = Color(0.192157, 0.741176, 0.827451, 0.24)
 
-[node name="L2PushbackTop" parent="World/Currents" instance=ExtResource("4_current")]
+[node name="L2PushbackTop" parent="World/Currents" unique_id=10926019 instance=ExtResource("4_current")]
 position = Vector2(1280, -760)
 size = Vector2(1780, 320)
 flow_vector = Vector2(320, 0)
 speed_scale = 1.05
 fill_color = Color(0.141176, 0.666667, 0.772549, 0.22)
 
-[node name="L2BottomBackflow" parent="World/Currents" instance=ExtResource("4_current")]
+[node name="L2BottomBackflow" parent="World/Currents" unique_id=1523750742 instance=ExtResource("4_current")]
 position = Vector2(1710, 380)
 size = Vector2(1020, 280)
 flow_vector = Vector2(410, 0)
 speed_scale = 1.28
 fill_color = Color(0.152941, 0.666667, 0.741176, 0.22)
 
-[node name="ReturnShaftTop" parent="World/Currents" instance=ExtResource("4_current")]
+[node name="ReturnShaftTop" parent="World/Currents" unique_id=992521 instance=ExtResource("4_current")]
 position = Vector2(2360, 820)
 size = Vector2(240, 560)
 flow_vector = Vector2(0, 1120)
 speed_scale = 1.15
 fill_color = Color(0.223529, 0.756863, 0.854902, 0.3)
 
-[node name="ReturnShaftMid" parent="World/Currents" instance=ExtResource("4_current")]
+[node name="ReturnShaftMid" parent="World/Currents" unique_id=737799700 instance=ExtResource("4_current")]
 position = Vector2(2360, 1420)
 size = Vector2(240, 760)
 flow_vector = Vector2(0, 1280)
 speed_scale = 1.3
 fill_color = Color(0.223529, 0.756863, 0.854902, 0.32)
 
-[node name="ReturnShaftBottom" parent="World/Currents" instance=ExtResource("4_current")]
+[node name="ReturnShaftBottom" parent="World/Currents" unique_id=471492345 instance=ExtResource("4_current")]
 position = Vector2(2360, 2160)
 size = Vector2(260, 620)
 flow_vector = Vector2(0, 1400)
 speed_scale = 1.5
 fill_color = Color(0.223529, 0.756863, 0.854902, 0.34)
 
-[node name="SoftBoundaryLeft" parent="World/Currents" instance=ExtResource("4_current")]
+[node name="SoftBoundaryLeft" parent="World/Currents" unique_id=1235730832 instance=ExtResource("4_current")]
 position = Vector2(110, 360)
 size = Vector2(180, 4200)
 flow_vector = Vector2(200, 0)
 fill_color = Color(0.0980392, 0.443137, 0.533333, 0.12)
 
-[node name="SoftBoundaryRight" parent="World/Currents" instance=ExtResource("4_current")]
+[node name="SoftBoundaryRight" parent="World/Currents" unique_id=2067657968 instance=ExtResource("4_current")]
 position = Vector2(2510, 360)
 size = Vector2(180, 4200)
 flow_vector = Vector2(-220, 0)
 fill_color = Color(0.0980392, 0.443137, 0.533333, 0.12)
 
-[node name="Hazards" type="Node2D" parent="World"]
+[node name="Hazards" type="Node2D" parent="World" unique_id=1302526915]
 
-[node name="L1GiantJellyCeiling" parent="World/Hazards" instance=ExtResource("5_spikes")]
+[node name="L1GiantJellyCeiling" parent="World/Hazards" unique_id=813679824 instance=ExtResource("5_spikes")]
 position = Vector2(1160, 1360)
-rotation_degrees = 180.0
+rotation = 3.1415927
 size = Vector2(980, 58)
 contact_mode = 1
 jellyfish_bounce_speed = 1180.0
 jellyfish_stun_duration = 2.5
 
-[node name="L1GiantJellyRidgeA" parent="World/Hazards" instance=ExtResource("5_spikes")]
+[node name="L1GiantJellyRidgeA" parent="World/Hazards" unique_id=273686282 instance=ExtResource("5_spikes")]
 position = Vector2(560, 1670)
-rotation_degrees = -15.0
+rotation = -0.2617994
 size = Vector2(420, 52)
 contact_mode = 1
 jellyfish_bounce_speed = 1020.0
 jellyfish_stun_duration = 2.2
 
-[node name="L1GiantJellyRidgeB" parent="World/Hazards" instance=ExtResource("5_spikes")]
+[node name="L1GiantJellyRidgeB" parent="World/Hazards" unique_id=1455671948 instance=ExtResource("5_spikes")]
 position = Vector2(1380, 1600)
-rotation_degrees = 8.0
+rotation = 0.13962634
 size = Vector2(460, 56)
 contact_mode = 1
 jellyfish_bounce_speed = 1060.0
 jellyfish_stun_duration = 2.35
 
-[node name="L1GiantJellyRightWall" parent="World/Hazards" instance=ExtResource("5_spikes")]
+[node name="L1GiantJellyRightWall" parent="World/Hazards" unique_id=1960586935 instance=ExtResource("5_spikes")]
 position = Vector2(2280, 1490)
-rotation_degrees = 88.0
+rotation = 1.5358897
 size = Vector2(760, 50)
 contact_mode = 1
 jellyfish_bounce_speed = 1120.0
 jellyfish_stun_duration = 2.6
 
-[node name="L2GiantJellyFloor" parent="World/Hazards" instance=ExtResource("5_spikes")]
+[node name="L2GiantJellyFloor" parent="World/Hazards" unique_id=759303629 instance=ExtResource("5_spikes")]
 position = Vector2(1340, 360)
 size = Vector2(1160, 60)
 contact_mode = 1
 jellyfish_bounce_speed = 1140.0
 jellyfish_stun_duration = 2.6
 
-[node name="L2GiantJellyCeiling" parent="World/Hazards" instance=ExtResource("5_spikes")]
+[node name="L2GiantJellyCeiling" parent="World/Hazards" unique_id=1053811526 instance=ExtResource("5_spikes")]
 position = Vector2(1300, -220)
-rotation_degrees = 180.0
+rotation = 3.1415927
 size = Vector2(1180, 60)
 contact_mode = 1
 jellyfish_bounce_speed = 1120.0
 jellyfish_stun_duration = 2.45
 
-[node name="L2WallJellyLeft" parent="World/Hazards" instance=ExtResource("5_spikes")]
+[node name="L2WallJellyLeft" parent="World/Hazards" unique_id=392222089 instance=ExtResource("5_spikes")]
 position = Vector2(480, -760)
-rotation_degrees = -92.0
+rotation = -1.6057029
 size = Vector2(520, 46)
 contact_mode = 1
 jellyfish_bounce_speed = 1020.0
 jellyfish_stun_duration = 2.1
 
-[node name="L2WallJellyRight" parent="World/Hazards" instance=ExtResource("5_spikes")]
+[node name="L2WallJellyRight" parent="World/Hazards" unique_id=1236669472 instance=ExtResource("5_spikes")]
 position = Vector2(2090, -610)
-rotation_degrees = 90.0
+rotation = 1.5707964
 size = Vector2(540, 46)
 contact_mode = 1
 jellyfish_bounce_speed = 1020.0
 jellyfish_stun_duration = 2.1
 
-[node name="Piranhas" type="Node2D" parent="World"]
+[node name="Piranhas" type="Node2D" parent="World" unique_id=827024431]
 
-[node name="PiranhaRouteA" parent="World/Piranhas" instance=ExtResource("6_piranha")]
+[node name="PiranhaRouteA" parent="World/Piranhas" unique_id=695883881 instance=ExtResource("6_piranha")]
+position = Vector2(1850, -60)
 patrol_points = PackedVector2Array(1850, -60, 1240, -20, 760, -140)
 patrol_speed = 220.0
 wait_time_at_point = 0.22
 
-[node name="PiranhaRouteB" parent="World/Piranhas" instance=ExtResource("6_piranha")]
+[node name="PiranhaRouteB" parent="World/Piranhas" unique_id=1894385705 instance=ExtResource("6_piranha")]
+position = Vector2(1760, -530)
 patrol_points = PackedVector2Array(1760, -530, 1240, -760, 760, -620)
 patrol_speed = 195.0
 wait_time_at_point = 0.18
 
-[node name="PiranhaRouteC" parent="World/Piranhas" instance=ExtResource("6_piranha")]
+[node name="PiranhaRouteC" parent="World/Piranhas" unique_id=2103922026 instance=ExtResource("6_piranha")]
+position = Vector2(1180, -1120)
 patrol_points = PackedVector2Array(1180, -1120, 640, -1040, 280, -1240)
 patrol_speed = 205.0
 wait_time_at_point = 0.2
 
-[node name="CheckpointL1" parent="World" instance=ExtResource("7_checkpoint")]
+[node name="CheckpointL1" parent="World" unique_id=270725958 instance=ExtResource("7_checkpoint")]
 position = Vector2(320, 2290)
 checkpoint_name = "Cave Mouth"
 spawn_offset = Vector2(0, -20)
 inactive_color = Color(0.584314, 0.858824, 0.835294, 1)
 active_color = Color(1, 0.866667, 0.462745, 1)
 
-[node name="CheckpointL2" parent="World" instance=ExtResource("7_checkpoint")]
+[node name="CheckpointL2" parent="World" unique_id=1530034379 instance=ExtResource("7_checkpoint")]
 position = Vector2(1940, 450)
 checkpoint_name = "Upper Channel"
 spawn_offset = Vector2(0, -20)
 inactive_color = Color(0.584314, 0.858824, 0.835294, 1)
 active_color = Color(1, 0.866667, 0.462745, 1)
 
-[node name="Goal" parent="World" instance=ExtResource("8_goal")]
+[node name="Goal" parent="World" unique_id=1571239387 instance=ExtResource("8_goal")]
 position = Vector2(250, -1590)
 size = Vector2(90, 90)
+next_scene_path = null
 
-[node name="HUD" parent="." instance=ExtResource("9_hud")]
+[node name="HUD" parent="." unique_id=1362850097 instance=ExtResource("9_hud")]

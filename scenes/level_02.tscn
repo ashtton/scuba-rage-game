@@ -1,6 +1,6 @@
-[gd_scene load_steps=8 format=3]
+[gd_scene format=3 uid="uid://cn5nu3ttws2cc"]
 
-[ext_resource type="Script" path="res://scripts/climb_level.gd" id="1_level_script"]
+[ext_resource type="Script" uid="uid://dhgiosxestv8n" path="res://scripts/climb_level.gd" id="1_level_script"]
 [ext_resource type="PackedScene" path="res://scenes/player.tscn" id="2_player"]
 [ext_resource type="PackedScene" path="res://scenes/components/solid_block.tscn" id="3_block"]
 [ext_resource type="PackedScene" path="res://scenes/components/spike_strip.tscn" id="4_spikes"]
@@ -9,192 +9,191 @@
 [ext_resource type="PackedScene" path="res://scenes/components/goal_battery.tscn" id="7_goal"]
 [ext_resource type="PackedScene" path="res://scenes/components/level_hud.tscn" id="8_hud"]
 
-[node name="Level02" type="Node2D"]
+[node name="Level02" type="Node2D" unique_id=724238228]
 script = ExtResource("1_level_script")
 next_scene_path = "res://scenes/level_03.tscn"
 level_title = "LEVEL 02"
 mechanic_name = "Leech Reef"
 intro_message = "Red charge blooms drain battery every second. Route through the safe shelves before the tank runs dry."
 death_depth = 2600.0
-camera_left = 0
 camera_top = -1700
 camera_right = 2200
 camera_bottom = 2600
 
-[node name="World" type="Node2D" parent="."]
+[node name="World" type="Node2D" parent="." unique_id=1306219362]
 
-[node name="Backdrop" type="Polygon2D" parent="World"]
+[node name="Backdrop" type="Polygon2D" parent="World" unique_id=2146444066]
 color = Color(0.0196078, 0.117647, 0.156863, 1)
 polygon = PackedVector2Array(0, -1700, 2200, -1700, 2200, 2600, 0, 2600)
 
-[node name="MurkGlow" type="Polygon2D" parent="World"]
+[node name="MurkGlow" type="Polygon2D" parent="World" unique_id=1337886524]
 color = Color(0.286275, 0.572549, 0.454902, 0.18)
 polygon = PackedVector2Array(160, 2460, 520, 1680, 240, 720, 960, 80, 620, -740, 1480, -1260, 2020, -180, 1980, 2280)
 
-[node name="ChargeCloud" type="Polygon2D" parent="World"]
+[node name="ChargeCloud" type="Polygon2D" parent="World" unique_id=847110005]
 color = Color(0.815686, 0.301961, 0.411765, 0.12)
 polygon = PackedVector2Array(260, 2180, 1220, 1900, 1980, 1280, 1780, 220, 1140, -520, 460, -220, 240, 880)
 
-[node name="Player" parent="World" instance=ExtResource("2_player")]
+[node name="Player" parent="World" unique_id=1692956769 instance=ExtResource("2_player")]
 position = Vector2(1100, 2250)
-max_battery = 230.0
-boost_cooldown = 1.35
 bounce_restitution = 0.66
+boost_cooldown = 1.35
+max_battery = 230.0
 
-[node name="Solids" type="Node2D" parent="World"]
+[node name="Solids" type="Node2D" parent="World" unique_id=1732362247]
 
-[node name="LeftWall" parent="World/Solids" instance=ExtResource("3_block")]
+[node name="LeftWall" parent="World/Solids" unique_id=845168234 instance=ExtResource("3_block")]
 position = Vector2(20, 450)
 size = Vector2(40, 4300)
 fill_color = Color(0.101961, 0.176471, 0.211765, 1)
 border_color = Color(0.247059, 0.360784, 0.384314, 1)
 
-[node name="RightWall" parent="World/Solids" instance=ExtResource("3_block")]
+[node name="RightWall" parent="World/Solids" unique_id=2141931962 instance=ExtResource("3_block")]
 position = Vector2(2180, 450)
 size = Vector2(40, 4300)
 fill_color = Color(0.101961, 0.176471, 0.211765, 1)
 border_color = Color(0.247059, 0.360784, 0.384314, 1)
 
-[node name="Floor" parent="World/Solids" instance=ExtResource("3_block")]
+[node name="Floor" parent="World/Solids" unique_id=789236260 instance=ExtResource("3_block")]
 position = Vector2(1100, 2560)
 size = Vector2(2200, 80)
 fill_color = Color(0.133333, 0.247059, 0.286275, 1)
 
-[node name="Ceiling" parent="World/Solids" instance=ExtResource("3_block")]
+[node name="Ceiling" parent="World/Solids" unique_id=891754529 instance=ExtResource("3_block")]
 position = Vector2(1100, -1700)
 size = Vector2(2200, 80)
 fill_color = Color(0.133333, 0.247059, 0.286275, 1)
 
-[node name="StartShelf" parent="World/Solids" instance=ExtResource("3_block")]
+[node name="StartShelf" parent="World/Solids" unique_id=1484198093 instance=ExtResource("3_block")]
 position = Vector2(1100, 2360)
 size = Vector2(420, 80)
 fill_color = Color(0.235294, 0.368627, 0.384314, 1)
 
-[node name="LeftShelfOne" parent="World/Solids" instance=ExtResource("3_block")]
+[node name="LeftShelfOne" parent="World/Solids" unique_id=1304036128 instance=ExtResource("3_block")]
 position = Vector2(520, 1900)
 size = Vector2(320, 70)
 fill_color = Color(0.219608, 0.329412, 0.360784, 1)
 
-[node name="RightShelfOne" parent="World/Solids" instance=ExtResource("3_block")]
+[node name="RightShelfOne" parent="World/Solids" unique_id=1115753331 instance=ExtResource("3_block")]
 position = Vector2(1710, 1540)
 size = Vector2(320, 70)
 fill_color = Color(0.219608, 0.329412, 0.360784, 1)
 
-[node name="CheckpointShelfOne" parent="World/Solids" instance=ExtResource("3_block")]
+[node name="CheckpointShelfOne" parent="World/Solids" unique_id=196359621 instance=ExtResource("3_block")]
 position = Vector2(1100, 1180)
 size = Vector2(420, 70)
 fill_color = Color(0.262745, 0.423529, 0.435294, 1)
 
-[node name="LeftShelfTwo" parent="World/Solids" instance=ExtResource("3_block")]
+[node name="LeftShelfTwo" parent="World/Solids" unique_id=148296228 instance=ExtResource("3_block")]
 position = Vector2(560, 760)
 size = Vector2(320, 70)
 fill_color = Color(0.219608, 0.329412, 0.360784, 1)
 
-[node name="RightShelfTwo" parent="World/Solids" instance=ExtResource("3_block")]
+[node name="RightShelfTwo" parent="World/Solids" unique_id=1633069790 instance=ExtResource("3_block")]
 position = Vector2(1680, 360)
 size = Vector2(320, 70)
 fill_color = Color(0.219608, 0.329412, 0.360784, 1)
 
-[node name="CheckpointShelfTwo" parent="World/Solids" instance=ExtResource("3_block")]
+[node name="CheckpointShelfTwo" parent="World/Solids" unique_id=833047875 instance=ExtResource("3_block")]
 position = Vector2(1100, -20)
 size = Vector2(420, 70)
 fill_color = Color(0.262745, 0.423529, 0.435294, 1)
 
-[node name="UpperShelf" parent="World/Solids" instance=ExtResource("3_block")]
+[node name="UpperShelf" parent="World/Solids" unique_id=1908849940 instance=ExtResource("3_block")]
 position = Vector2(1100, -720)
 size = Vector2(340, 70)
 fill_color = Color(0.25098, 0.423529, 0.447059, 1)
 
-[node name="GoalShelf" parent="World/Solids" instance=ExtResource("3_block")]
+[node name="GoalShelf" parent="World/Solids" unique_id=961973188 instance=ExtResource("3_block")]
 position = Vector2(1100, -1280)
 size = Vector2(360, 70)
 fill_color = Color(0.317647, 0.482353, 0.568627, 1)
 
-[node name="CenterBlockOne" parent="World/Solids" instance=ExtResource("3_block")]
+[node name="CenterBlockOne" parent="World/Solids" unique_id=919907153 instance=ExtResource("3_block")]
 position = Vector2(1100, 1880)
 size = Vector2(320, 220)
 fill_color = Color(0.168627, 0.25098, 0.270588, 1)
 
-[node name="CenterBlockTwo" parent="World/Solids" instance=ExtResource("3_block")]
+[node name="CenterBlockTwo" parent="World/Solids" unique_id=1423028537 instance=ExtResource("3_block")]
 position = Vector2(1100, 520)
 size = Vector2(320, 220)
 fill_color = Color(0.168627, 0.25098, 0.270588, 1)
 
-[node name="DrainA" parent="World" instance=ExtResource("5_drain")]
+[node name="DrainA" parent="World" unique_id=216983319 instance=ExtResource("5_drain")]
 position = Vector2(820, 2050)
 size = Vector2(680, 420)
 drain_per_second = 80.0
 
-[node name="DrainB" parent="World" instance=ExtResource("5_drain")]
+[node name="DrainB" parent="World" unique_id=1782583560 instance=ExtResource("5_drain")]
 position = Vector2(1400, 1680)
 size = Vector2(700, 420)
 drain_per_second = 90.0
 
-[node name="DrainC" parent="World" instance=ExtResource("5_drain")]
+[node name="DrainC" parent="World" unique_id=848078264 instance=ExtResource("5_drain")]
 position = Vector2(1040, 1320)
 size = Vector2(720, 360)
-drain_per_second = 100.0
 
-[node name="DrainD" parent="World" instance=ExtResource("5_drain")]
+[node name="DrainD" parent="World" unique_id=505478939 instance=ExtResource("5_drain")]
 position = Vector2(820, 910)
 size = Vector2(680, 420)
 drain_per_second = 110.0
 
-[node name="DrainE" parent="World" instance=ExtResource("5_drain")]
+[node name="DrainE" parent="World" unique_id=293057640 instance=ExtResource("5_drain")]
 position = Vector2(1400, 520)
 size = Vector2(700, 420)
 drain_per_second = 120.0
 
-[node name="DrainF" parent="World" instance=ExtResource("5_drain")]
+[node name="DrainF" parent="World" unique_id=1557048222 instance=ExtResource("5_drain")]
 position = Vector2(1100, -440)
 size = Vector2(1040, 480)
 drain_per_second = 130.0
 
-[node name="DrainG" parent="World" instance=ExtResource("5_drain")]
+[node name="DrainG" parent="World" unique_id=59952259 instance=ExtResource("5_drain")]
 position = Vector2(1100, -1040)
 size = Vector2(880, 360)
 drain_per_second = 135.0
 
-[node name="CheckpointOne" parent="World" instance=ExtResource("6_checkpoint")]
+[node name="CheckpointOne" parent="World" unique_id=149575910 instance=ExtResource("6_checkpoint")]
 position = Vector2(1100, 1050)
 checkpoint_name = "Dry Pocket Alpha"
 spawn_offset = Vector2(0, -18)
 inactive_color = Color(0.54902, 0.835294, 0.784314, 1)
 active_color = Color(0.988235, 0.847059, 0.458824, 1)
 
-[node name="CheckpointTwo" parent="World" instance=ExtResource("6_checkpoint")]
+[node name="CheckpointTwo" parent="World" unique_id=573461254 instance=ExtResource("6_checkpoint")]
 position = Vector2(1100, -150)
 checkpoint_name = "Dry Pocket Beta"
 spawn_offset = Vector2(0, -18)
 inactive_color = Color(0.54902, 0.835294, 0.784314, 1)
 active_color = Color(0.988235, 0.847059, 0.458824, 1)
 
-[node name="Goal" parent="World" instance=ExtResource("7_goal")]
+[node name="Goal" parent="World" unique_id=627394206 instance=ExtResource("7_goal")]
 position = Vector2(1100, -1360)
 size = Vector2(84, 84)
+next_scene_path = null
 
-[node name="Hazards" type="Node2D" parent="World"]
+[node name="Hazards" type="Node2D" parent="World" unique_id=394117957]
 
-[node name="CenterBlockOneSpikes" parent="World/Hazards" instance=ExtResource("4_spikes")]
+[node name="CenterBlockOneSpikes" parent="World/Hazards" unique_id=839797736 instance=ExtResource("4_spikes")]
 position = Vector2(1100, 1766)
 size = Vector2(260, 24)
 
-[node name="CenterBlockTwoSpikes" parent="World/Hazards" instance=ExtResource("4_spikes")]
+[node name="CenterBlockTwoSpikes" parent="World/Hazards" unique_id=1289269798 instance=ExtResource("4_spikes")]
 position = Vector2(1100, 634)
-rotation_degrees = 180.0
+rotation = 3.1415927
 size = Vector2(260, 24)
 
-[node name="LeftShelfTwoSpikes" parent="World/Hazards" instance=ExtResource("4_spikes")]
+[node name="LeftShelfTwoSpikes" parent="World/Hazards" unique_id=1844800154 instance=ExtResource("4_spikes")]
 position = Vector2(560, 722)
 size = Vector2(220, 24)
 
-[node name="RightShelfTwoSpikes" parent="World/Hazards" instance=ExtResource("4_spikes")]
+[node name="RightShelfTwoSpikes" parent="World/Hazards" unique_id=150158868 instance=ExtResource("4_spikes")]
 position = Vector2(1680, 398)
-rotation_degrees = 180.0
+rotation = 3.1415927
 size = Vector2(220, 24)
 
-[node name="UpperShelfSpikes" parent="World/Hazards" instance=ExtResource("4_spikes")]
+[node name="UpperShelfSpikes" parent="World/Hazards" unique_id=693433902 instance=ExtResource("4_spikes")]
 position = Vector2(1100, -758)
 size = Vector2(240, 24)
 
-[node name="HUD" parent="." instance=ExtResource("8_hud")]
+[node name="HUD" parent="." unique_id=157508064 instance=ExtResource("8_hud")]

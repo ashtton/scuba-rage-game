@@ -14,11 +14,16 @@ class_name GoalBattery
 	set(value):
 		bolt_color = value
 		queue_redraw()
+@export_file("*.tscn") var next_scene_path := ""
 
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 
+var _triggered := false
+
 
 func _ready() -> void:
+	if not Engine.is_editor_hint():
+		body_entered.connect(_on_body_entered)
 	_sync_geometry()
 
 
@@ -52,6 +57,17 @@ func _draw() -> void:
 	draw_colored_polygon(bottom_points, shell_color)
 	draw_colored_polygon(bolt_points, bolt_color)
 	draw_rect(body_rect, Color("fff5bf"), false, 3.0)
+
+
+func _on_body_entered(body: Node) -> void:
+	if _triggered or not (body is SubmarinePlayer):
+		return
+
+	_triggered = true
+	if next_scene_path.is_empty():
+		return
+	if ResourceLoader.exists(next_scene_path):
+		get_tree().change_scene_to_file(next_scene_path)
 
 
 func _sync_geometry() -> void:

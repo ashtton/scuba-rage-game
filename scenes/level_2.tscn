@@ -1,0 +1,124 @@
+[gd_scene format=3 uid="uid://dqavghgxfkx4v"]
+
+[ext_resource type="Script" uid="uid://dhgiosxestv8n" path="res://scripts/climb_level.gd" id="1_level_script"]
+[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="2_player_scene"]
+[ext_resource type="PackedScene" path="res://scenes/components/level_hud.tscn" id="3_hud_scene"]
+[ext_resource type="PackedScene" path="res://scenes/components/solid_block.tscn" id="4_solid_block"]
+[ext_resource type="PackedScene" path="res://scenes/components/slip_stream_zone.tscn" id="5_stream_zone"]
+[ext_resource type="PackedScene" path="res://scenes/components/piranha_patrol.tscn" id="6_piranha"]
+[ext_resource type="PackedScene" path="res://scenes/components/recharge_cell.tscn" id="9_recharge_cell"]
+
+[node name="Level2" type="Node2D" unique_id=1544132612]
+script = ExtResource("1_level_script")
+next_scene_path = "res://scenes/demo_complete.tscn"
+level_title = "LEVEL 02"
+mechanic_name = "Cross Currents"
+intro_message = "Push from right to left. Use the recharge cell and ride the streams to break through the piranha patrols."
+death_depth = 2100.0
+camera_top = 0
+camera_right = 3360
+camera_bottom = 1920
+
+[node name="World" type="Node2D" parent="." unique_id=1765536663]
+
+[node name="Backdrop" type="Polygon2D" parent="World" unique_id=388785770]
+position = Vector2(-595, 0)
+scale = Vector2(1.1770834, 1)
+color = Color(0.0196078, 0.117647, 0.176471, 1)
+polygon = PackedVector2Array(0, 0, 3360, 0, 3360, 1920, 0, 1920)
+
+[node name="GlowBandTop" type="Polygon2D" parent="World" unique_id=81881884]
+position = Vector2(-496.99997, 0)
+scale = Vector2(1.1479168, 1)
+color = Color(0.231373, 0.6, 0.65098, 0.2)
+polygon = PackedVector2Array(0, 420, 3360, 380, 3360, 760, 0, 700)
+
+[node name="GlowBandBottom" type="Polygon2D" parent="World" unique_id=510785968]
+position = Vector2(-528, 0)
+scale = Vector2(1.1571429, 1)
+color = Color(0.14902, 0.521569, 0.611765, 0.18)
+polygon = PackedVector2Array(0, 1320, 3360, 1260, 3360, 1780, 0, 1720)
+
+[node name="Player" parent="World" unique_id=88900373 instance=ExtResource("2_player_scene")]
+position = Vector2(3010, 1460)
+
+[node name="BoundaryCeiling" parent="World" unique_id=1296640178 instance=ExtResource("4_solid_block")]
+position = Vector2(1680, 80)
+size = Vector2(3400, 160)
+fill_color = Color(0.0470588, 0.2, 0.27451, 1)
+border_color = Color(0.235294, 0.682353, 0.831373, 0.65)
+
+[node name="BoundaryFloor" parent="World" unique_id=1212061384 instance=ExtResource("4_solid_block")]
+position = Vector2(710, 1828)
+size = Vector2(3400, 180)
+fill_color = Color(0.0627451, 0.223529, 0.286275, 1)
+border_color = Color(0.329412, 0.741176, 0.85098, 0.6)
+
+[node name="BoundaryFloor2" parent="World" unique_id=1007178686 instance=ExtResource("4_solid_block")]
+position = Vector2(1248.0001, 2163)
+scale = Vector2(0.8636323, 0.4400777)
+size = Vector2(3400, 180)
+fill_color = Color(0.0627451, 0.223529, 0.286275, 1)
+border_color = Color(0.329412, 0.741176, 0.85098, 0.6)
+
+[node name="BoundaryLeft" parent="World" unique_id=342387223 instance=ExtResource("4_solid_block")]
+position = Vector2(-536, 914)
+size = Vector2(120, 1920)
+fill_color = Color(0.0627451, 0.223529, 0.286275, 1)
+border_color = Color(0.329412, 0.741176, 0.85098, 0.6)
+
+[node name="BoundaryRight" parent="World" unique_id=1477928844 instance=ExtResource("4_solid_block")]
+position = Vector2(3310, 960)
+size = Vector2(120, 1920)
+fill_color = Color(0.0627451, 0.223529, 0.286275, 1)
+border_color = Color(0.329412, 0.741176, 0.85098, 0.6)
+
+[node name="BoundaryRight2" parent="World" unique_id=1429899336 instance=ExtResource("4_solid_block")]
+position = Vector2(2780, 2040.0001)
+scale = Vector2(-0.86622363, -0.19073963)
+size = Vector2(120, 1920)
+fill_color = Color(0.0627451, 0.223529, 0.286275, 1)
+border_color = Color(0.329412, 0.741176, 0.85098, 0.6)
+
+[node name="BottomCurrentMedium" parent="World" unique_id=2126141449 instance=ExtResource("5_stream_zone")]
+position = Vector2(1659, 1642)
+size = Vector2(1500, 180)
+flow_vector = Vector2(520, 0)
+fill_color = Color(0.14902, 0.670588, 0.835294, 0.18)
+edge_color = Color(0.568627, 0.913725, 1, 1)
+
+[node name="BottomCurrentMedium2" parent="World" unique_id=1054584788 instance=ExtResource("5_stream_zone")]
+position = Vector2(1129, 2043)
+scale = Vector2(2.1094713, 0.78490925)
+size = Vector2(1500, 180)
+flow_vector = Vector2(-520, 0)
+fill_color = Color(0.14902, 0.670588, 0.835294, 0.18)
+edge_color = Color(0.568627, 0.913725, 1, 1)
+
+[node name="PiranhaTop" parent="World" unique_id=1454124114 instance=ExtResource("6_piranha")]
+position = Vector2(2280, 930)
+patrol_points = PackedVector2Array(2280, 930, 2840, 930)
+patrol_speed = 210.0
+wait_time_at_point = 0.2
+bite_message = "A piranha ambush shredded the hull."
+
+[node name="PiranhaMid" parent="World" unique_id=666650665 instance=ExtResource("6_piranha")]
+position = Vector2(2026, 1081)
+patrol_points = PackedVector2Array(2140, 1230, 2760, 1230)
+patrol_speed = 190.0
+wait_time_at_point = 0.25
+bite_message = "A piranha ambush shredded the hull."
+
+[node name="PiranhaLow" parent="World" unique_id=1339752821 instance=ExtResource("6_piranha")]
+position = Vector2(1940, 1480)
+patrol_points = PackedVector2Array(1940, 1480, 2520, 1480)
+patrol_speed = 170.0
+wait_time_at_point = 0.2
+bite_message = "A piranha ambush shredded the hull."
+
+[node name="RechargeCellMain" parent="World" unique_id=1924349906 instance=ExtResource("9_recharge_cell")]
+position = Vector2(2936, 1142)
+size = Vector2(84, 104)
+cooldown = 30.0
+
+[node name="HUD" parent="." unique_id=61515943 instance=ExtResource("3_hud_scene")]

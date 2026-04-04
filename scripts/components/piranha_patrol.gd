@@ -13,6 +13,8 @@ class_name PiranhaPatrol
 @export var patrol_speed := 180.0
 @export var wait_time_at_point := 0.15
 @export var bite_message := "A piranha pack tore through the hull."
+@export var bite_knockback_speed := 920.0
+@export var bite_stun_duration := 5.0
 @export var body_color := Color("e99245"):
 	set(value):
 		body_color = value
@@ -27,6 +29,7 @@ class_name PiranhaPatrol
 var _current_index := 0
 var _direction := 1
 var _wait_time_left := 0.0
+var _facing_sign := 1.0
 
 
 func _ready() -> void:
@@ -42,11 +45,15 @@ func _physics_process(delta: float) -> void:
 
 	if _wait_time_left > 0.0:
 		_wait_time_left = maxf(_wait_time_left - delta, 0.0)
+		_apply_facing()
 		return
 
 	var target_index := _get_target_index()
 	var target_position := patrol_points[target_index]
+	var movement_direction := target_position - position
+	_update_facing_from_vector(movement_direction)
 	position = position.move_toward(target_position, patrol_speed * delta)
+	_apply_facing()
 
 	if position.distance_to(target_position) <= 0.5:
 		position = target_position
@@ -105,7 +112,9 @@ func _draw() -> void:
 
 func _on_body_entered(body: Node) -> void:
 	if body is SubmarinePlayer:
-		(body as SubmarinePlayer).die(bite_message)
+		var player := body as SubmarinePlayer
+		player.apply_hazard_bounce(Vector2.DOWN, bite_knockback_speed)
+		player.stun_for(bite_stun_duration)
 
 
 func _get_target_index() -> int:
@@ -123,6 +132,9 @@ func _clamp_patrol_state() -> void:
 
 	if patrol_points.size() > 0:
 		position = patrol_points[_current_index]
+		if patrol_points.size() > 1:
+			_update_facing_from_vector(patrol_points[1] - patrol_points[0])
+		_apply_facing()
 		queue_redraw()
 
 
@@ -138,3 +150,13 @@ func _sync_collision_shape() -> void:
 	capsule.radius = 18.0
 	capsule.height = 58.0
 	collision_shape.rotation_degrees = 90.0
+
+
+func _update_facing_from_vector(direction: Vector2) -> void:
+	if absf(direction.x) < 0.01:
+		return
+	_facing_sign = 1.0 if direction.x >= 0.0 else -1.0
+
+
+func _apply_facing() -> void:
+	scale.x = _facing_sign
