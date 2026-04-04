@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dhgiosxestv8n" path="res://scripts/climb_level.gd" id="1_level_script"]
 [ext_resource type="PackedScene" path="res://scenes/player.tscn" id="2_player_scene"]
 [ext_resource type="PackedScene" path="res://scenes/components/level_hud.tscn" id="3_hud_scene"]
-[ext_resource type="PackedScene" path="res://scenes/components/solid_block.tscn" id="4_solid_block"]
+[ext_resource type="PackedScene" path="res://scenes/components/cave_wall.tscn" id="4_cave_wall"]
 [ext_resource type="PackedScene" path="res://scenes/components/slip_stream_zone.tscn" id="5_stream_zone"]
 [ext_resource type="PackedScene" path="res://scenes/components/piranha_patrol.tscn" id="6_piranha"]
 [ext_resource type="PackedScene" path="res://scenes/components/recharge_cell.tscn" id="9_recharge_cell"]
@@ -42,43 +42,42 @@ polygon = PackedVector2Array(0, 1320, 3360, 1260, 3360, 1780, 0, 1720)
 [node name="Player" parent="World" unique_id=88900373 instance=ExtResource("2_player_scene")]
 position = Vector2(3010, 1460)
 
-[node name="BoundaryCeiling" parent="World" unique_id=1296640178 instance=ExtResource("4_solid_block")]
+[node name="BoundaryCeiling" parent="World" unique_id=1296640178 instance=ExtResource("4_cave_wall")]
 position = Vector2(1680, 80)
-size = Vector2(3400, 160)
 fill_color = Color(0.0470588, 0.2, 0.27451, 1)
 border_color = Color(0.235294, 0.682353, 0.831373, 0.65)
+polygon_points = PackedVector2Array(-1700, -130, 1700, -130, 1700, 150, 1340, 120, 900, 176, 420, 118, -120, 188, -700, 132, -1230, 184, -1700, 136)
 
-[node name="BoundaryFloor" parent="World" unique_id=1212061384 instance=ExtResource("4_solid_block")]
+[node name="BoundaryFloor" parent="World" unique_id=1212061384 instance=ExtResource("4_cave_wall")]
 position = Vector2(710, 1828)
-size = Vector2(3400, 180)
 fill_color = Color(0.0627451, 0.223529, 0.286275, 1)
 border_color = Color(0.329412, 0.741176, 0.85098, 0.6)
+disable_submarine_bounce = true
+polygon_points = PackedVector2Array(-1700, -96, -1360, -138, -960, -70, -550, -126, -120, -72, 350, -140, 860, -76, 1260, -122, 1700, -80, 1700, 92, -1700, 92)
 
-[node name="BoundaryFloor2" parent="World" unique_id=1007178686 instance=ExtResource("4_solid_block")]
+[node name="BoundaryFloor2" parent="World" unique_id=1007178686 instance=ExtResource("4_cave_wall")]
 position = Vector2(1248.0001, 2163)
-scale = Vector2(0.8636323, 0.4400777)
-size = Vector2(3400, 180)
 fill_color = Color(0.0627451, 0.223529, 0.286275, 1)
 border_color = Color(0.329412, 0.741176, 0.85098, 0.6)
+polygon_points = PackedVector2Array(-1468, -50, -1120, -78, -760, -42, -340, -88, 60, -36, 560, -80, 980, -44, 1300, -70, 1468, -38, 1468, 50, -1468, 50)
 
-[node name="BoundaryLeft" parent="World" unique_id=342387223 instance=ExtResource("4_solid_block")]
+[node name="BoundaryLeft" parent="World" unique_id=342387223 instance=ExtResource("4_cave_wall")]
 position = Vector2(-536, 914)
-size = Vector2(120, 1920)
 fill_color = Color(0.0627451, 0.223529, 0.286275, 1)
 border_color = Color(0.329412, 0.741176, 0.85098, 0.6)
+polygon_points = PackedVector2Array(-86, -960, 86, -960, 60, -620, 108, -220, 46, 160, 110, 560, 50, 960, -86, 960)
 
-[node name="BoundaryRight" parent="World" unique_id=1477928844 instance=ExtResource("4_solid_block")]
+[node name="BoundaryRight" parent="World" unique_id=1477928844 instance=ExtResource("4_cave_wall")]
 position = Vector2(3310, 960)
-size = Vector2(120, 1920)
 fill_color = Color(0.0627451, 0.223529, 0.286275, 1)
 border_color = Color(0.329412, 0.741176, 0.85098, 0.6)
+polygon_points = PackedVector2Array(-86, -960, 86, -960, 24, -560, 92, -120, 30, 270, 86, 620, 18, 960, -86, 960)
 
-[node name="BoundaryRight2" parent="World" unique_id=1429899336 instance=ExtResource("4_solid_block")]
+[node name="BoundaryRight2" parent="World" unique_id=1429899336 instance=ExtResource("4_cave_wall")]
 position = Vector2(2780, 2040.0001)
-scale = Vector2(-0.86622363, -0.19073963)
-size = Vector2(120, 1920)
 fill_color = Color(0.0627451, 0.223529, 0.286275, 1)
 border_color = Color(0.329412, 0.741176, 0.85098, 0.6)
+polygon_points = PackedVector2Array(-60, -188, 60, -188, 22, -102, 52, -6, 18, 92, 56, 188, -60, 188)
 
 [node name="BottomCurrentMedium" parent="World" unique_id=2126141449 instance=ExtResource("5_stream_zone")]
 position = Vector2(1659, 1642)

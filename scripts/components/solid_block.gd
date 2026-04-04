@@ -18,6 +18,7 @@ class_name SolidBlock
 	set(value):
 		border_width = maxf(value, 1.0)
 		queue_redraw()
+@export var disable_submarine_bounce := false
 
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 
