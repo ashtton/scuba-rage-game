@@ -49,14 +49,14 @@ func _physics_process(delta: float) -> void:
 	if Engine.is_editor_hint():
 		return
 
-	var effective_flow := flow_vector * speed_scale
+	var effective_flow := _get_effective_flow_vector() * speed_scale
 	for body in get_overlapping_bodies():
 		if body is SubmarinePlayer:
 			(body as SubmarinePlayer).velocity += effective_flow * delta
 
 
 func _draw() -> void:
-	var direction := flow_vector.normalized()
+	var direction := _get_effective_flow_vector().normalized()
 	if direction.length_squared() < 0.001:
 		direction = Vector2.RIGHT
 
@@ -118,13 +118,13 @@ func _advance_visual_particles(delta: float) -> void:
 	if _visual_particles.is_empty():
 		return
 
-	var direction := flow_vector.normalized()
+	var direction := _get_effective_flow_vector().normalized()
 	if direction.length_squared() < 0.001:
 		direction = Vector2.RIGHT
 
 	var horizontal_flow := absf(direction.x) >= absf(direction.y)
 	var flow_span := size.x if horizontal_flow else size.y
-	var speed := maxf(flow_vector.length() * speed_scale, 120.0)
+	var speed := maxf(_get_effective_flow_vector().length() * speed_scale, 120.0)
 	var normalized_step := speed * delta / maxf(flow_span, 1.0)
 
 	for particle in _visual_particles:
@@ -150,3 +150,7 @@ func _particle_position(progress: float, lane: float, direction: Vector2) -> Vec
 	var px := lerpf(-half.x + margin, half.x - margin, lane)
 	var py := lerpf(-half.y + margin, half.y - margin, progress)
 	return Vector2(px, py)
+
+
+func _get_effective_flow_vector() -> Vector2:
+	return flow_vector

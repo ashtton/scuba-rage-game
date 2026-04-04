@@ -3,7 +3,10 @@
 [ext_resource type="PackedScene" path="res://scenes/player.tscn" id="1_jt2hw"]
 [ext_resource type="PackedScene" path="res://scenes/components/spike_strip.tscn" id="1_vlcp2"]
 [ext_resource type="PackedScene" path="res://scenes/components/solid_block.tscn" id="2_xixfx"]
+[ext_resource type="PackedScene" path="res://scenes/components/cave_wall.tscn" id="3_t6k03"]
 [ext_resource type="PackedScene" path="res://scenes/components/slip_stream_zone.tscn" id="4_hwihd"]
+[ext_resource type="PackedScene" path="res://scenes/components/fan_zone.tscn" id="5_3c1xy"]
+[ext_resource type="PackedScene" path="res://scenes/components/level_hud.tscn" id="6_0lcgs"]
 
 [node name="Level 1 Redone" type="Node2D" unique_id=771356984]
 
@@ -12,9 +15,84 @@
 [node name="Hazards" type="Node2D" parent="World" unique_id=455956040]
 position = Vector2(-2676, 485)
 
+[node name="FanZone" parent="World/Hazards" unique_id=607855655 instance=ExtResource("5_3c1xy")]
+position = Vector2(5861, 51)
+rotation = 0.026684957
+flow_mode = 1
+pivot_origin = 1
+pivot_sweep_degrees = 50.0
+pivot_cycles_per_second = 0.05
+size = Vector2(800, 200)
+
+[node name="SlipStreamZone4" parent="World/Hazards" unique_id=1689949833 instance=ExtResource("4_hwihd")]
+position = Vector2(5140, -144)
+rotation = -0.2818977
+size = Vector2(1000, 250)
+flow_vector = Vector2(-300, 0)
+
+[node name="SlipStreamZone" parent="World/Hazards" unique_id=1867774872 instance=ExtResource("4_hwihd")]
+position = Vector2(5084, 348)
+rotation = 0.25490916
+size = Vector2(1000, 250)
+flow_vector = Vector2(-300, 0)
+
+[node name="SlipStreamZone3" parent="World/Hazards" unique_id=358632917 instance=ExtResource("4_hwihd")]
+position = Vector2(5804, 446)
+rotation = -0.019723287
+scale = Vector2(0.99999994, 0.99999994)
+size = Vector2(500, 250)
+flow_vector = Vector2(-300, 0)
+
+[node name="SlipStreamZone2" parent="World/Hazards" unique_id=394433841 instance=ExtResource("4_hwihd")]
+position = Vector2(5844, -280)
+rotation = -0.009861644
+size = Vector2(500, 250)
+flow_vector = Vector2(-300, 0)
+
+[node name="L2GiantJellyCeiling2" parent="World/Hazards" unique_id=1129919786 instance=ExtResource("1_vlcp2")]
+position = Vector2(5127, -312.00018)
+rotation = 2.8181815
+size = Vector2(1180, 60)
+contact_mode = 1
+jellyfish_bounce_speed = 1120.0
+jellyfish_stun_duration = 2.45
+
+[node name="L2GiantJellyCeiling5" parent="World/Hazards/L2GiantJellyCeiling2" unique_id=1684221222 instance=ExtResource("1_vlcp2")]
+position = Vector2(16.599365, -474.31488)
+rotation = 0.35155115
+scale = Vector2(1.0000001, 1.0000001)
+size = Vector2(1180, 60)
+contact_mode = 1
+jellyfish_bounce_speed = 1120.0
+jellyfish_stun_duration = 2.45
+
+[node name="L2GiantJellyCeiling3" parent="World/Hazards/L2GiantJellyCeiling2" unique_id=545273468 instance=ExtResource("1_vlcp2")]
+position = Vector2(371.7611, -687.49536)
+rotation = -2.5846398
+size = Vector2(800, 60)
+contact_mode = 1
+jellyfish_bounce_speed = 1120.0
+jellyfish_stun_duration = 2.45
+
+[node name="L2GiantJellyCeiling3" parent="World/Hazards/L2GiantJellyCeiling2/L2GiantJellyCeiling3" unique_id=171198336 instance=ExtResource("1_vlcp2")]
+position = Vector2(777.7549, -96.61444)
+rotation = -0.26595592
+size = Vector2(800, 60)
+contact_mode = 1
+jellyfish_bounce_speed = 1120.0
+jellyfish_stun_duration = 2.45
+
+[node name="L2GiantJellyCeiling4" parent="World/Hazards/L2GiantJellyCeiling2" unique_id=254324216 instance=ExtResource("1_vlcp2")]
+position = Vector2(-13.909912, -383.2918)
+rotation = -2.9677875
+size = Vector2(1180, 60)
+contact_mode = 1
+jellyfish_bounce_speed = 1120.0
+jellyfish_stun_duration = 2.45
+
 [node name="L1GiantJellyRidgeA" parent="World/Hazards" unique_id=338657896 instance=ExtResource("1_vlcp2")]
-position = Vector2(4366.0005, 424.99988)
-rotation = -0.2617994
+position = Vector2(4438, 462.99988)
+rotation = -0.69744277
 size = Vector2(420, 52)
 contact_mode = 1
 jellyfish_bounce_speed = 1020.0
@@ -28,21 +106,13 @@ contact_mode = 1
 jellyfish_bounce_speed = 1060.0
 jellyfish_stun_duration = 2.35
 
-[node name="L1GiantJellyRightWall" parent="World/Hazards" unique_id=1553250556 instance=ExtResource("1_vlcp2")]
-position = Vector2(4574, -476)
-rotation = 1.5358897
-size = Vector2(760, 50)
+[node name="L1GiantJellyRightWall2" parent="World/Hazards" unique_id=273927706 instance=ExtResource("1_vlcp2")]
+position = Vector2(5859, 47.99951)
+rotation = 1.5306064
+size = Vector2(200, 50)
 contact_mode = 1
 jellyfish_bounce_speed = 1120.0
 jellyfish_stun_duration = 2.6
-
-[node name="L2WallJellyLeft" parent="World/Hazards" unique_id=1922873668 instance=ExtResource("1_vlcp2")]
-position = Vector2(4576, 594)
-rotation = -1.6057029
-size = Vector2(520, 46)
-contact_mode = 1
-jellyfish_bounce_speed = 1020.0
-jellyfish_stun_duration = 2.1
 
 [node name="Walls" type="Node2D" parent="World" unique_id=1345264029]
 
@@ -58,6 +128,74 @@ size = Vector2(10000, 120)
 position = Vector2(42.999992, 519)
 rotation = -1.5606186
 size = Vector2(1200, 120)
+
+[node name="first-area3" parent="World/Walls" unique_id=1354042501 instance=ExtResource("3_t6k03")]
+position = Vector2(3333, -19)
+polygon_points = PackedVector2Array(1536.0848, -84.63323, 1005.6644, 421.14667, 319.72296, 234.79828, -308.23596, -7.18396, -625.2173, -84.07547, -227.66052, -72.96139, 40.79187, -84.63323)
+
+[node name="CollisionPolygon2D" parent="World/Walls/first-area3" index="0"]
+polygon = PackedVector2Array(1536.0848, -84.63323, 1005.6644, 421.14667, 319.72296, 234.79828, -308.23596, -7.18396, -625.2173, -84.07547, -227.66052, -72.96139, 40.79187, -84.63323)
+
+[node name="VisualFill" parent="World/Walls/first-area3" index="1"]
+color = Color(0.101960786, 0.23137255, 0.3019608, 1)
+polygon = PackedVector2Array(1536.0848, -84.63323, 1005.6644, 421.14667, 319.72296, 234.79828, -308.23596, -7.18396, -625.2173, -84.07547, -227.66052, -72.96139, 40.79187, -84.63323)
+
+[node name="VisualBorder" parent="World/Walls/first-area3" index="2"]
+points = PackedVector2Array(1536.0848, -84.63323, 1005.6644, 421.14667, 319.72296, 234.79828, -308.23596, -7.18396, -625.2173, -84.07547, -227.66052, -72.96139, 40.79187, -84.63323)
+width = 5.0
+default_color = Color(0.32941177, 0.7411765, 0.8509804, 1)
+
+[node name="first-area1" parent="World/Walls" unique_id=2050962819 instance=ExtResource("3_t6k03")]
+position = Vector2(181, 968)
+polygon_points = PackedVector2Array(1468.4963, 87.25159, 1716.313, -113.631546, 2951.9114, 201.6192, -230.19897, 188.16418, -216.78796, -51.768616, -208.86743, -980.1688, -16.59668, -954.4941, -63.985596, -359.4881, 35, -27.499825)
+
+[node name="CollisionPolygon2D" parent="World/Walls/first-area1" index="0"]
+polygon = PackedVector2Array(1468.4963, 87.25159, 1716.313, -113.631546, 2951.9114, 201.6192, -230.19897, 188.16418, -216.78796, -51.768616, -208.86743, -980.1688, -16.59668, -954.4941, -63.985596, -359.4881, 35, -27.499825)
+
+[node name="VisualFill" parent="World/Walls/first-area1" index="1"]
+color = Color(0.101960786, 0.23137255, 0.3019608, 1)
+polygon = PackedVector2Array(1468.4963, 87.25159, 1716.313, -113.631546, 2951.9114, 201.6192, -230.19897, 188.16418, -216.78796, -51.768616, -208.86743, -980.1688, -16.59668, -954.4941, -63.985596, -359.4881, 35, -27.499825)
+
+[node name="VisualBorder" parent="World/Walls/first-area1" index="2"]
+points = PackedVector2Array(1468.4963, 87.25159, 1716.313, -113.631546, 2951.9114, 201.6192, -230.19897, 188.16418, -216.78796, -51.768616, -208.86743, -980.1688, -16.59668, -954.4941, -63.985596, -359.4881, 35, -27.499825)
+width = 5.0
+default_color = Color(0.32941177, 0.7411765, 0.8509804, 1)
+
+[node name="first-area2" parent="World/Walls" unique_id=756866602 instance=ExtResource("3_t6k03")]
+position = Vector2(943, -14.999999)
+scale = Vector2(7.92, 1)
+polygon_points = PackedVector2Array(261.49976, -45.00045, 122.664734, 329.77777, 87.48193, 6.3777046, -46.53247, 10.62545, -106.378296, 427.95685, -120.32828, -4, -83.76526, -57.746563, 101.499756, -62.00045)
+
+[node name="CollisionPolygon2D" parent="World/Walls/first-area2" index="0"]
+position = Vector2(-0.25252524, -9.5367426e-07)
+polygon = PackedVector2Array(261.49976, -45.00045, 122.664734, 329.77777, 87.48193, 6.3777046, -46.53247, 10.62545, -106.378296, 427.95685, -120.32828, -4, -83.76526, -57.746563, 101.499756, -62.00045)
+
+[node name="VisualFill" parent="World/Walls/first-area2" index="1"]
+position = Vector2(2.6515164, -7.999998)
+color = Color(0.101960786, 0.23137255, 0.3019608, 1)
+polygon = PackedVector2Array(261.49976, -45.00045, 122.664734, 329.77777, 87.48193, 6.3777046, -46.53247, 10.62545, -106.378296, 427.95685, -120.32828, -4, -83.76526, -57.746563, 101.499756, -62.00045)
+uv = PackedVector2Array(-120, -60, 120, -60, 120, 60, 24.242432, -6, -120, 60, -120.32828, -4)
+
+[node name="VisualBorder" parent="World/Walls/first-area2" index="2"]
+points = PackedVector2Array(261.49976, -45.00045, 122.664734, 329.77777, 87.48193, 6.3777046, -46.53247, 10.62545, -106.378296, 427.95685, -120.32828, -4, -83.76526, -57.746563, 101.499756, -62.00045)
+width = 5.0
+default_color = Color(0.32941177, 0.7411765, 0.8509804, 1)
+
+[node name="first-area4" parent="World/Walls" unique_id=2048243759 instance=ExtResource("3_t6k03")]
+position = Vector2(4088, 1010)
+polygon_points = PackedVector2Array(-94.22974, -25.850647, 333.40234, -233.72903, 817.7822, 217.01376, -1400.8112, 209.18231, -1421.029, 95.456665)
+
+[node name="CollisionPolygon2D" parent="World/Walls/first-area4" index="0"]
+polygon = PackedVector2Array(-94.22974, -25.850647, 333.40234, -233.72903, 817.7822, 217.01376, -1400.8112, 209.18231, -1421.029, 95.456665)
+
+[node name="VisualFill" parent="World/Walls/first-area4" index="1"]
+color = Color(0.101960786, 0.23137255, 0.3019608, 1)
+polygon = PackedVector2Array(-94.22974, -25.850647, 333.40234, -233.72903, 817.7822, 217.01376, -1400.8112, 209.18231, -1421.029, 95.456665)
+
+[node name="VisualBorder" parent="World/Walls/first-area4" index="2"]
+points = PackedVector2Array(-94.22974, -25.850647, 333.40234, -233.72903, 817.7822, 217.01376, -1400.8112, 209.18231, -1421.029, 95.456665)
+width = 5.0
+default_color = Color(0.32941177, 0.7411765, 0.8509804, 1)
 
 [node name="Player" parent="World" unique_id=1886926597 instance=ExtResource("1_jt2hw")]
 position = Vector2(237, 836)
@@ -75,82 +213,9 @@ drag_top_margin = 0.0
 drag_right_margin = 0.0
 drag_bottom_margin = 0.0
 
-[node name="L2GiantJellyFloor2" parent="World" unique_id=1100096671 instance=ExtResource("1_vlcp2")]
-position = Vector2(2343, 1009)
-size = Vector2(1160, 60)
-contact_mode = 1
-jellyfish_bounce_speed = 1140.0
-jellyfish_stun_duration = 2.6
+[node name="HUD" parent="." unique_id=38961880 instance=ExtResource("6_0lcgs")]
 
-[node name="L2GiantJellyFloor" parent="World/L2GiantJellyFloor2" unique_id=428771423 instance=ExtResource("1_vlcp2")]
-position = Vector2(1156, -2)
-size = Vector2(1160, 60)
-contact_mode = 1
-jellyfish_bounce_speed = 1140.0
-jellyfish_stun_duration = 2.6
-
-[node name="L2GiantJellyFloor2" parent="World/L2GiantJellyFloor2/L2GiantJellyFloor" unique_id=2097818066 instance=ExtResource("1_vlcp2")]
-position = Vector2(-2312, 4)
-size = Vector2(1160, 60)
-contact_mode = 1
-jellyfish_bounce_speed = 1140.0
-jellyfish_stun_duration = 2.6
-
-[node name="L2GiantJellyFloor" parent="World/L2GiantJellyFloor2/L2GiantJellyFloor" unique_id=1264788475 instance=ExtResource("1_vlcp2")]
-position = Vector2(1164, -6)
-size = Vector2(1160, 60)
-contact_mode = 1
-jellyfish_bounce_speed = 1140.0
-jellyfish_stun_duration = 2.6
-
-[node name="L2GiantJellyCeiling" parent="World" unique_id=1669138432 instance=ExtResource("1_vlcp2")]
-position = Vector2(1185, 43)
-rotation = -3.1415925
-size = Vector2(1180, 60)
-contact_mode = 1
-jellyfish_bounce_speed = 1120.0
-jellyfish_stun_duration = 2.45
-
-[node name="L2GiantJellyCeiling" parent="World/L2GiantJellyCeiling" unique_id=1129919786 instance=ExtResource("1_vlcp2")]
-position = Vector2(-1266, -129.99963)
-rotation = -0.32341123
-size = Vector2(1180, 60)
-contact_mode = 1
-jellyfish_bounce_speed = 1120.0
-jellyfish_stun_duration = 2.45
-
-[node name="L2GiantJellyCeiling3" parent="World/L2GiantJellyCeiling" unique_id=545273468 instance=ExtResource("1_vlcp2")]
-position = Vector2(-1246.0001, -960.9998)
-rotation = -2.8641298
-size = Vector2(1180, 60)
-contact_mode = 1
-jellyfish_bounce_speed = 1120.0
-jellyfish_stun_duration = 2.45
-
-[node name="L2GiantJellyCeiling3" parent="World/L2GiantJellyCeiling/L2GiantJellyCeiling3" unique_id=1684221222 instance=ExtResource("1_vlcp2")]
-position = Vector2(52.39734, -403.7964)
-rotation = -3.3909156
-size = Vector2(1180, 60)
-contact_mode = 1
-jellyfish_bounce_speed = 1120.0
-jellyfish_stun_duration = 2.45
-
-[node name="L2GiantJellyCeiling3" parent="World/L2GiantJellyCeiling/L2GiantJellyCeiling3/L2GiantJellyCeiling3" unique_id=254324216 instance=ExtResource("1_vlcp2")]
-position = Vector2(2.7007542, 95.96202)
-rotation = -3.3193386
-size = Vector2(1180, 60)
-contact_mode = 1
-jellyfish_bounce_speed = 1120.0
-jellyfish_stun_duration = 2.45
-
-[node name="SlipStreamZone" parent="." unique_id=1867774872 instance=ExtResource("4_hwihd")]
-position = Vector2(2408, 833)
-rotation = 0.25490916
-size = Vector2(1000, 250)
-flow_vector = Vector2(-300, 0)
-
-[node name="SlipStreamZone" parent="SlipStreamZone" unique_id=1689949833 instance=ExtResource("4_hwihd")]
-position = Vector2(-69.87105, -490.22244)
-rotation = -0.5368068
-size = Vector2(1000, 250)
-flow_vector = Vector2(-300, 0)
+[editable path="World/Walls/first-area3"]
+[editable path="World/Walls/first-area1"]
+[editable path="World/Walls/first-area2"]
+[editable path="World/Walls/first-area4"]
