@@ -31,6 +31,8 @@ class_name SlipStreamZone
 
 var _rng := RandomNumberGenerator.new()
 var _visual_particles: Array[Dictionary] = []
+var _visual_time := 0.0
+const VISUAL_PARTICLE_SPEED_SCALE := 0.72
 
 
 func _ready() -> void:
@@ -41,6 +43,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	_visual_time += delta
 	_advance_visual_particles(delta)
 	queue_redraw()
 
@@ -65,13 +68,26 @@ func _draw() -> void:
 		var lane := particle["lane"] as float
 		var radius := particle["radius"] as float
 		var alpha := particle["alpha"] as float
-		var pos := _particle_position(progress, lane, direction)
-		var tint := edge_color.lerp(fill_color, 0.25)
-		tint.a = clampf(alpha * 0.8, 0.0, 1.0)
+		var wobble_amp := particle["wobble_amp"] as float
+		var wobble_freq := particle["wobble_freq"] as float
+		var phase := particle["phase"] as float
+		var pos := _particle_position(progress, lane, direction, wobble_amp, wobble_freq, phase)
 
-		draw_circle(pos, radius, tint)
-		var tail := pos - direction * (radius * 4.2)
-		draw_line(tail, pos, tint, maxf(radius * 0.9, 1.0), true)
+		var body_tint := edge_color.lerp(fill_color, 0.35)
+		body_tint.a = clampf(alpha * 0.36, 0.0, 1.0)
+		draw_circle(pos, radius, body_tint)
+
+		var rim_tint := edge_color.lerp(Color.WHITE, 0.25)
+		rim_tint.a = clampf(alpha * 0.92, 0.0, 1.0)
+		draw_arc(pos, radius, 0.0, TAU, 18, rim_tint, maxf(radius * 0.28, 1.0), true)
+
+		var highlight := Color(1.0, 1.0, 1.0, clampf(alpha * 0.78, 0.0, 1.0))
+		var highlight_offset := Vector2(-radius * 0.34, -radius * 0.34)
+		draw_circle(pos + highlight_offset, radius * 0.28, highlight)
+
+		var core := edge_color.lerp(Color.WHITE, 0.55)
+		core.a = clampf(alpha * 0.22, 0.0, 1.0)
+		draw_circle(pos + highlight_offset * 0.2, radius * 0.52, core)
 
 
 func _sync_geometry() -> void:
@@ -109,8 +125,11 @@ func _rebuild_visual_particles() -> void:
 			"progress": _rng.randf(),
 			"lane": _rng.randf(),
 			"speed": lerpf(0.55, 1.35, _rng.randf()),
-			"radius": lerpf(1.1, 2.4, _rng.randf()),
-			"alpha": lerpf(0.35, 0.85, _rng.randf())
+			"radius": lerpf(2.1, 4.5, _rng.randf()),
+			"alpha": lerpf(0.35, 0.82, _rng.randf()),
+			"wobble_amp": lerpf(1.0, 4.6, _rng.randf()),
+			"wobble_freq": lerpf(1.1, 2.9, _rng.randf()),
+			"phase": _rng.randf_range(0.0, TAU),
 		})
 
 
@@ -125,7 +144,7 @@ func _advance_visual_particles(delta: float) -> void:
 	var horizontal_flow := absf(direction.x) >= absf(direction.y)
 	var flow_span := size.x if horizontal_flow else size.y
 	var speed := maxf(flow_vector.length() * speed_scale, 120.0)
-	var normalized_step := speed * delta / maxf(flow_span, 1.0)
+	var normalized_step := speed * delta * VISUAL_PARTICLE_SPEED_SCALE / maxf(flow_span, 1.0)
 
 	for particle in _visual_particles:
 		var signed_step := normalized_step * (particle["speed"] as float)
@@ -137,16 +156,25 @@ func _advance_visual_particles(delta: float) -> void:
 		particle["progress"] = wrapf((particle["progress"] as float) + signed_step, 0.0, 1.0)
 
 
-func _particle_position(progress: float, lane: float, direction: Vector2) -> Vector2:
+func _particle_position(
+	progress: float,
+	lane: float,
+	direction: Vector2,
+	wobble_amp: float,
+	wobble_freq: float,
+	phase: float
+) -> Vector2:
 	var half := size * 0.5
 	var margin := 8.0
 	var horizontal_flow := absf(direction.x) >= absf(direction.y)
+	var normal := direction.orthogonal().normalized()
+	var wobble := sin(_visual_time * wobble_freq + phase) * wobble_amp
 
 	if horizontal_flow:
 		var x := lerpf(-half.x + margin, half.x - margin, progress)
 		var y := lerpf(-half.y + margin, half.y - margin, lane)
-		return Vector2(x, y)
+		return Vector2(x, y) + normal * wobble
 
 	var px := lerpf(-half.x + margin, half.x - margin, lane)
 	var py := lerpf(-half.y + margin, half.y - margin, progress)
-	return Vector2(px, py)
+	return Vector2(px, py) + normal * wobble
