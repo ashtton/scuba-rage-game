@@ -23,12 +23,11 @@ MusicPlayer="*res://scripts/music_player.gd"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-window/stretch/mode="canvas_items"
-window/stretch/aspect="expand"
+window/stretch/mode="viewport"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/godot_with_u/plugin.cfg")
+enabled=PackedStringArray()
 
 [physics]
 
