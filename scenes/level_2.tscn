@@ -6,7 +6,98 @@
 [ext_resource type="PackedScene" path="res://scenes/components/cave_wall.tscn" id="4_cave_wall"]
 [ext_resource type="PackedScene" path="res://scenes/components/slip_stream_zone.tscn" id="5_stream_zone"]
 [ext_resource type="PackedScene" path="res://scenes/components/piranha_patrol.tscn" id="6_piranha"]
+[ext_resource type="PackedScene" path="res://scenes/components/camera_limit_zone.tscn" id="7_camera_zone"]
 [ext_resource type="PackedScene" path="res://scenes/components/recharge_cell.tscn" id="9_recharge_cell"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y0kc7"]
+radius = 18.0
+height = 58.0
+
+[sub_resource type="Curve2D" id="Curve2D_ne2mo"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 2280, 930, 0, 0, 0, 0, 2822, 1007)
+}
+point_count = 2
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6cvei"]
+radius = 18.0
+height = 58.0
+
+[sub_resource type="Curve2D" id="Curve2D_que50"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 2140, 1230, 0, 0, 0, 0, 1678, 1107)
+}
+point_count = 2
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ne2mo"]
+radius = 18.0
+height = 58.0
+
+[sub_resource type="Curve2D" id="Curve2D_6cvei"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1940, 1480, 0, 0, 0, 0, 2563, 1496)
+}
+point_count = 2
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_que50"]
+radius = 18.0
+height = 58.0
+
+[sub_resource type="Curve2D" id="Curve2D_hey2k"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 863, -67, 0, 0, 0, 0, 1381, -52, 0, 0, 0, 0, 1697, -179, 0, 0, 0, 0, 834, -448)
+}
+point_count = 4
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_172wr"]
+radius = 18.0
+height = 58.0
+
+[sub_resource type="Curve2D" id="Curve2D_g2hoc"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -180, 0, 0, 0, 0, 0, 147, 115, 0, 0, 0, 0, 315, -199)
+}
+point_count = 3
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fldb1"]
+radius = 18.0
+height = 58.0
+
+[sub_resource type="Curve2D" id="Curve2D_guvtl"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -180, 0, 0, 0, 0, 0, -737, -462)
+}
+point_count = 2
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_igmy8"]
+radius = 18.0
+height = 58.0
+
+[sub_resource type="Curve2D" id="Curve2D_wdtqu"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -180, 0, 0, 0, 0, 0, 280, -89)
+}
+point_count = 2
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7qsfm"]
+radius = 18.0
+height = 58.0
+
+[sub_resource type="Curve2D" id="Curve2D_bv48q"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -180, 0, 0, 0, 0, 0, -373, -249, 0, 0, 0, 0, 152, -189)
+}
+point_count = 3
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hey2k"]
+radius = 18.0
+height = 58.0
+
+[sub_resource type="Curve2D" id="Curve2D_172wr"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -180, 0, 0, 0, 0, 0, 716, -9)
+}
+point_count = 2
 
 [node name="Level2" type="Node2D" unique_id=1544132612]
 script = ExtResource("1_level_script")
@@ -14,7 +105,6 @@ next_scene_path = "res://scenes/demo_complete.tscn"
 level_title = "LEVEL 02"
 mechanic_name = "Cross Currents"
 intro_message = "Push from right to left. Use the recharge cell and ride the streams to break through the piranha patrols."
-death_depth = 2100.0
 camera_top = 0
 camera_right = 3360
 camera_bottom = 1920
@@ -22,16 +112,16 @@ camera_bottom = 1920
 [node name="World" type="Node2D" parent="." unique_id=1765536663]
 
 [node name="Backdrop" type="Polygon2D" parent="World" unique_id=388785770]
-position = Vector2(-595, 0)
-scale = Vector2(1.1770834, 1)
+position = Vector2(-595, 333)
+scale = Vector2(1.1520834, 0.8265625)
 color = Color(0.0196078, 0.117647, 0.176471, 1)
 polygon = PackedVector2Array(0, 0, 3360, 0, 3360, 1920, 0, 1920)
 
 [node name="GlowBandTop" type="Polygon2D" parent="World" unique_id=81881884]
 position = Vector2(-496.99997, 0)
-scale = Vector2(1.1479168, 1)
+scale = Vector2(1.1065476, 1)
 color = Color(0.231373, 0.6, 0.65098, 0.2)
-polygon = PackedVector2Array(0, 420, 3360, 380, 3360, 760, 0, 700)
+polygon = PackedVector2Array(0, 420, 3360, 380, 3268.5295, 567, 3360, 760, 0, 700)
 
 [node name="GlowBandBottom" type="Polygon2D" parent="World" unique_id=510785968]
 position = Vector2(-528, 0)
@@ -42,11 +132,45 @@ polygon = PackedVector2Array(0, 1320, 3360, 1260, 3360, 1780, 0, 1720)
 [node name="Player" parent="World" unique_id=88900373 instance=ExtResource("2_player_scene")]
 position = Vector2(3010, 1460)
 
+[node name="CameraZones" type="Node2D" parent="World" unique_id=950216122]
+
+[node name="UpperRouteCameraZone" parent="World/CameraZones" unique_id=955329072 instance=ExtResource("7_camera_zone")]
+position = Vector2(1413.0001, 1131)
+scale = Vector2(1.1599951, 0.87999874)
+size = Vector2(3360, 1800)
+limit_left = -536
+limit_top = 468
+limit_right = 3360
+limit_bottom = 1920
+
+[node name="LowerTubeCameraZone" parent="World/CameraZones" unique_id=1704149149 instance=ExtResource("7_camera_zone")]
+position = Vector2(1133, 2070)
+scale = Vector2(1, 0.44)
+size = Vector2(3360, 620)
+limit_left = -536
+limit_top = 1480
+limit_right = 3360
+limit_bottom = 2320
+camera_priority = 1
+
 [node name="BoundaryCeiling" parent="World" unique_id=1296640178 instance=ExtResource("4_cave_wall")]
-position = Vector2(1680, 80)
+position = Vector2(1665.0001, 468)
+scale = Vector2(0.96, 1)
 fill_color = Color(0.0470588, 0.2, 0.27451, 1)
 border_color = Color(0.235294, 0.682353, 0.831373, 0.65)
-polygon_points = PackedVector2Array(-1700, -130, 1700, -130, 1700, 150, 1340, 120, 900, 176, 420, 118, -120, 188, -700, 132, -1230, 184, -1700, 136)
+polygon_points = PackedVector2Array(-1700, -130, 1700, -130, 1699.9999, 45.811523, 1700, 150, 1340, 120, 900, 176, 436, 34, -120, 188, -527, 93, -922, -1, -1700, 136, -1690, 4)
+
+[node name="CollisionPolygon2D" parent="World/BoundaryCeiling" index="0"]
+polygon = PackedVector2Array(-1700, -130, 1700, -130, 1699.9999, 45.811523, 1700, 150, 1340, 120, 900, 176, 436, 34, -120, 188, -527, 93, -922, -1, -1700, 136, -1690, 4)
+
+[node name="VisualFill" parent="World/BoundaryCeiling" index="1"]
+color = Color(0.0470588, 0.2, 0.27451, 1)
+polygon = PackedVector2Array(-1700, -130, 1700, -130, 1699.9999, 45.811523, 1700, 150, 1340, 120, 900, 176, 436, 34, -120, 188, -527, 93, -922, -1, -1700, 136, -1690, 4)
+
+[node name="VisualBorder" parent="World/BoundaryCeiling" index="2"]
+points = PackedVector2Array(-1700, -130, 1700, -130, 1699.9999, 45.811523, 1700, 150, 1340, 120, 900, 176, 436, 34, -120, 188, -527, 93, -922, -1, -1700, 136, -1690, 4)
+width = 5.0
+default_color = Color(0.235294, 0.682353, 0.831373, 0.65)
 
 [node name="BoundaryFloor" parent="World" unique_id=1212061384 instance=ExtResource("4_cave_wall")]
 position = Vector2(710, 1828)
@@ -59,65 +183,181 @@ polygon_points = PackedVector2Array(-1700, -96, -1360, -138, -960, -70, -550, -1
 position = Vector2(1248.0001, 2163)
 fill_color = Color(0.0627451, 0.223529, 0.286275, 1)
 border_color = Color(0.329412, 0.741176, 0.85098, 0.6)
+disable_submarine_bounce = true
 polygon_points = PackedVector2Array(-1468, -50, -1120, -78, -760, -42, -340, -88, 60, -36, 560, -80, 980, -44, 1300, -70, 1468, -38, 1468, 50, -1468, 50)
 
 [node name="BoundaryLeft" parent="World" unique_id=342387223 instance=ExtResource("4_cave_wall")]
-position = Vector2(-536, 914)
+position = Vector2(-536, 1101)
+scale = Vector2(1.0399997, 0.79999876)
 fill_color = Color(0.0627451, 0.223529, 0.286275, 1)
 border_color = Color(0.329412, 0.741176, 0.85098, 0.6)
 polygon_points = PackedVector2Array(-86, -960, 86, -960, 60, -620, 108, -220, 46, 160, 110, 560, 50, 960, -86, 960)
 
 [node name="BoundaryRight" parent="World" unique_id=1477928844 instance=ExtResource("4_cave_wall")]
-position = Vector2(3310, 960)
+position = Vector2(3310, 1141)
+scale = Vector2(-1.0800049, 0.83808637)
 fill_color = Color(0.0627451, 0.223529, 0.286275, 1)
 border_color = Color(0.329412, 0.741176, 0.85098, 0.6)
 polygon_points = PackedVector2Array(-86, -960, 86, -960, 24, -560, 92, -120, 30, 270, 86, 620, 18, 960, -86, 960)
 
 [node name="BoundaryRight2" parent="World" unique_id=1429899336 instance=ExtResource("4_cave_wall")]
-position = Vector2(2780, 2040.0001)
+position = Vector2(2782, 1866.9999)
+scale = Vector2(1, 1.9433578)
 fill_color = Color(0.0627451, 0.223529, 0.286275, 1)
 border_color = Color(0.329412, 0.741176, 0.85098, 0.6)
 polygon_points = PackedVector2Array(-60, -188, 60, -188, 22, -102, 52, -6, 18, 92, 56, 188, -60, 188)
 
 [node name="BottomCurrentMedium" parent="World" unique_id=2126141449 instance=ExtResource("5_stream_zone")]
-position = Vector2(1659, 1642)
+position = Vector2(1029, 1679)
+scale = Vector2(1.9879789, 0.9397001)
 size = Vector2(1500, 180)
 flow_vector = Vector2(520, 0)
 fill_color = Color(0.14902, 0.670588, 0.835294, 0.18)
 edge_color = Color(0.568627, 0.913725, 1, 1)
 
 [node name="BottomCurrentMedium2" parent="World" unique_id=1054584788 instance=ExtResource("5_stream_zone")]
-position = Vector2(1129, 2043)
-scale = Vector2(2.1094713, 0.78490925)
+position = Vector2(1129, 2042.0001)
+scale = Vector2(2.1094713, 0.90490925)
 size = Vector2(1500, 180)
-flow_vector = Vector2(-520, 0)
+flow_vector = Vector2(-1000, 0)
 fill_color = Color(0.14902, 0.670588, 0.835294, 0.18)
 edge_color = Color(0.568627, 0.913725, 1, 1)
 
 [node name="PiranhaTop" parent="World" unique_id=1454124114 instance=ExtResource("6_piranha")]
-position = Vector2(2280, 930)
-patrol_points = PackedVector2Array(2280, 930, 2840, 930)
+position = Vector2(2212, 942)
 patrol_speed = 210.0
 wait_time_at_point = 0.2
 bite_message = "A piranha ambush shredded the hull."
 
+[node name="CollisionShape2D" parent="World/PiranhaTop" index="0"]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_y0kc7")
+
+[node name="PatrolPath" parent="World/PiranhaTop" index="1"]
+top_level = true
+position = Vector2(-68, 12)
+curve = SubResource("Curve2D_ne2mo")
+
 [node name="PiranhaMid" parent="World" unique_id=666650665 instance=ExtResource("6_piranha")]
-position = Vector2(2026, 1081)
-patrol_points = PackedVector2Array(2140, 1230, 2760, 1230)
+position = Vector2(2140, 1230)
+scale = Vector2(-1, 1)
 patrol_speed = 190.0
 wait_time_at_point = 0.25
 bite_message = "A piranha ambush shredded the hull."
 
+[node name="CollisionShape2D" parent="World/PiranhaMid" index="0"]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_6cvei")
+
+[node name="PatrolPath" parent="World/PiranhaMid" index="1"]
+top_level = true
+curve = SubResource("Curve2D_que50")
+
+[node name="SlipStreamZone" parent="World" unique_id=21437109 instance=ExtResource("5_stream_zone")]
+position = Vector2(2625, 1769)
+flow_vector = Vector2(0, 960)
+
 [node name="PiranhaLow" parent="World" unique_id=1339752821 instance=ExtResource("6_piranha")]
 position = Vector2(1940, 1480)
-patrol_points = PackedVector2Array(1940, 1480, 2520, 1480)
 patrol_speed = 170.0
 wait_time_at_point = 0.2
 bite_message = "A piranha ambush shredded the hull."
 
+[node name="CollisionShape2D" parent="World/PiranhaLow" index="0"]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_ne2mo")
+
+[node name="PatrolPath" parent="World/PiranhaLow" index="1"]
+top_level = true
+curve = SubResource("Curve2D_6cvei")
+
 [node name="RechargeCellMain" parent="World" unique_id=1924349906 instance=ExtResource("9_recharge_cell")]
-position = Vector2(2936, 1142)
+position = Vector2(3019, 1653)
 size = Vector2(84, 104)
-cooldown = 30.0
+
+[node name="PiranhaPatrol2" parent="World" unique_id=1628386965 instance=ExtResource("6_piranha")]
+position = Vector2(863, 996)
+
+[node name="CollisionShape2D" parent="World/PiranhaPatrol2" index="0"]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_que50")
+
+[node name="PatrolPath" parent="World/PiranhaPatrol2" index="1"]
+top_level = true
+position = Vector2(0, 1063)
+curve = SubResource("Curve2D_hey2k")
+
+[node name="PiranhaPatrol" parent="World" unique_id=1263874378 instance=ExtResource("6_piranha")]
+position = Vector2(1127, 1452)
+
+[node name="CollisionShape2D" parent="World/PiranhaPatrol" index="0"]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_172wr")
+
+[node name="PatrolPath" parent="World/PiranhaPatrol" index="1"]
+top_level = true
+position = Vector2(1307, 1452)
+curve = SubResource("Curve2D_g2hoc")
+
+[node name="PiranhaPatrol3" parent="World" unique_id=2057741543 instance=ExtResource("6_piranha")]
+position = Vector2(496, 1190)
+scale = Vector2(-1, 1)
+
+[node name="CollisionShape2D" parent="World/PiranhaPatrol3" index="0"]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_fldb1")
+
+[node name="PatrolPath" parent="World/PiranhaPatrol3" index="1"]
+top_level = true
+position = Vector2(676, 1190)
+curve = SubResource("Curve2D_guvtl")
+
+[node name="PiranhaPatrol4" parent="World" unique_id=2110294167 instance=ExtResource("6_piranha")]
+position = Vector2(484, 1393)
+
+[node name="CollisionShape2D" parent="World/PiranhaPatrol4" index="0"]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_igmy8")
+
+[node name="PatrolPath" parent="World/PiranhaPatrol4" index="1"]
+top_level = true
+position = Vector2(664, 1393)
+curve = SubResource("Curve2D_wdtqu")
+
+[node name="PiranhaPatrol5" parent="World" unique_id=832904154 instance=ExtResource("6_piranha")]
+position = Vector2(-174, 1449)
+scale = Vector2(-1, 1)
+
+[node name="CollisionShape2D" parent="World/PiranhaPatrol5" index="0"]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_7qsfm")
+
+[node name="PatrolPath" parent="World/PiranhaPatrol5" index="1"]
+top_level = true
+position = Vector2(6, 1449)
+curve = SubResource("Curve2D_bv48q")
+
+[node name="PiranhaPatrol6" parent="World" unique_id=1475246941 instance=ExtResource("6_piranha")]
+position = Vector2(1792, 689)
+
+[node name="CollisionShape2D" parent="World/PiranhaPatrol6" index="0"]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_hey2k")
+
+[node name="PatrolPath" parent="World/PiranhaPatrol6" index="1"]
+top_level = true
+position = Vector2(1972, 689)
+curve = SubResource("Curve2D_172wr")
 
 [node name="HUD" parent="." unique_id=61515943 instance=ExtResource("3_hud_scene")]
+
+[editable path="World/BoundaryCeiling"]
+[editable path="World/PiranhaTop"]
+[editable path="World/PiranhaMid"]
+[editable path="World/PiranhaLow"]
+[editable path="World/PiranhaPatrol2"]
+[editable path="World/PiranhaPatrol"]
+[editable path="World/PiranhaPatrol3"]
+[editable path="World/PiranhaPatrol4"]
+[editable path="World/PiranhaPatrol5"]
+[editable path="World/PiranhaPatrol6"]

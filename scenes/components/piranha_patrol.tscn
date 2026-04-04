@@ -6,3 +6,5 @@
 script = ExtResource("1_script")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="PatrolPath" type="Path2D" parent="."]

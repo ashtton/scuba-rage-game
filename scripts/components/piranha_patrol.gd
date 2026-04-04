@@ -2,12 +2,14 @@
 extends Area2D
 class_name PiranhaPatrol
 
-@export var patrol_points := PackedVector2Array([
+var patrol_points := PackedVector2Array([
 	Vector2(-180, 0),
 	Vector2(180, 0),
 ]):
 	set(value):
 		patrol_points = value
+		if not _is_syncing_from_path:
+			_rebuild_path_from_patrol_points()
 		_clamp_patrol_state()
 		queue_redraw()
 @export var patrol_speed := 180.0
@@ -25,18 +27,31 @@ class_name PiranhaPatrol
 		queue_redraw()
 
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
+@onready var patrol_path: Path2D = $PatrolPath
 
 var _current_index := 0
 var _direction := 1
 var _wait_time_left := 0.0
 var _facing_sign := 1.0
+var _is_syncing_from_path := false
+var _last_path_signature := ""
 
 
 func _ready() -> void:
 	_sync_collision_shape()
+	_ensure_path_setup()
+	if _has_valid_path_points():
+		_sync_patrol_points_from_path(true)
+	elif patrol_points.size() >= 2:
+		_rebuild_path_from_patrol_points()
 	_clamp_patrol_state()
 	if not Engine.is_editor_hint():
 		body_entered.connect(_on_body_entered)
+
+
+func _process(_delta: float) -> void:
+	if Engine.is_editor_hint():
+		_sync_patrol_points_from_path()
 
 
 func _physics_process(delta: float) -> void:
@@ -105,9 +120,11 @@ func _draw() -> void:
 
 	if Engine.is_editor_hint() and patrol_points.size() >= 2:
 		for i in range(patrol_points.size() - 1):
-			draw_line(patrol_points[i], patrol_points[i + 1], Color("7ac8ff", 0.75), 2.0, true)
+			var start := _patrol_point_to_local(patrol_points[i])
+			var finish := _patrol_point_to_local(patrol_points[i + 1])
+			draw_line(start, finish, Color("7ac8ff", 0.75), 2.0, true)
 		for point in patrol_points:
-			draw_circle(point, 4.0, Color("9fe3ff", 0.9))
+			draw_circle(_patrol_point_to_local(point), 4.0, Color("9fe3ff", 0.9))
 
 
 func _on_body_entered(body: Node) -> void:
@@ -160,3 +177,68 @@ func _update_facing_from_vector(direction: Vector2) -> void:
 
 func _apply_facing() -> void:
 	scale.x = _facing_sign
+
+
+func _patrol_point_to_local(point: Vector2) -> Vector2:
+	var parent_node := get_parent() as Node2D
+	if parent_node == null:
+		return point
+	return to_local(parent_node.to_global(point))
+
+
+func _ensure_path_setup() -> void:
+	if patrol_path == null:
+		return
+	patrol_path.top_level = true
+	if patrol_path.curve == null:
+		patrol_path.curve = Curve2D.new()
+
+
+func _has_valid_path_points() -> bool:
+	return patrol_path != null and patrol_path.curve != null and patrol_path.curve.get_point_count() >= 2
+
+
+func _sync_patrol_points_from_path(force := false) -> void:
+	if not _has_valid_path_points():
+		return
+	var path_points := _get_path_points_world()
+	if path_points.size() < 2:
+		return
+
+	var signature := _build_path_signature(path_points)
+	if not force and signature == _last_path_signature:
+		return
+
+	_is_syncing_from_path = true
+	patrol_points = path_points
+	_is_syncing_from_path = false
+	_last_path_signature = signature
+
+
+func _rebuild_path_from_patrol_points() -> void:
+	_ensure_path_setup()
+	if patrol_path == null or patrol_path.curve == null or patrol_points.is_empty():
+		return
+
+	patrol_path.curve.clear_points()
+	for point in patrol_points:
+		patrol_path.curve.add_point(patrol_path.to_local(point))
+	_last_path_signature = _build_path_signature(patrol_points)
+
+
+func _get_path_points_world() -> PackedVector2Array:
+	var points := PackedVector2Array()
+	if patrol_path == null or patrol_path.curve == null:
+		return points
+
+	for i in range(patrol_path.curve.get_point_count()):
+		var local_point := patrol_path.curve.get_point_position(i)
+		points.append(patrol_path.to_global(local_point))
+	return points
+
+
+func _build_path_signature(points: PackedVector2Array) -> String:
+	var parts := PackedStringArray()
+	for point in points:
+		parts.append("%.2f,%.2f" % [point.x, point.y])
+	return "|".join(parts)
