@@ -5,6 +5,11 @@ signal battery_changed(current_battery: float, max_battery: float)
 signal charge_changed(current_charge: float, max_charge: float)
 signal cooldown_changed(current_cooldown: float, max_cooldown: float, is_stunned: bool)
 signal died(reason: String)
+signal stun_started(source: String, duration: float, message: String)
+
+const MIN_LAUNCH_CHARGE_RATIO := 0.01
+const DEFAULT_VISUAL_SCALE := Vector2.ONE
+const LAUNCH_BUBBLE_SCRIPT := preload("res://scripts/effects/launch_bubble_burst.gd")
 
 @export var min_launch_speed := 210.0
 @export var max_launch_speed := 760.0
@@ -17,12 +22,11 @@ signal died(reason: String)
 @export var min_launch_cost := 8.0
 @export var max_launch_cost := 34.0
 @export var boost_cooldown := 1.5
-@export var max_battery := 1000.0
+@export var max_battery := 500.0
 @export var stun_drift_drag_multiplier := 2.2
+@export var implosion_duration := 0.5
 
-const MIN_LAUNCH_CHARGE_RATIO := 0.01
-const DEPLETED_BATTERY_RATIO := 0.01
-
+@onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var visuals: Node2D = $Visuals
 @onready var aim_line: Line2D = $AimLine
 @onready var arrow_head: Polygon2D = $ArrowHead
@@ -31,13 +35,14 @@ const DEPLETED_BATTERY_RATIO := 0.01
 
 var current_battery := 0.0
 var spawn_point := Vector2.ZERO
+var initial_spawn_point := Vector2.ZERO
 var _respawning := false
 var _charging := false
 var _charge_time := 0.0
 var _cooldown_time_left := 0.0
-var _powerless_time := 0.0
 var _stun_time_left := 0.0
 var _stun_duration_hint := 0.0
+var _death_tween: Tween = null
 
 const COOLDOWN_METER_WIDTH := 42.0
 const COOLDOWN_METER_HEIGHT := 7.0
@@ -46,6 +51,7 @@ const COOLDOWN_METER_HEIGHT := 7.0
 func _ready() -> void:
 	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	initial_spawn_point = global_position
 	spawn_point = global_position
 	current_battery = max_battery
 	_emit_battery_changed()
@@ -90,56 +96,33 @@ func _physics_process(delta: float) -> void:
 
 	_update_visuals()
 	_update_aim_line()
-	_check_powerless_state(delta)
 
 
-func refill_battery() -> void:
-	current_battery = max_battery
-	_powerless_time = 0.0
-	_stun_time_left = 0.0
-	_stun_duration_hint = 0.0
-	_emit_battery_changed()
-	_emit_cooldown_changed()
+func refill_battery() -> bool:
+	return _set_current_battery(max_battery)
 
 
-func change_battery(amount: float) -> void:
-	var new_battery := clampf(current_battery + amount, 0.0, max_battery)
-	if is_equal_approx(new_battery, current_battery):
-		return
+func change_battery(amount: float) -> bool:
+	if _respawning or is_zero_approx(amount):
+		return false
 
-	current_battery = new_battery
-	if amount > 0.0:
-		_powerless_time = 0.0
-	_emit_battery_changed()
+	return _set_current_battery(current_battery + amount)
 
 
 func set_spawn_point(new_spawn_point: Vector2) -> void:
 	spawn_point = new_spawn_point
 
 
-func die(reason: String) -> void:
+func die(reason: String, restart_from_beginning := false) -> void:
 	if _respawning:
 		return
 
 	_respawning = true
 	died.emit(reason)
-	global_position = spawn_point
-	velocity = Vector2.ZERO
-	_charging = false
-	_charge_time = 0.0
-	_cooldown_time_left = 0.0
-	_stun_time_left = 0.0
-	_stun_duration_hint = 0.0
-	_powerless_time = 0.0
-	refill_battery()
-	_emit_charge_changed()
-	_emit_cooldown_changed()
-	call_deferred("_finish_respawn")
-
-
-func _finish_respawn() -> void:
-	_respawning = false
-	_update_aim_line()
+	_cancel_active_state()
+	_set_collision_enabled(false)
+	await _play_implosion_animation()
+	_respawn(restart_from_beginning)
 
 
 func _start_charge() -> void:
@@ -148,7 +131,6 @@ func _start_charge() -> void:
 
 	_charging = true
 	_charge_time = 0.0
-	_powerless_time = 0.0
 	_emit_charge_changed()
 	_emit_cooldown_changed()
 
@@ -173,6 +155,9 @@ func _release_charge() -> void:
 	if desired_battery_cost > current_battery:
 		charge_ratio = _get_affordable_charge_progress()
 
+	if charge_ratio <= 0.0:
+		return
+
 	var curved_charge_ratio := pow(charge_ratio, launch_curve_exponent)
 
 	var direction := get_global_mouse_position() - global_position
@@ -182,11 +167,11 @@ func _release_charge() -> void:
 
 	var launch_speed := lerpf(min_launch_speed, max_launch_speed, curved_charge_ratio)
 	velocity = direction * launch_speed
-
-	var battery_cost := lerpf(min_launch_cost, max_launch_cost, curved_charge_ratio)
-	current_battery = maxf(current_battery - battery_cost, 0.0)
 	_cooldown_time_left = boost_cooldown
-	_emit_battery_changed()
+	_spawn_launch_bubbles(direction, curved_charge_ratio)
+	change_battery(-lerpf(min_launch_cost, max_launch_cost, curved_charge_ratio))
+	if _respawning:
+		return
 	_emit_cooldown_changed()
 
 
@@ -207,7 +192,7 @@ func _update_visuals() -> void:
 
 
 func _update_aim_line() -> void:
-	var should_show := _charging and not _is_stunned()
+	var should_show := _charging and not _is_stunned() and not _respawning
 	aim_line.visible = should_show
 	arrow_head.visible = should_show
 	if not should_show:
@@ -248,16 +233,6 @@ func _update_aim_line() -> void:
 		arrow_head.color = Color("6bd6ff")
 
 
-func _check_powerless_state(delta: float) -> void:
-	if current_battery > max_battery * DEPLETED_BATTERY_RATIO or _charging or velocity.length() > 24.0:
-		_powerless_time = 0.0
-		return
-
-	_powerless_time += delta
-	if _powerless_time >= 0.75:
-		die("Battery depleted.")
-
-
 func _apply_collision_bounce(incoming_velocity: Vector2) -> void:
 	if get_slide_collision_count() == 0 or incoming_velocity.length() < bounce_min_speed:
 		return
@@ -290,15 +265,89 @@ func _get_charge_progress(raw_charge_ratio: float) -> float:
 
 
 func _get_affordable_charge_progress() -> float:
-	var usable_battery := current_battery - max_battery * DEPLETED_BATTERY_RATIO
-	if usable_battery <= 0.0:
-		return 0.0
-
-	return clampf(
-		usable_battery / maxf(max_battery * (1.0 - DEPLETED_BATTERY_RATIO), 0.001),
+	var affordable_curved_ratio := clampf(
+		inverse_lerp(min_launch_cost, max_launch_cost, current_battery),
 		0.0,
 		1.0
 	)
+	if affordable_curved_ratio <= 0.0:
+		return 0.0
+	return pow(affordable_curved_ratio, 1.0 / maxf(launch_curve_exponent, 0.001))
+
+
+func _set_current_battery(next_battery: float) -> bool:
+	var clamped_battery := clampf(next_battery, 0.0, max_battery)
+	if is_equal_approx(clamped_battery, current_battery):
+		return false
+
+	current_battery = clamped_battery
+	_emit_battery_changed()
+	if current_battery <= 0.0 and not _respawning:
+		die("Battery depleted.", true)
+	return true
+
+
+func _cancel_active_state() -> void:
+	_charging = false
+	_charge_time = 0.0
+	_cooldown_time_left = 0.0
+	_stun_time_left = 0.0
+	_stun_duration_hint = 0.0
+	_emit_charge_changed()
+	_emit_cooldown_changed()
+	_update_aim_line()
+
+
+func _play_implosion_animation() -> Signal:
+	if _death_tween != null:
+		_death_tween.kill()
+
+	visuals.scale = DEFAULT_VISUAL_SCALE
+	visuals.modulate = Color.WHITE
+	var start_rotation := visuals.rotation
+	_death_tween = create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
+	_death_tween.tween_property(visuals, "scale", Vector2(1.28, 0.42), implosion_duration * 0.32)
+	_death_tween.parallel().tween_property(visuals, "rotation", start_rotation + 0.45, implosion_duration * 0.32)
+	_death_tween.chain().tween_property(visuals, "scale", Vector2.ZERO, implosion_duration * 0.68)
+	_death_tween.parallel().tween_property(visuals, "modulate:a", 0.0, implosion_duration * 0.68)
+	_death_tween.parallel().tween_property(visuals, "rotation", start_rotation + TAU * 0.8, implosion_duration * 0.68)
+	return _death_tween.finished
+
+
+func _respawn(restart_from_beginning: bool) -> void:
+	var respawn_target := initial_spawn_point if restart_from_beginning else spawn_point
+	global_position = respawn_target
+	velocity = Vector2.ZERO
+	current_battery = max_battery
+	visuals.scale = DEFAULT_VISUAL_SCALE
+	visuals.modulate = Color.WHITE
+	visuals.rotation = 0.0
+	_charging = false
+	_charge_time = 0.0
+	_cooldown_time_left = 0.0
+	_stun_time_left = 0.0
+	_stun_duration_hint = 0.0
+	_respawning = false
+	_set_collision_enabled(true)
+	_emit_battery_changed()
+	_emit_charge_changed()
+	_emit_cooldown_changed()
+	_update_aim_line()
+
+
+func _set_collision_enabled(is_enabled: bool) -> void:
+	collision_shape.set_deferred("disabled", not is_enabled)
+
+
+func _spawn_launch_bubbles(direction: Vector2, intensity: float) -> void:
+	var bubble_burst := LAUNCH_BUBBLE_SCRIPT.new()
+	var parent_node := get_parent()
+	if parent_node == null:
+		return
+
+	parent_node.add_child(bubble_burst)
+	var spawn_offset := direction.normalized() * -24.0
+	bubble_burst.burst(global_position + spawn_offset, direction, intensity)
 
 
 func _emit_battery_changed() -> void:
@@ -320,7 +369,7 @@ func _update_cooldown_meter() -> void:
 	var display_time := _stun_time_left if _is_stunned() else _cooldown_time_left
 	var display_max := _stun_duration_hint if _is_stunned() else boost_cooldown
 	var cooldown_ratio := clampf(display_time / maxf(display_max, 0.001), 0.0, 1.0)
-	cooldown_meter.visible = cooldown_ratio > 0.0
+	cooldown_meter.visible = cooldown_ratio > 0.0 and not _respawning
 	if not cooldown_meter.visible:
 		return
 
@@ -338,7 +387,10 @@ func _update_cooldown_meter() -> void:
 	])
 
 
-func stun_for(duration: float) -> void:
+func stun_for(duration: float, source := "", message := "") -> void:
+	if _respawning:
+		return
+
 	var clamped_duration := maxf(duration, 0.0)
 	if clamped_duration <= 0.0:
 		return
@@ -349,10 +401,14 @@ func stun_for(duration: float) -> void:
 		_charging = false
 		_charge_time = 0.0
 		_emit_charge_changed()
+	stun_started.emit(source, clamped_duration, message)
 	_emit_cooldown_changed()
 
 
 func apply_hazard_bounce(direction: Vector2, speed: float) -> void:
+	if _respawning:
+		return
+
 	var safe_direction := direction
 	if safe_direction.length_squared() < 0.001:
 		safe_direction = Vector2.UP

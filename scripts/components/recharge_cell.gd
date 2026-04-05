@@ -87,10 +87,13 @@ func _on_body_entered(body: Node) -> void:
 		return
 
 	var player := body as SubmarinePlayer
+	var collected := false
 	if recharge_amount <= 0.0:
-		player.refill_battery()
+		collected = player.refill_battery()
 	else:
-		player.change_battery(recharge_amount)
+		collected = player.change_battery(recharge_amount)
+	if not collected:
+		return
 
 	_cooldown_left = cooldown
 	set_deferred("monitoring", false)

@@ -1,69 +1,64 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene format=3 uid="uid://xpn1gc4vyc5s"]
 
-[ext_resource type="Script" path="res://scripts/player.gd" id="1_player_script"]
+[ext_resource type="Script" uid="uid://deb0g1hexs5xm" path="res://scripts/player.gd" id="1_player_script"]
 
 [sub_resource type="CapsuleShape2D" id="1_collider"]
-height = 70.0
 radius = 16.0
+height = 70.0
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" unique_id=1742894762]
 script = ExtResource("1_player_script")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=785112276]
 position = Vector2(0, -2)
-rotation_degrees = 90.0
+rotation = 1.5707964
 shape = SubResource("1_collider")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-enabled = true
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1386703105]
 position_smoothing_enabled = true
 position_smoothing_speed = 4.0
-limit_left = -10000000
-limit_top = -10000000
-limit_right = 10000000
-limit_bottom = 10000000
 
-[node name="AimLine" type="Line2D" parent="."]
+[node name="AimLine" type="Line2D" parent="." unique_id=799226433]
 visible = false
-default_color = Color(0.419608, 0.839216, 0.964706, 1)
-width = 4.0
 points = PackedVector2Array(0, 0, 84, 0)
+width = 4.0
+default_color = Color(0.419608, 0.839216, 0.964706, 1)
 
-[node name="ArrowHead" type="Polygon2D" parent="."]
+[node name="ArrowHead" type="Polygon2D" parent="." unique_id=466427301]
 visible = false
 color = Color(0.419608, 0.839216, 0.964706, 1)
 polygon = PackedVector2Array(46, 0, 28, 9, 28, -9)
 
-[node name="CooldownMeter" type="Node2D" parent="."]
+[node name="CooldownMeter" type="Node2D" parent="." unique_id=1400481369]
 visible = false
 position = Vector2(0, -48)
 
-[node name="CooldownBack" type="Polygon2D" parent="CooldownMeter"]
+[node name="CooldownBack" type="Polygon2D" parent="CooldownMeter" unique_id=1621475304]
 color = Color(0.0470588, 0.0823529, 0.109804, 0.72)
 polygon = PackedVector2Array(-23, -5, 23, -5, 23, 5, -23, 5)
 
-[node name="CooldownFill" type="Polygon2D" parent="CooldownMeter"]
+[node name="CooldownFill" type="Polygon2D" parent="CooldownMeter" unique_id=1276976478]
 color = Color(1, 0.701961, 0.419608, 1)
 polygon = PackedVector2Array(-21, -3.5, 21, -3.5, 21, 3.5, -21, 3.5)
 
-[node name="Visuals" type="Node2D" parent="."]
+[node name="Visuals" type="Node2D" parent="." unique_id=63142262]
 
-[node name="BodyCore" type="Polygon2D" parent="Visuals"]
+[node name="BodyCore" type="Polygon2D" parent="Visuals" unique_id=1063058511]
 color = Color(0.290196, 0.690196, 0.901961, 1)
 polygon = PackedVector2Array(-24, -12, 16, -12, 16, 12, -24, 12)
 
-[node name="NoseCap" type="Polygon2D" parent="Visuals"]
+[node name="NoseCap" type="Polygon2D" parent="Visuals" unique_id=1133862892]
 color = Color(0.290196, 0.690196, 0.901961, 1)
 polygon = PackedVector2Array(16, -12, 28, -8, 34, 0, 28, 8, 16, 12)
 
-[node name="TailCap" type="Polygon2D" parent="Visuals"]
+[node name="TailCap" type="Polygon2D" parent="Visuals" unique_id=2045698483]
 color = Color(0.290196, 0.690196, 0.901961, 1)
 polygon = PackedVector2Array(-24, -12, -32, -8, -36, 0, -32, 8, -24, 12)
 
-[node name="Window" type="Polygon2D" parent="Visuals"]
+[node name="Window" type="Polygon2D" parent="Visuals" unique_id=646476838]
 color = Color(0.882353, 0.968627, 1, 0.94)
 polygon = PackedVector2Array(-4, -8, 14, -8, 14, 8, -4, 8)
 
-[node name="Fin" type="Polygon2D" parent="Visuals"]
+[node name="Fin" type="Polygon2D" parent="Visuals" unique_id=1405955347]
 color = Color(0.956863, 0.768627, 0.341176, 1)
 polygon = PackedVector2Array(-10, 12, -18, 24, 2, 12)

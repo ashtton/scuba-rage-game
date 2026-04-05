@@ -13,18 +13,22 @@ extends Node2D
 @export var camera_limit_transition_duration := 0.35
 @export var controller_enabled := true
 
-const BATTERY_FILL_MAX_HEIGHT := 104.0
+const BATTERY_BAR_MAX_WIDTH := 296.0
+const PIRANHA_GRAY_STRENGTH := 0.82
+const CAMERA_CONTROLLER_SCRIPT := "res://scripts/game_camera_controller.gd"
 
 var player: SubmarinePlayer = null
-@onready var battery_fill: ColorRect = $HUD/BatteryHUD/BatteryShell/BatteryClip/BatteryFill
-@onready var battery_value: Label = $HUD/BatteryHUD/BatteryValue
-@onready var battery_status: Label = $HUD/BatteryHUD/BatteryStatus
-@onready var cooldown_value: Label = $HUD/BatteryHUD/CooldownValue
-@onready var message_label: Label = $HUD/MessagePlate/MessageLabel
-@onready var level_value: Label = $HUD/LevelPlate/LevelValue
-@onready var mechanic_value: Label = $HUD/LevelPlate/MechanicValue
+@onready var battery_bar_fill: ColorRect = $HUD/BatteryCard/Margin/VBox/BatteryBarTrack/BatteryBarClip/BatteryBarFill
+@onready var battery_value: Label = $HUD/BatteryCard/Margin/VBox/BatteryAmount
+@onready var battery_status: Label = $HUD/BatteryCard/Margin/VBox/BatteryStatus
+@onready var cooldown_value: Label = $HUD/BatteryCard/Margin/VBox/CooldownValue
+@onready var alert_panel: PanelContainer = $HUD/CenterAlert/AlertPanel
+@onready var alert_title: Label = $HUD/CenterAlert/AlertPanel/Margin/VBox/AlertTitle
+@onready var alert_body: Label = $HUD/CenterAlert/AlertPanel/Margin/VBox/AlertBody
+@onready var flash_overlay: ColorRect = $HUD/FlashOverlay
+@onready var gray_overlay: ColorRect = $HUD/GrayOverlay
 
-var _message_time_left := 0.0
+var _alert_time_left := 0.0
 var _battery_current := 0.0
 var _battery_max := 1.0
 var _active_checkpoint = null
@@ -37,6 +41,10 @@ var _camera_limit_transition_elapsed := 0.0
 var _camera_limits_start := Vector4.ZERO
 var _camera_limits_current := Vector4.ZERO
 var _camera_limits_target := Vector4.ZERO
+var _manage_camera := true
+var _alert_tween: Tween = null
+var _flash_tween: Tween = null
+var _gray_tween: Tween = null
 
 
 func _ready() -> void:
@@ -52,17 +60,18 @@ func _ready() -> void:
 		set_process(false)
 		return
 
+	_manage_camera = not _has_external_camera_controller()
 	player.set_spawn_point(player.global_position)
-	_configure_camera()
-	_collect_camera_zones()
-	_refresh_camera_limits_for_player(true)
+	if _manage_camera:
+		_configure_camera()
+		_collect_camera_zones()
+		_refresh_camera_limits_for_player(true)
 
-	level_value.text = level_title
-	mechanic_value.text = mechanic_name
-
+	_reset_hud_effects()
 	player.battery_changed.connect(_on_player_battery_changed)
 	player.cooldown_changed.connect(_on_player_cooldown_changed)
 	player.died.connect(_on_player_died)
+	player.stun_started.connect(_on_player_stun_started)
 
 	for checkpoint in get_tree().get_nodes_in_group("level_checkpoint"):
 		if checkpoint is Area2D and is_ancestor_of(checkpoint) and checkpoint.has_signal("reached"):
@@ -70,7 +79,11 @@ func _ready() -> void:
 
 	_on_player_battery_changed(player.current_battery, player.max_battery)
 	_on_player_cooldown_changed(0.0, player.boost_cooldown, false)
-	_show_message(intro_message, intro_duration)
+	_show_center_alert(
+		mechanic_name if not mechanic_name.strip_edges().is_empty() else "Dive Brief",
+		intro_message,
+		intro_duration
+	)
 
 
 func _find_player() -> SubmarinePlayer:
@@ -86,43 +99,55 @@ func _find_player() -> SubmarinePlayer:
 
 
 func _process(delta: float) -> void:
-	_refresh_camera_limits_for_player()
-	_update_camera_limit_transition(delta)
+	if _manage_camera:
+		_refresh_camera_limits_for_player()
+		_update_camera_limit_transition(delta)
 
-	if _message_time_left <= 0.0:
+	if _alert_time_left <= 0.0:
 		return
 
-	_message_time_left = maxf(_message_time_left - delta, 0.0)
-	if _message_time_left == 0.0:
-		message_label.text = ""
+	_alert_time_left = maxf(_alert_time_left - delta, 0.0)
+	if is_zero_approx(_alert_time_left):
+		_hide_center_alert()
 
 
 func _on_player_battery_changed(current_battery: float, max_battery: float) -> void:
 	_battery_current = current_battery
 	_battery_max = max_battery
-	battery_value.text = "%04d" % int(round(current_battery))
+	battery_value.text = "%03d / %03d" % [int(round(current_battery)), int(round(max_battery))]
 	_refresh_battery_ui()
 
 
 func _on_player_cooldown_changed(current_cooldown: float, max_cooldown: float, is_stunned: bool) -> void:
 	if is_stunned:
 		var stun_seconds := snappedf(current_cooldown, 0.1)
-		cooldown_value.text = "STUNNED %.1fs" % maxf(stun_seconds, 0.1)
-		cooldown_value.modulate = Color("ff8f88")
+		cooldown_value.text = "SYSTEMS JAMMED %.1fs" % maxf(stun_seconds, 0.1)
+		cooldown_value.modulate = Color("ff9a90")
 		return
 
 	if current_cooldown <= 0.0:
-		cooldown_value.text = "READY"
-		cooldown_value.modulate = Color("98f5c3")
+		cooldown_value.text = "THRUSTERS READY"
+		cooldown_value.modulate = Color("8ff4c2")
 		return
 
 	var seconds_left := snappedf(current_cooldown, 0.1)
-	cooldown_value.text = "COOLDOWN %.1fs" % minf(seconds_left, max_cooldown)
+	cooldown_value.text = "THRUSTERS CYCLING %.1fs" % minf(seconds_left, max_cooldown)
 	cooldown_value.modulate = Color("ffd59e")
 
 
 func _on_player_died(reason: String) -> void:
-	_show_message(reason, 1.8)
+	if reason == "Battery depleted.":
+		_show_center_alert("Battery Depleted", "Power flatlined. Rebooting from the start.", 1.5)
+		return
+
+	_show_center_alert("Hull Breach", reason, 1.4)
+
+
+func _on_player_stun_started(source: String, duration: float, message: String) -> void:
+	if source == "piranha":
+		_play_piranha_stun_effect(duration)
+		if not message.strip_edges().is_empty():
+			_show_center_alert("Piranha Swarm", message, minf(maxf(duration * 0.45, 0.95), 1.6))
 
 
 func _on_checkpoint_reached(checkpoint: Node) -> void:
@@ -137,38 +162,120 @@ func _on_checkpoint_reached(checkpoint: Node) -> void:
 		_active_checkpoint.set_active(true)
 	if checkpoint.has_method("get_spawn_point"):
 		player.set_spawn_point(checkpoint.get_spawn_point())
-	player.refill_battery()
+
 	var checkpoint_name := str(checkpoint.get("checkpoint_name"))
-	_show_message("%s stabilized. Battery restored." % checkpoint_name, checkpoint_duration)
+	_show_center_alert(checkpoint_name, "Spawn point updated.", checkpoint_duration)
 
 
-func _show_message(text: String, duration: float) -> void:
-	message_label.text = text
-	_message_time_left = duration
+func _show_center_alert(title: String, body: String, duration: float) -> void:
+	alert_title.text = title.strip_edges()
+	alert_body.text = body.strip_edges()
+	alert_title.visible = not alert_title.text.is_empty()
+	alert_body.visible = not alert_body.text.is_empty()
+	alert_panel.visible = true
+	alert_panel.modulate.a = 0.0
+	alert_panel.scale = Vector2(0.92, 0.92)
+	_alert_time_left = duration
+
+	_kill_tween(_alert_tween)
+	_alert_tween = create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	_alert_tween.tween_property(alert_panel, "modulate:a", 1.0, 0.16)
+	_alert_tween.parallel().tween_property(alert_panel, "scale", Vector2.ONE, 0.18)
+
+
+func _hide_center_alert(immediate := false) -> void:
+	_alert_time_left = 0.0
+	_kill_tween(_alert_tween)
+	if immediate:
+		alert_panel.visible = false
+		alert_panel.modulate.a = 0.0
+		alert_panel.scale = Vector2.ONE
+		return
+
+	_alert_tween = create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
+	_alert_tween.tween_property(alert_panel, "modulate:a", 0.0, 0.16)
+	_alert_tween.parallel().tween_property(alert_panel, "scale", Vector2(0.98, 0.98), 0.16)
+	_alert_tween.tween_callback(func() -> void:
+		alert_panel.visible = false
+	)
 
 
 func _refresh_battery_ui() -> void:
 	var display_ratio := clampf(_battery_current / maxf(_battery_max, 0.001), 0.0, 1.0)
+	var fill_color := Color("6cf0c2")
 	if display_ratio > 0.55:
-		battery_fill.color = Color("78f08a")
+		battery_status.text = "POWER STABLE"
+		battery_status.modulate = Color("d4fff3")
+		fill_color = Color("56e1b0")
 	elif display_ratio > 0.25:
-		battery_fill.color = Color("ffd166")
+		battery_status.text = "POWER LOW"
+		battery_status.modulate = Color("fff2b3")
+		fill_color = Color("ffcf66")
 	else:
-		battery_fill.color = Color("ff6b6b")
+		battery_status.text = "EMERGENCY POWER"
+		battery_status.modulate = Color("ffd0cb")
+		fill_color = Color("ff7368")
 
-	var fill_height := BATTERY_FILL_MAX_HEIGHT * display_ratio
-	battery_fill.size.y = fill_height
-	battery_fill.position.y = BATTERY_FILL_MAX_HEIGHT - fill_height
+	battery_bar_fill.color = fill_color
+	battery_bar_fill.size.x = BATTERY_BAR_MAX_WIDTH * display_ratio
 
-	if display_ratio > 0.55:
-		battery_status.text = "HEALTHY"
-		battery_status.modulate = Color("ddffe2")
-	elif display_ratio > 0.25:
-		battery_status.text = "LOW"
-		battery_status.modulate = Color("fff0b0")
-	else:
-		battery_status.text = "CRITICAL"
-		battery_status.modulate = Color("ffd1d1")
+
+func _reset_hud_effects() -> void:
+	alert_panel.visible = false
+	alert_panel.modulate.a = 0.0
+	alert_panel.scale = Vector2.ONE
+	flash_overlay.visible = false
+	flash_overlay.modulate.a = 0.0
+	_set_gray_strength(0.0)
+	gray_overlay.visible = false
+
+
+func _play_piranha_stun_effect(duration: float) -> void:
+	_kill_tween(_flash_tween)
+	_kill_tween(_gray_tween)
+
+	flash_overlay.visible = true
+	flash_overlay.modulate.a = 0.0
+	gray_overlay.visible = true
+	_set_gray_strength(0.0)
+
+	_flash_tween = create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	_flash_tween.tween_property(flash_overlay, "modulate:a", 0.86, 0.07)
+	_flash_tween.tween_property(flash_overlay, "modulate:a", 0.0, 0.26)
+	_flash_tween.tween_callback(func() -> void:
+		flash_overlay.visible = false
+	)
+
+	_gray_tween = create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	_gray_tween.tween_method(Callable(self, "_set_gray_strength"), 0.0, PIRANHA_GRAY_STRENGTH, 0.12)
+	_gray_tween.tween_interval(maxf(duration - 0.22, 0.12))
+	_gray_tween.tween_method(Callable(self, "_set_gray_strength"), PIRANHA_GRAY_STRENGTH, 0.0, 0.34)
+	_gray_tween.tween_callback(func() -> void:
+		gray_overlay.visible = false
+	)
+
+
+func _set_gray_strength(strength: float) -> void:
+	var shader_material := gray_overlay.material as ShaderMaterial
+	if shader_material == null:
+		return
+	shader_material.set_shader_parameter("strength", clampf(strength, 0.0, 1.0))
+	gray_overlay.visible = strength > 0.001
+
+
+func _kill_tween(tween: Tween) -> void:
+	if tween != null:
+		tween.kill()
+
+
+func _has_external_camera_controller() -> bool:
+	for node in get_tree().root.find_children("*", "", true, false):
+		if node == self:
+			continue
+		var script := node.get_script() as Script
+		if script != null and script.resource_path == CAMERA_CONTROLLER_SCRIPT:
+			return true
+	return false
 
 
 func _configure_camera() -> void:

@@ -37,7 +37,7 @@ polygon = PackedVector2Array(260, 2180, 1220, 1900, 1980, 1280, 1780, 220, 1140,
 position = Vector2(1100, 2250)
 bounce_restitution = 0.66
 boost_cooldown = 1.35
-max_battery = 230.0
+max_battery = 250.0
 
 [node name="Solids" type="Node2D" parent="World" unique_id=1732362247]
 

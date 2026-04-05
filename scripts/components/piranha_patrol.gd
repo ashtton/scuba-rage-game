@@ -131,7 +131,7 @@ func _on_body_entered(body: Node) -> void:
 	if body is SubmarinePlayer:
 		var player := body as SubmarinePlayer
 		player.apply_hazard_bounce(Vector2.DOWN, bite_knockback_speed)
-		player.stun_for(bite_stun_duration)
+		player.stun_for(bite_stun_duration, "piranha", bite_message)
 
 
 func _get_target_index() -> int:

@@ -1,153 +1,179 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=6 format=3]
 
-[sub_resource type="StyleBoxFlat" id="1_hud_panel"]
+[ext_resource type="Shader" path="res://shaders/screen_desaturate.gdshader" id="1_gray_shader"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_battery_card"]
 bg_color = Color(0.0235294, 0.0862745, 0.137255, 0.9)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.403922, 0.823529, 0.956863, 0.45)
+border_color = Color(0.435294, 0.882353, 0.917647, 0.36)
 corner_radius_top_left = 28
 corner_radius_top_right = 28
 corner_radius_bottom_right = 28
 corner_radius_bottom_left = 28
+shadow_color = Color(0, 0, 0, 0.24)
+shadow_size = 12
 
-[sub_resource type="StyleBoxFlat" id="2_battery_shell"]
-bg_color = Color(0, 0, 0, 0)
-draw_center = false
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.839216, 0.984314, 0.901961, 0.85)
-corner_radius_top_left = 22
-corner_radius_top_right = 22
-corner_radius_bottom_right = 22
-corner_radius_bottom_left = 22
-
-[sub_resource type="StyleBoxFlat" id="3_battery_clip"]
-bg_color = Color(0.0431373, 0.227451, 0.14902, 1)
-corner_radius_top_left = 18
-corner_radius_top_right = 18
-corner_radius_bottom_right = 18
-corner_radius_bottom_left = 18
-
-[sub_resource type="StyleBoxFlat" id="4_plate"]
-bg_color = Color(0.027451, 0.109804, 0.160784, 0.88)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bar_track"]
+bg_color = Color(0.027451, 0.14902, 0.192157, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.623529, 0.87451, 0.980392, 0.22)
-corner_radius_top_left = 24
-corner_radius_top_right = 24
-corner_radius_bottom_right = 24
-corner_radius_bottom_left = 24
+border_color = Color(0.501961, 0.858824, 0.913725, 0.22)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_alert"]
+bg_color = Color(0.027451, 0.0823529, 0.121569, 0.92)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.996078, 0.796078, 0.470588, 0.45)
+corner_radius_top_left = 34
+corner_radius_top_right = 34
+corner_radius_bottom_right = 34
+corner_radius_bottom_left = 34
+shadow_color = Color(0, 0, 0, 0.3)
+shadow_size = 18
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gray"]
+shader = ExtResource("1_gray_shader")
+shader_parameter/strength = 0.0
+shader_parameter/darken = 0.14
 
 [node name="HUD" type="CanvasLayer"]
 
-[node name="BatteryHUD" type="Panel" parent="."]
-offset_left = 48.0
+[node name="BatteryCard" type="PanelContainer" parent="."]
+offset_left = 28.0
 offset_top = 28.0
-offset_right = 214.0
-offset_bottom = 280.0
-theme_override_styles/panel = SubResource("1_hud_panel")
+offset_right = 404.0
+offset_bottom = 224.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_battery_card")
 
-[node name="Title" type="Label" parent="BatteryHUD"]
-offset_left = 26.0
-offset_top = 16.0
-offset_right = 142.0
-offset_bottom = 36.0
-theme_override_colors/font_color = Color(0.886275, 0.972549, 1, 1)
+[node name="Margin" type="MarginContainer" parent="BatteryCard"]
+layout_mode = 2
+theme_override_constants/margin_left = 22
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 22
+theme_override_constants/margin_bottom = 20
+
+[node name="VBox" type="VBoxContainer" parent="BatteryCard/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="BatteryTitle" type="Label" parent="BatteryCard/Margin/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.678431, 0.909804, 0.94902, 1)
+theme_override_font_sizes/font_size = 16
 text = "BATTERY"
 
-[node name="BatteryValue" type="Label" parent="BatteryHUD"]
-offset_left = 26.0
-offset_top = 38.0
-offset_right = 142.0
-offset_bottom = 62.0
-theme_override_colors/font_color = Color(0.980392, 0.941176, 0.772549, 1)
-text = "0000"
+[node name="BatteryAmount" type="Label" parent="BatteryCard/Margin/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.988235, 0.945098, 0.8, 1)
+theme_override_font_sizes/font_size = 32
+text = "250 / 250"
 
-[node name="BatteryStatus" type="Label" parent="BatteryHUD"]
-offset_left = 26.0
-offset_top = 210.0
-offset_right = 144.0
-offset_bottom = 230.0
-theme_override_colors/font_color = Color(0.87451, 0.984314, 1, 1)
-text = "HEALTHY"
+[node name="BatteryStatus" type="Label" parent="BatteryCard/Margin/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.831373, 1, 0.952941, 1)
+theme_override_font_sizes/font_size = 16
+text = "POWER STABLE"
 
-[node name="CooldownValue" type="Label" parent="BatteryHUD"]
-offset_left = 26.0
-offset_top = 230.0
-offset_right = 150.0
-offset_bottom = 250.0
-theme_override_colors/font_color = Color(0.721569, 0.917647, 0.972549, 1)
-text = "READY"
+[node name="BatteryBarTrack" type="Panel" parent="BatteryCard/Margin/VBox"]
+custom_minimum_size = Vector2(308, 30)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bar_track")
 
-[node name="BatteryShell" type="Panel" parent="BatteryHUD"]
-offset_left = 84.0
-offset_top = 60.0
-offset_right = 136.0
-offset_bottom = 184.0
-theme_override_styles/panel = SubResource("2_battery_shell")
-
-[node name="BatteryClip" type="Panel" parent="BatteryHUD/BatteryShell"]
+[node name="BatteryBarClip" type="Panel" parent="BatteryCard/Margin/VBox/BatteryBarTrack"]
 clip_contents = true
-offset_left = 7.0
-offset_top = 7.0
-offset_right = 45.0
-offset_bottom = 117.0
-theme_override_styles/panel = SubResource("3_battery_clip")
-
-[node name="BatteryFill" type="ColorRect" parent="BatteryHUD/BatteryShell/BatteryClip"]
+offset_left = 6.0
 offset_top = 6.0
-offset_right = 38.0
-offset_bottom = 110.0
-color = Color(0.470588, 0.941176, 0.541176, 1)
+offset_right = 302.0
+offset_bottom = 24.0
 
-[node name="MessagePlate" type="Panel" parent="."]
-offset_left = 460.0
-offset_top = 28.0
-offset_right = 1460.0
-offset_bottom = 86.0
-theme_override_styles/panel = SubResource("4_plate")
+[node name="BatteryBarFill" type="ColorRect" parent="BatteryCard/Margin/VBox/BatteryBarTrack/BatteryBarClip"]
+offset_right = 296.0
+offset_bottom = 18.0
+color = Color(0.337255, 0.882353, 0.690196, 1)
 
-[node name="MessageLabel" type="Label" parent="MessagePlate"]
-offset_left = 20.0
-offset_top = 15.0
-offset_right = 960.0
-offset_bottom = 43.0
-theme_override_colors/font_color = Color(0.980392, 0.941176, 0.772549, 1)
-text = "Dive status online."
+[node name="CooldownValue" type="Label" parent="BatteryCard/Margin/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.996078, 0.835294, 0.619608, 1)
+theme_override_font_sizes/font_size = 16
+text = "THRUSTERS READY"
 
-[node name="LevelPlate" type="Panel" parent="."]
-offset_left = 1570.0
-offset_top = 28.0
-offset_right = 1868.0
-offset_bottom = 132.0
-theme_override_styles/panel = SubResource("4_plate")
+[node name="HintLabel" type="Label" parent="BatteryCard/Margin/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.592157, 0.8, 0.870588, 0.86)
+theme_override_font_sizes/font_size = 13
+text = "Recharge only at battery cells"
 
-[node name="CurrentDive" type="Label" parent="LevelPlate"]
-offset_left = 20.0
-offset_top = 16.0
-offset_right = 180.0
-offset_bottom = 34.0
-theme_override_colors/font_color = Color(0.717647, 0.917647, 0.972549, 1)
-text = "CURRENT DIVE"
+[node name="GrayOverlay" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_gray")
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color(1, 1, 1, 1)
 
-[node name="LevelValue" type="Label" parent="LevelPlate"]
-offset_left = 20.0
-offset_top = 38.0
-offset_right = 182.0
-offset_bottom = 62.0
-theme_override_colors/font_color = Color(0.980392, 0.972549, 0.921569, 1)
-text = "LEVEL 01"
+[node name="FlashOverlay" type="ColorRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color(1, 0.94902, 0.929412, 0.86)
 
-[node name="MechanicValue" type="Label" parent="LevelPlate"]
-offset_left = 20.0
-offset_top = 70.0
-offset_right = 210.0
-offset_bottom = 92.0
-theme_override_colors/font_color = Color(0.980392, 0.815686, 0.45098, 1)
-text = "Vent Ladder"
+[node name="CenterAlert" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="AlertPanel" type="PanelContainer" parent="CenterAlert"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -330.0
+offset_top = -112.0
+offset_right = 330.0
+offset_bottom = 112.0
+pivot_offset = Vector2(330, 112)
+theme_override_styles/panel = SubResource("StyleBoxFlat_alert")
+
+[node name="Margin" type="MarginContainer" parent="CenterAlert/AlertPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 26
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 26
+theme_override_constants/margin_bottom = 24
+
+[node name="VBox" type="VBoxContainer" parent="CenterAlert/AlertPanel/Margin"]
+layout_mode = 2
+alignment = 1
+theme_override_constants/separation = 12
+
+[node name="AlertTitle" type="Label" parent="CenterAlert/AlertPanel/Margin/VBox"]
+visible = false
+layout_mode = 2
+horizontal_alignment = 1
+theme_override_colors/font_color = Color(0.992157, 0.807843, 0.486275, 1)
+theme_override_font_sizes/font_size = 26
+text = "Dive Brief"
+
+[node name="AlertBody" type="Label" parent="CenterAlert/AlertPanel/Margin/VBox"]
+visible = false
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+horizontal_alignment = 1
+autowrap_mode = 3
+theme_override_colors/font_color = Color(0.964706, 0.984314, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "Hold left click to charge. Release to launch at the cursor."
