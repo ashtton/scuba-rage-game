@@ -126,7 +126,7 @@ func die(reason: String, restart_from_beginning := false) -> void:
 
 
 func _start_charge() -> void:
-	if current_battery < min_launch_cost or _cooldown_time_left > 0.0 or _is_stunned():
+	if current_battery < _get_min_launch_cost() or _cooldown_time_left > 0.0 or _is_stunned():
 		return
 
 	_charging = true
@@ -151,7 +151,7 @@ func _release_charge() -> void:
 	var desired_charge_ratio := _get_charge_progress(raw_charge_ratio)
 	var charge_ratio := desired_charge_ratio
 	var desired_curved_ratio := pow(desired_charge_ratio, launch_curve_exponent)
-	var desired_battery_cost := lerpf(min_launch_cost, max_launch_cost, desired_curved_ratio)
+	var desired_battery_cost := _get_launch_cost_for_curved_ratio(desired_curved_ratio)
 	if desired_battery_cost > current_battery:
 		charge_ratio = _get_affordable_charge_progress()
 
@@ -166,10 +166,12 @@ func _release_charge() -> void:
 	direction = direction.normalized()
 
 	var launch_speed := lerpf(min_launch_speed, max_launch_speed, curved_charge_ratio)
+	var launch_cost := _get_launch_cost_for_curved_ratio(curved_charge_ratio)
+	if not change_battery(-launch_cost):
+		return
 	velocity = direction * launch_speed
 	_cooldown_time_left = boost_cooldown
 	_spawn_launch_bubbles(direction, curved_charge_ratio)
-	change_battery(-lerpf(min_launch_cost, max_launch_cost, curved_charge_ratio))
 	if _respawning:
 		return
 	_emit_cooldown_changed()
@@ -265,14 +267,30 @@ func _get_charge_progress(raw_charge_ratio: float) -> float:
 
 
 func _get_affordable_charge_progress() -> float:
+	var min_cost := _get_min_launch_cost()
+	var max_cost := _get_max_launch_cost(min_cost)
 	var affordable_curved_ratio := clampf(
-		inverse_lerp(min_launch_cost, max_launch_cost, current_battery),
+		inverse_lerp(min_cost, max_cost, current_battery),
 		0.0,
 		1.0
 	)
 	if affordable_curved_ratio <= 0.0:
 		return 0.0
 	return pow(affordable_curved_ratio, 1.0 / maxf(launch_curve_exponent, 0.001))
+
+
+func _get_min_launch_cost() -> float:
+	return maxf(min_launch_cost, 0.0)
+
+
+func _get_max_launch_cost(min_cost: float) -> float:
+	return maxf(max_launch_cost, min_cost)
+
+
+func _get_launch_cost_for_curved_ratio(curved_ratio: float) -> float:
+	var min_cost := _get_min_launch_cost()
+	var max_cost := _get_max_launch_cost(min_cost)
+	return lerpf(min_cost, max_cost, clampf(curved_ratio, 0.0, 1.0))
 
 
 func _set_current_battery(next_battery: float) -> bool:

@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://du37g2pfd6gxd"]
+
+[ext_resource type="PackedScene" uid="uid://cunqv6bohp5uc" path="res://scenes/game.tscn" id="1_ocdv6"]
+
+[node name="Game" unique_id=1698055606 instance=ExtResource("1_ocdv6")]
+
+[node name="Backdrop" parent="." index="0" unique_id=1027850298]
+position = Vector2(-14503, -7902)
+
+[node name="Level 1 Redone" parent="." index="13" unique_id=771356984]
+position = Vector2(768, 1446)
+
+[node name="FanZone" parent="Level 1 Redone/World/Hazards" parent_id_path=PackedInt32Array(771356984, 455956040) index="0" unique_id=607855655]
+position = Vector2(5861.0005, 49)
+
+[node name="FanZone4" parent="Level 1 Redone" index="2" unique_id=1849340715]
+position = Vector2(6723, 3225)
+movement_cycles_per_second = 0.05
+size = Vector2(300, 800)
+
+[node name="FanZone5" parent="Level 1 Redone" index="3" unique_id=311163119]
+position = Vector2(6888, 4043)
+movement_cycles_per_second = 0.05
+size = Vector2(180, 800)
+flow_vector = Vector2(0, -1500)
+
+[node name="FanZone3" parent="Level 1 Redone" index="4" unique_id=166007826]
+position = Vector2(6521, 2431)
+movement_cycles_per_second = 0.05
+size = Vector2(400, 650)
+
+[node name="FanZone2" parent="Level 1 Redone" index="5" unique_id=946836956]
+position = Vector2(6349, 1795)
+movement_cycles_per_second = 0.05
+size = Vector2(400, 500)
+
+[editable path="CaveWall2"]
+[editable path="CaveWall3"]
+[editable path="CaveWall6"]
+[editable path="CaveWall"]
+[editable path="CaveWall7"]
+[editable path="CaveWall5"]
+[editable path="Level 1 Redone"]
+[editable path="Level 1 Redone/World/Walls/second-area1"]
+[editable path="Level 1 Redone/World/Walls/second-area2"]
+[editable path="Level 1 Redone/World/Walls/third-area1"]
+[editable path="Level 1 Redone/World/Walls/first-area1"]
+[editable path="Level 1 Redone/World/Walls/first-area2"]
+[editable path="Level 1 Redone/World/Walls/first-area3"]
+[editable path="Level 1 Redone/World/Walls/first-area4"]
+[editable path="Level 1 Redone/World/Walls/third-area2-shelf3"]
+[editable path="Level 1 Redone/World/Walls/third-area2-shelf2"]
+[editable path="Level 1 Redone/World/Walls/third-area2-shelf"]
