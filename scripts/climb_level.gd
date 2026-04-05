@@ -6,7 +6,6 @@ extends Node2D
 @export_multiline var intro_message := "Hold left click to charge. Release to launch at the cursor."
 @export var intro_duration := 4.0
 @export var checkpoint_duration := 2.2
-@export var death_depth := 2400.0
 @export var camera_left := 0
 @export var camera_top := -1200
 @export var camera_right := 1920
@@ -42,7 +41,6 @@ var _camera_limits_target := Vector4.ZERO
 
 func _ready() -> void:
 	player.set_spawn_point(player.global_position)
-	player.death_depth = death_depth
 	_configure_camera()
 	_collect_camera_zones()
 	_refresh_camera_limits_for_player(true)

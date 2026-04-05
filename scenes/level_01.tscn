@@ -24,7 +24,6 @@ next_scene_path = "res://scenes/level_03.tscn"
 level_title = "LEVEL STACK"
 mechanic_name = "Slipstream Caverns"
 intro_message = "Level 1 runs left-to-right through jellyfish spikes and heavy backflow. Level 2 flips right-to-left with piranha patrol lanes and a return chute that can drop you to Level 1."
-death_depth = 2680.0
 camera_left = -80
 camera_top = -1900
 camera_right = 2720
@@ -544,3 +543,4 @@ next_scene_path = null
 position = Vector2(-180, 0)
 patrol_points = PackedVector2Array(-180, 0, 180, 0)
 >>>>>>> f5543c4cefc34a3e2531a93d3131ac94661be1b6
+

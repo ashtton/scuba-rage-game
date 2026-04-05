@@ -15,7 +15,6 @@ next_scene_path = "res://scenes/level_03.tscn"
 level_title = "LEVEL 02"
 mechanic_name = "Leech Reef"
 intro_message = "Red charge blooms drain battery every second. Route through the safe shelves before the tank runs dry."
-death_depth = 2600.0
 camera_top = -1700
 camera_right = 2200
 camera_bottom = 2600
@@ -197,3 +196,4 @@ position = Vector2(1100, -758)
 size = Vector2(240, 24)
 
 [node name="HUD" parent="." unique_id=157508064 instance=ExtResource("8_hud")]
+

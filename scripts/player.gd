@@ -18,7 +18,6 @@ signal died(reason: String)
 @export var max_launch_cost := 34.0
 @export var boost_cooldown := 1.5
 @export var max_battery := 1000.0
-@export var death_depth := 1180.0
 @export var stun_drift_drag_multiplier := 2.2
 
 const MIN_LAUNCH_CHARGE_RATIO := 0.01
@@ -92,9 +91,6 @@ func _physics_process(delta: float) -> void:
 	_update_visuals()
 	_update_aim_line()
 	_check_powerless_state(delta)
-
-	if global_position.y > death_depth:
-		die("The sub was crushed below the trench.")
 
 
 func refill_battery() -> void:

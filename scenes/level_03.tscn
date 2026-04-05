@@ -15,7 +15,6 @@ next_scene_path = "res://scenes/demo_complete.tscn"
 level_title = "LEVEL 03"
 mechanic_name = "Pulse Locks"
 intro_message = "Surge gates cycle open and closed. Read the rhythm, then commit before the battery margin disappears."
-death_depth = 2600.0
 camera_top = -1900
 camera_right = 2200
 camera_bottom = 2600
@@ -225,3 +224,4 @@ position = Vector2(1480, -798)
 size = Vector2(220, 24)
 
 [node name="HUD" parent="." unique_id=1867147143 instance=ExtResource("8_hud")]
+
