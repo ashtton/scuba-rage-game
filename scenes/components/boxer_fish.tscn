@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/components/boxer_fish.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/sprites/boxer_fish_placeholder.svg" id="2_texture"]
+
+[node name="BoxerFish" type="Area2D"]
+script = ExtResource("1_script")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="PatrolPath" type="Path2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_texture")

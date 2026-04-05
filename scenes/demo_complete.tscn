@@ -41,7 +41,7 @@ offset_right = 854.0
 offset_bottom = 180.0
 theme_override_font_sizes/font_size = 42
 theme_override_colors/font_color = Color(0.972549, 0.968627, 0.878431, 1)
-text = "Three Dives Cleared"
+text = "You Escaped To Shore"
 
 [node name="Body" type="Label" parent="Panel"]
 offset_left = 86.0
@@ -50,7 +50,7 @@ offset_right = 888.0
 offset_bottom = 450.0
 theme_override_font_sizes/font_size = 24
 theme_override_colors/font_color = Color(0.784314, 0.921569, 0.972549, 1)
-text = "Level 1 taught current riding, Level 2 punished battery drain, and Level 3 demanded rhythm through surge locks.\n\nPress R, Space, or Enter to restart the climb."
+text = "You broke through the final surge and hit the beach.\n\nPress R, Space, or Enter to dive again."
 autowrap_mode = 3
 
 [node name="Footer" type="Label" parent="Panel"]
@@ -59,4 +59,4 @@ offset_top = 494.0
 offset_right = 880.0
 offset_bottom = 542.0
 theme_override_colors/font_color = Color(0.980392, 0.815686, 0.45098, 1)
-text = "Checkpoint chain stabilized."
+text = "Escape route secured."
