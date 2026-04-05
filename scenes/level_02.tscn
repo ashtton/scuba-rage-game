@@ -169,7 +169,6 @@ active_color = Color(0.988235, 0.847059, 0.458824, 1)
 [node name="Goal" parent="World" unique_id=627394206 instance=ExtResource("7_goal")]
 position = Vector2(1100, -1360)
 size = Vector2(84, 84)
-next_scene_path = null
 
 [node name="Hazards" type="Node2D" parent="World" unique_id=394117957]
 
@@ -196,4 +195,3 @@ position = Vector2(1100, -758)
 size = Vector2(240, 24)
 
 [node name="HUD" parent="." unique_id=157508064 instance=ExtResource("8_hud")]
-

@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://cunqv6bohp5uc"]
+[gd_scene format=3 uid="uid://ca44sjmkdgy1v"]
 
 [ext_resource type="PackedScene" path="res://scenes/components/cave_wall.tscn" id="1_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://jnydgx6w57fr" path="res://scenes/level_01new.tscn" id="2_iywne"]
@@ -6,23 +6,17 @@
 [ext_resource type="PackedScene" path="res://scenes/components/slip_stream_zone.tscn" id="4_u5sy4"]
 [ext_resource type="PackedScene" path="res://scenes/components/camera_limit_zone.tscn" id="5_iywne"]
 [ext_resource type="Script" uid="uid://dmcq5eivitshc" path="res://scripts/game_camera_controller.gd" id="6_game_camera"]
-[ext_resource type="PackedScene" uid="uid://t5tov2e36bq2" path="res://scenes/level_3_new.tscn" id="6_p57ef"]
 
 [node name="Game" type="Node2D" unique_id=1698055606]
 script = ExtResource("6_game_camera")
-camera_zones_root_path = NodePath("")
-
-[node name="Backdrop" type="Polygon2D" parent="." unique_id=1027850298]
-position = Vector2(-14496.001, -8009)
-scale = Vector2(10.857142, 9.428646)
-color = Color(0.0196078, 0.117647, 0.176471, 1)
-polygon = PackedVector2Array(0, 0, 3360, 0, 3360, 1920, 0, 1920)
 
 [node name="CaveWall4" parent="." unique_id=1247166507 instance=ExtResource("1_lbhrr")]
 position = Vector2(-2469, 1300)
 scale = Vector2(27.111458, 1.0815204)
-disable_submarine_bounce = true
 polygon_points = PackedVector2Array(-120, -60, 120, -60, 120, 60, -120, 60)
+
+[node name="Level 1 Redone" parent="." unique_id=771356984 instance=ExtResource("2_iywne")]
+position = Vector2(776, 1501)
 
 [node name="Level2" parent="." unique_id=1544132612 instance=ExtResource("3_p57ef")]
 position = Vector2(5915, -901)
@@ -46,11 +40,9 @@ default_color = Color(0.32941177, 0.7411765, 0.8509804, 1)
 
 [node name="CaveWall3" parent="." unique_id=1562072743 instance=ExtResource("1_lbhrr")]
 position = Vector2(860, 1431)
-disable_submarine_bounce = true
 polygon_points = PackedVector2Array(-124, -193, 101, -195, 81, 83, -120, 60)
 
 [node name="CollisionPolygon2D" parent="CaveWall3" index="0"]
-visible = false
 polygon = PackedVector2Array(-124, -193, 101, -195, 81, 83, -120, 60)
 
 [node name="VisualFill" parent="CaveWall3" index="1"]
@@ -66,7 +58,7 @@ default_color = Color(0.32941177, 0.7411765, 0.8509804, 1)
 position = Vector2(4003, -196)
 scale = Vector2(1, 1.16)
 size = Vector2(7500, 350)
-flow_vector = Vector2(1000, 150)
+flow_vector = Vector2(-1000, 150)
 
 [node name="SlipStreamZone2" parent="CaveWall3" unique_id=2112077669 instance=ExtResource("4_u5sy4")]
 position = Vector2(-3294, -305)
@@ -78,6 +70,22 @@ flow_vector = Vector2(1000, 150)
 position = Vector2(349, -191)
 size = Vector2(500, 450)
 flow_vector = Vector2(0, 1000)
+
+[node name="CaveWall5" parent="." unique_id=1961992234 instance=ExtResource("1_lbhrr")]
+position = Vector2(-5755, 1091)
+polygon_points = PackedVector2Array(63, -72, 106, 266, -109, 276, -115, -64)
+
+[node name="CollisionPolygon2D" parent="CaveWall5" index="0"]
+polygon = PackedVector2Array(63, -72, 106, 266, -109, 276, -115, -64)
+
+[node name="VisualFill" parent="CaveWall5" index="1"]
+color = Color(0.101960786, 0.23137255, 0.3019608, 1)
+polygon = PackedVector2Array(63, -72, 106, 266, -109, 276, -115, -64)
+
+[node name="VisualBorder" parent="CaveWall5" index="2"]
+points = PackedVector2Array(63, -72, 106, 266, -109, 276, -115, -64)
+width = 5.0
+default_color = Color(0.32941177, 0.7411765, 0.8509804, 1)
 
 [node name="CaveWall6" parent="." unique_id=1351037452 instance=ExtResource("1_lbhrr")]
 position = Vector2(10373, -512)
@@ -95,82 +103,9 @@ points = PackedVector2Array(-120, -60, 1264, 89, 1451, 1820, 384, 1824, -92, 106
 width = 5.0
 default_color = Color(0.32941177, 0.7411765, 0.8509804, 1)
 
-[node name="Level3-new" parent="." unique_id=808650230 instance=ExtResource("6_p57ef")]
-position = Vector2(-5963, -990)
+[node name="CameraZones" type="Node2D" parent="." unique_id=731349820]
 
-[node name="CaveWall" parent="." unique_id=530461908 instance=ExtResource("1_lbhrr")]
-position = Vector2(-5875, -668)
-polygon_points = PackedVector2Array(-56, -134, 126, -53, 118, 69, -17, 68)
-
-[node name="CollisionPolygon2D" parent="CaveWall" index="0"]
-polygon = PackedVector2Array(-56, -134, 126, -53, 118, 69, -17, 68)
-
-[node name="VisualFill" parent="CaveWall" index="1"]
-color = Color(0.101960786, 0.23137255, 0.3019608, 1)
-polygon = PackedVector2Array(-56, -134, 126, -53, 118, 69, -17, 68)
-
-[node name="VisualBorder" parent="CaveWall" index="2"]
-points = PackedVector2Array(-56, -134, 126, -53, 118, 69, -17, 68)
-width = 5.0
-default_color = Color(0.32941177, 0.7411765, 0.8509804, 1)
-
-[node name="CaveWall7" parent="." unique_id=488645435 instance=ExtResource("1_lbhrr")]
-position = Vector2(-6500, 1285)
-disable_submarine_bounce = true
-polygon_points = PackedVector2Array(-120, -60, 847, -51, 847, 82, -120, 60)
-
-[node name="CollisionPolygon2D" parent="CaveWall7" index="0"]
-polygon = PackedVector2Array(-120, -60, 847, -51, 847, 82, -120, 60)
-
-[node name="VisualFill" parent="CaveWall7" index="1"]
-color = Color(0.101960786, 0.23137255, 0.3019608, 1)
-polygon = PackedVector2Array(-120, -60, 847, -51, 847, 82, -120, 60)
-
-[node name="VisualBorder" parent="CaveWall7" index="2"]
-points = PackedVector2Array(-120, -60, 847, -51, 847, 82, -120, 60)
-width = 5.0
-default_color = Color(0.32941177, 0.7411765, 0.8509804, 1)
-
-[node name="CaveWall5" parent="." unique_id=785961948 instance=ExtResource("1_lbhrr")]
-position = Vector2(-6616, -638)
-disable_submarine_bounce = true
-polygon_points = PackedVector2Array(-120, -60, 2, 1978, -201, 1985, -120, 60)
-
-[node name="CollisionPolygon2D" parent="CaveWall5" index="0"]
-polygon = PackedVector2Array(-120, -60, 2, 1978, -201, 1985, -120, 60)
-
-[node name="VisualFill" parent="CaveWall5" index="1"]
-color = Color(0.101960786, 0.23137255, 0.3019608, 1)
-polygon = PackedVector2Array(-120, -60, 2, 1978, -201, 1985, -120, 60)
-
-[node name="VisualBorder" parent="CaveWall5" index="2"]
-points = PackedVector2Array(-120, -60, 2, 1978, -201, 1985, -120, 60)
-width = 5.0
-default_color = Color(0.32941177, 0.7411765, 0.8509804, 1)
-
-[node name="SlipStreamZone" parent="." unique_id=1214435602 instance=ExtResource("4_u5sy4")]
-position = Vector2(-5743, -2241)
-rotation = 0.29937238
-size = Vector2(500, 2500)
-flow_vector = Vector2(0, 960)
-
-[node name="SlipStreamZone2" parent="." unique_id=1575732484 instance=ExtResource("4_u5sy4")]
-position = Vector2(-6239, -87)
-rotation = 0.02831471
-size = Vector2(500, 2250)
-flow_vector = Vector2(0, 960)
-
-[node name="SlipStreamZone3" parent="." unique_id=1538592528 instance=ExtResource("4_u5sy4")]
-position = Vector2(-6031, 1118)
-size = Vector2(1000, 150)
-flow_vector = Vector2(1000, 500)
-
-[node name="Level 1 Redone" parent="." unique_id=771356984 instance=ExtResource("2_iywne")]
-position = Vector2(776, 1501)
-
-[node name="CameraZones" type="Node2D" parent="." unique_id=1061135552]
-
-[node name="CameraLimitZone" parent="CameraZones" unique_id=2058063496 instance=ExtResource("5_iywne")]
+[node name="CameraLimitZone" parent="CameraZones" unique_id=1847934469 instance=ExtResource("5_iywne")]
 position = Vector2(-2489.5, 1195.5)
 size = Vector2(6531, 209)
 limit_left = -5755
@@ -178,22 +113,22 @@ limit_top = 1091
 limit_right = 776
 limit_bottom = 1300
 
-[node name="CameraLimitZone2" parent="CameraZones" unique_id=1553921000 instance=ExtResource("5_iywne")]
-position = Vector2(4493, -692)
+[node name="CameraLimitZone2" parent="CameraZones" unique_id=231319094 instance=ExtResource("5_iywne")]
+position = Vector2(4521, -1098)
 size = Vector2(7970, 2402)
 limit_left = 776
 limit_top = -901
 limit_right = 8746
 limit_bottom = 1501
 
-[node name="CameraLimitZone3" parent="CameraZones" unique_id=811343489 instance=ExtResource("5_iywne")]
+[node name="CameraLimitZone3" parent="CameraZones" unique_id=1164131295 instance=ExtResource("5_iywne")]
 position = Vector2(4375, 2050)
 size = Vector2(7250, 1100)
 limit_top = 1500
 limit_right = 8000
 limit_bottom = 2600
 
-[node name="CameraLimitZone4" parent="CameraZones" unique_id=760688309 instance=ExtResource("5_iywne")]
+[node name="CameraLimitZone4" parent="CameraZones" unique_id=1971513333 instance=ExtResource("5_iywne")]
 position = Vector2(10125, 3550)
 size = Vector2(4250, 4100)
 limit_left = 8000
@@ -201,7 +136,7 @@ limit_top = 1500
 limit_right = 12250
 limit_bottom = 5600
 
-[node name="CameraLimitZone5" parent="CameraZones" unique_id=444582841 instance=ExtResource("5_iywne")]
+[node name="CameraLimitZone5" parent="CameraZones" unique_id=1718201920 instance=ExtResource("5_iywne")]
 position = Vector2(10498, 300)
 size = Vector2(3504, 2402)
 limit_left = 8746
@@ -211,7 +146,5 @@ limit_bottom = 1501
 
 [editable path="CaveWall2"]
 [editable path="CaveWall3"]
-[editable path="CaveWall6"]
-[editable path="CaveWall"]
-[editable path="CaveWall7"]
 [editable path="CaveWall5"]
+[editable path="CaveWall6"]

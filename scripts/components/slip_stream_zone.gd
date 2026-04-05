@@ -67,7 +67,7 @@ func _draw() -> void:
 		var radius := particle["radius"] as float
 		var alpha := particle["alpha"] as float
 		var pos := _particle_position(progress, lane, direction)
-		var tint := edge_color.lerp(fill_color, 0.25)
+		var tint := edge_color
 		tint.a = clampf(alpha * 0.8, 0.0, 1.0)
 
 		draw_circle(pos, radius, tint)

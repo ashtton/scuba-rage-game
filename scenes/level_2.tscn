@@ -5,7 +5,6 @@
 [ext_resource type="PackedScene" path="res://scenes/components/cave_wall.tscn" id="4_cave_wall"]
 [ext_resource type="PackedScene" path="res://scenes/components/slip_stream_zone.tscn" id="5_stream_zone"]
 [ext_resource type="PackedScene" path="res://scenes/components/piranha_patrol.tscn" id="6_piranha"]
-[ext_resource type="PackedScene" path="res://scenes/components/camera_limit_zone.tscn" id="7_camera_zone"]
 [ext_resource type="PackedScene" path="res://scenes/components/recharge_cell.tscn" id="9_recharge_cell"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y0kc7"]
@@ -378,15 +377,6 @@ polygon = PackedVector2Array(0, 0, 3360, 0, 3360, 1920, 0, 1920)
 
 [node name="CameraZones" type="Node2D" parent="World" unique_id=950216122]
 
-[node name="UpperRouteCameraZone" parent="World/CameraZones" unique_id=955329072 instance=ExtResource("7_camera_zone")]
-position = Vector2(-3679, 1112.0001)
-scale = Vector2(5.1200037, 0.87999874)
-size = Vector2(3360, 1800)
-limit_left = -11677
-limit_top = 468
-limit_right = 4422
-limit_bottom = 1920
-
 [node name="BoundaryCeiling" parent="World" unique_id=1296640178 instance=ExtResource("4_cave_wall")]
 position = Vector2(1665.0001, 468)
 scale = Vector2(0.96, 1)
@@ -480,8 +470,8 @@ color = Color(0.0470588, 0.2, 0.27451, 1)
 polygon = PackedVector2Array(-1700, -130, 1700, -130, 1699.9999, 45.811523, 1700, 150, 1340, 120, 900, 176, 436, 34, -120, 188, -527, 93, -922, -1, -1700, 136, -1690, 4)
 
 [node name="BoundaryCeiling5" parent="World" unique_id=1378974881 instance=ExtResource("4_cave_wall")]
-position = Vector2(-10558.001, 438)
-scale = Vector2(0.48, 1)
+position = Vector2(-10213.001, 444)
+scale = Vector2(0.27999997, 1)
 fill_color = Color(0.0470588, 0.2, 0.27451, 1)
 border_color = Color(0.235294, 0.682353, 0.831373, 0.65)
 polygon_points = PackedVector2Array(-1700, -130, 1700, -130, 1699.9999, 45.811523, 1700, 150, 1340, 120, 900, 176, 436, 34, -120, 188, -527, 93, -922, -1, -1700, 136, -1690, 4)
@@ -497,10 +487,6 @@ polygon = PackedVector2Array(-1700, -130, 1700, -130, 1699.9999, 45.811523, 1700
 points = PackedVector2Array(-1700, -130, 1700, -130, 1699.9999, 45.811523, 1700, 150, 1340, 120, 900, 176, 436, 34, -120, 188, -527, 93, -922, -1, -1700, 136, -1690, 4)
 width = 5.0
 default_color = Color(0.235294, 0.682353, 0.831373, 0.65)
-
-[node name="VisualFill2" type="Polygon2D" parent="World/BoundaryCeiling5" unique_id=983409206]
-color = Color(0.0470588, 0.2, 0.27451, 1)
-polygon = PackedVector2Array(-1700, -130, 1700, -130, 1699.9999, 45.811523, 1700, 150, 1340, 120, 900, 176, 436, 34, -120, 188, -527, 93, -922, -1, -1700, 136, -1690, 4)
 
 [node name="BoundaryFloor" parent="World" unique_id=1212061384 instance=ExtResource("4_cave_wall")]
 position = Vector2(710, 1828)

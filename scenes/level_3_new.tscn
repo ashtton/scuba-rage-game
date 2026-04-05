@@ -1,12 +1,11 @@
 [gd_scene format=3 uid="uid://t5tov2e36bq2"]
 
 [ext_resource type="PackedScene" path="res://scenes/components/cave_wall.tscn" id="1_tndp5"]
-[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="2_tuulj"]
-[ext_resource type="PackedScene" path="res://scenes/components/level_hud.tscn" id="3_gqdya"]
 [ext_resource type="PackedScene" path="res://scenes/components/current_zone.tscn" id="3_lge5p"]
 [ext_resource type="PackedScene" path="res://scenes/components/slip_stream_zone.tscn" id="4_a54wy"]
 [ext_resource type="PackedScene" path="res://scenes/components/spike_strip.tscn" id="5_2pjls"]
 [ext_resource type="PackedScene" path="res://scenes/components/boxer_fish.tscn" id="6_2pjls"]
+[ext_resource type="PackedScene" path="res://scenes/components/beach_exit_zone.tscn" id="7_endzone"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a54wy"]
 radius = 18.0
@@ -23,12 +22,6 @@ point_count = 3
 [node name="Player Stuff" type="Node2D" parent="." unique_id=2000107234]
 position = Vector2(2041, -1464)
 rotation = -0.16180304
-
-[node name="Player" parent="Player Stuff" unique_id=211948369 instance=ExtResource("2_tuulj")]
-position = Vector2(-1905.7217, 1327.3291)
-rotation = 0.16180304
-
-[node name="HUD" parent="Player Stuff/Player" unique_id=1279228390 instance=ExtResource("3_gqdya")]
 
 [node name="Hazards" type="Node2D" parent="." unique_id=458784195]
 position = Vector2(1095, 206)
@@ -185,8 +178,9 @@ width = 5.0
 default_color = Color(0.32941177, 0.7411765, 0.8509804, 1)
 
 [node name="BoxerFish2" parent="." unique_id=1136484752 instance=ExtResource("6_2pjls")]
-position = Vector2(5040, 449.00006)
+position = Vector2(5492, -1314)
 rotation = -0.18839718
+scale = Vector2(-1, 1)
 
 [node name="CollisionShape2D" parent="BoxerFish2" index="0"]
 rotation = 1.5707964
@@ -209,6 +203,12 @@ shape = SubResource("CapsuleShape2D_a54wy")
 top_level = true
 position = Vector2(301, -9)
 curve = SubResource("Curve2D_ci77g")
+
+[node name="Level3EndTrigger" parent="." unique_id=1785231337 instance=ExtResource("7_endzone")]
+position = Vector2(7886.9995, -2392)
+scale = Vector2(1.0419154, 4.304821)
+size = Vector2(900, 520)
+next_scene_path = "res://scenes/ui/game_over.tscn"
 
 [editable path="Map/s1-2"]
 [editable path="Map/s1-1"]
