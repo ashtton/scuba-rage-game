@@ -1,0 +1,219 @@
+[gd_scene format=3 uid="uid://t5tov2e36bq2"]
+
+[ext_resource type="PackedScene" path="res://scenes/components/cave_wall.tscn" id="1_tndp5"]
+[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="2_tuulj"]
+[ext_resource type="PackedScene" path="res://scenes/components/level_hud.tscn" id="3_gqdya"]
+[ext_resource type="PackedScene" path="res://scenes/components/current_zone.tscn" id="3_lge5p"]
+[ext_resource type="PackedScene" path="res://scenes/components/slip_stream_zone.tscn" id="4_a54wy"]
+[ext_resource type="PackedScene" path="res://scenes/components/spike_strip.tscn" id="5_2pjls"]
+[ext_resource type="PackedScene" path="res://scenes/components/boxer_fish.tscn" id="6_2pjls"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a54wy"]
+radius = 18.0
+height = 60.0
+
+[sub_resource type="Curve2D" id="Curve2D_ci77g"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 5191, -1305, 0, 0, 0, 0, 2630, -1528, 0, 0, 0, 0, 1129, -1106)
+}
+point_count = 3
+
+[node name="Level3-new" type="Node2D" unique_id=808650230]
+
+[node name="Player Stuff" type="Node2D" parent="." unique_id=2000107234]
+position = Vector2(2041, -1464)
+rotation = -0.16180304
+
+[node name="Player" parent="Player Stuff" unique_id=211948369 instance=ExtResource("2_tuulj")]
+position = Vector2(-1905.7217, 1327.3291)
+rotation = 0.16180304
+
+[node name="HUD" parent="Player Stuff/Player" unique_id=1279228390 instance=ExtResource("3_gqdya")]
+
+[node name="Hazards" type="Node2D" parent="." unique_id=458784195]
+position = Vector2(1095, 206)
+
+[node name="s1-current1" parent="Hazards" unique_id=1717579304 instance=ExtResource("3_lge5p")]
+position = Vector2(857, -1709.0001)
+rotation = 3.1275334
+scale = Vector2(5.8541775, -4.7849894)
+size = Vector2(180, 450)
+flow_vector = Vector2(0, -400)
+
+[node name="s1-current2" parent="Hazards" unique_id=1650999725 instance=ExtResource("3_lge5p")]
+position = Vector2(2820, -1797)
+rotation = 3.1275334
+scale = Vector2(5.8541775, -4.7849894)
+size = Vector2(180, 450)
+flow_vector = Vector2(0, -400)
+
+[node name="SlipStreamZone" parent="Hazards" unique_id=365986351 instance=ExtResource("4_a54wy")]
+position = Vector2(2561, -2782.9998)
+rotation = -1.5321918
+size = Vector2(500, 7500)
+flow_vector = Vector2(-2000, 0)
+
+[node name="Map" type="Node2D" parent="." unique_id=275790512]
+position = Vector2(2041, -1464)
+rotation = -0.16180304
+
+[node name="s1-2" parent="Map" unique_id=242007276 instance=ExtResource("1_tndp5")]
+position = Vector2(2619.258, -37.53308)
+rotation = 0.20333141
+scale = Vector2(0.77092487, 1.4332105)
+polygon_points = PackedVector2Array(-208, -193, 206, -196, 740, -215, 223, 127)
+
+[node name="CollisionPolygon2D" parent="Map/s1-2" index="0"]
+polygon = PackedVector2Array(-208, -193, 206, -196, 740, -215, 223, 127)
+
+[node name="VisualFill" parent="Map/s1-2" index="1"]
+position = Vector2(-8, 12)
+color = Color(0.101960786, 0.23137255, 0.3019608, 1)
+polygon = PackedVector2Array(-208, -193, 206, -196, 740, -215, 223, 127)
+
+[node name="VisualBorder" parent="Map/s1-2" index="2"]
+points = PackedVector2Array(-208, -193, 206, -196, 740, -215, 223, 127)
+width = 5.0
+default_color = Color(0.32941177, 0.7411765, 0.8509804, 1)
+
+[node name="L2GiantJellyCeiling7" parent="Map/s1-2" unique_id=1683666273 instance=ExtResource("5_2pjls")]
+position = Vector2(495.99997, -36)
+rotation = 2.546489
+scale = Vector2(0.9999998, 0.9999998)
+size = Vector2(600, 60)
+contact_mode = 1
+jellyfish_bounce_speed = 1120.0
+jellyfish_stun_duration = 2.45
+
+[node name="L2GiantJellyCeiling6" parent="Map/s1-2" unique_id=1100412677 instance=ExtResource("5_2pjls")]
+position = Vector2(4, -2)
+rotation = -2.5089943
+scale = Vector2(0.99999994, 0.99999994)
+size = Vector2(500, 60)
+contact_mode = 1
+jellyfish_bounce_speed = 1120.0
+jellyfish_stun_duration = 2.45
+
+[node name="s1-1" parent="Map" unique_id=1541701167 instance=ExtResource("1_tndp5")]
+position = Vector2(652.20337, -531.8784)
+rotation = 0.16180304
+scale = Vector2(1.1053594, 1.2235881)
+polygon_points = PackedVector2Array(-208, -193, 206, -196, 740, -215, 223, 127)
+
+[node name="CollisionPolygon2D" parent="Map/s1-1" index="0"]
+polygon = PackedVector2Array(-208, -193, 206, -196, 740, -215, 223, 127)
+
+[node name="VisualFill" parent="Map/s1-1" index="1"]
+position = Vector2(-8, 12)
+color = Color(0.101960786, 0.23137255, 0.3019608, 1)
+polygon = PackedVector2Array(-208, -193, 206, -196, 740, -215, 223, 127)
+
+[node name="VisualBorder" parent="Map/s1-1" index="2"]
+points = PackedVector2Array(-208, -193, 206, -196, 740, -215, 223, 127)
+width = 5.0
+default_color = Color(0.32941177, 0.7411765, 0.8509804, 1)
+
+[node name="L2GiantJellyCeiling7" parent="Map/s1-1" unique_id=1580267413 instance=ExtResource("5_2pjls")]
+position = Vector2(495.99997, -36)
+rotation = 2.546489
+scale = Vector2(0.9999998, 0.9999998)
+size = Vector2(600, 60)
+contact_mode = 1
+jellyfish_bounce_speed = 1120.0
+jellyfish_stun_duration = 2.45
+
+[node name="L2GiantJellyCeiling6" parent="Map/s1-1" unique_id=1665181848 instance=ExtResource("5_2pjls")]
+position = Vector2(4, -2)
+rotation = -2.5089943
+scale = Vector2(0.99999994, 0.99999994)
+size = Vector2(500, 60)
+contact_mode = 1
+jellyfish_bounce_speed = 1120.0
+jellyfish_stun_duration = 2.45
+
+[node name="s1-3" parent="Map" unique_id=1227055770 instance=ExtResource("1_tndp5")]
+position = Vector2(-2165.7886, 1331.4872)
+rotation = 0.16180304
+polygon_points = PackedVector2Array(775.00006, -2591.0923, 1451, -2541.6807, 1043.9999, -2152.4368, 94.99999, 73.10925, -86.99999, -13.613434, 80.99999, -519.8319)
+
+[node name="CollisionPolygon2D" parent="Map/s1-3" index="0"]
+polygon = PackedVector2Array(775.00006, -2591.0923, 1451, -2541.6807, 1043.9999, -2152.4368, 94.99999, 73.10925, -86.99999, -13.613434, 80.99999, -519.8319)
+
+[node name="VisualFill" parent="Map/s1-3" index="1"]
+position = Vector2(0, 0.5)
+scale = Vector2(1, 0.9916667)
+color = Color(0.101960786, 0.23137255, 0.3019608, 1)
+polygon = PackedVector2Array(775.00006, -2591.0923, 1451, -2541.6807, 1043.9999, -2152.4368, 94.99999, 73.10925, -86.99999, -13.613434, 80.99999, -519.8319)
+
+[node name="VisualBorder" parent="Map/s1-3" index="2"]
+points = PackedVector2Array(775.00006, -2591.0923, 1451, -2541.6807, 1043.9999, -2152.4368, 94.99999, 73.10925, -86.99999, -13.613434, 80.99999, -519.8319)
+width = 5.0
+default_color = Color(0.32941177, 0.7411765, 0.8509804, 1)
+
+[node name="s1-4" parent="Map" unique_id=100120435 instance=ExtResource("1_tndp5")]
+position = Vector2(-1278.2026, -1865.2795)
+rotation = 0.3384414
+polygon_points = PackedVector2Array(-791.0961, -454.0525, 6538.0073, -1523.5732, 6232.6147, -400.4331, 5123.493, -559.0044, 16.174377, -23.20288, -613.9083, 3662.8713)
+
+[node name="CollisionPolygon2D" parent="Map/s1-4" index="0"]
+polygon = PackedVector2Array(-791.0961, -454.0525, 6538.0073, -1523.5732, 6232.6147, -400.4331, 5123.493, -559.0044, 16.174377, -23.20288, -613.9083, 3662.8713)
+
+[node name="VisualFill" parent="Map/s1-4" index="1"]
+color = Color(0.101960786, 0.23137255, 0.3019608, 1)
+polygon = PackedVector2Array(-791.0961, -454.0525, 6538.0073, -1523.5732, 6232.6147, -400.4331, 5123.493, -559.0044, 16.174377, -23.20288, -613.9083, 3662.8713)
+
+[node name="VisualBorder" parent="Map/s1-4" index="2"]
+points = PackedVector2Array(-791.0961, -454.0525, 6538.0073, -1523.5732, 6232.6147, -400.4331, 5123.493, -559.0044, 16.174377, -23.20288, -613.9083, 3662.8713)
+width = 5.0
+default_color = Color(0.32941177, 0.7411765, 0.8509804, 1)
+
+[node name="s1-5" parent="Map" unique_id=322217820 instance=ExtResource("1_tndp5")]
+position = Vector2(-1202.6774, 1495.7885)
+rotation = 0.16180304
+polygon_points = PackedVector2Array(447, -637, 7296, -1537, 6744, -1005, 112, 187, -63, 27, 29, -159)
+
+[node name="CollisionPolygon2D" parent="Map/s1-5" index="0"]
+polygon = PackedVector2Array(447, -637, 7296, -1537, 6744, -1005, 112, 187, -63, 27, 29, -159)
+
+[node name="VisualFill" parent="Map/s1-5" index="1"]
+color = Color(0.101960786, 0.23137255, 0.3019608, 1)
+polygon = PackedVector2Array(447, -637, 7296, -1537, 6744, -1005, 112, 187, -63, 27, 29, -159)
+
+[node name="VisualBorder" parent="Map/s1-5" index="2"]
+points = PackedVector2Array(447, -637, 7296, -1537, 6744, -1005, 112, 187, -63, 27, 29, -159)
+width = 5.0
+default_color = Color(0.32941177, 0.7411765, 0.8509804, 1)
+
+[node name="BoxerFish2" parent="." unique_id=1136484752 instance=ExtResource("6_2pjls")]
+position = Vector2(5040, 449.00006)
+rotation = -0.18839718
+
+[node name="CollisionShape2D" parent="BoxerFish2" index="0"]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_a54wy")
+
+[node name="PatrolPath" parent="BoxerFish2" index="1"]
+top_level = true
+position = Vector2(301, -9)
+curve = SubResource("Curve2D_ci77g")
+
+[node name="BoxerFish" parent="." unique_id=1786152458 instance=ExtResource("6_2pjls")]
+position = Vector2(5492, -1314)
+scale = Vector2(-1, 1)
+
+[node name="CollisionShape2D" parent="BoxerFish" index="0"]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_a54wy")
+
+[node name="PatrolPath" parent="BoxerFish" index="1"]
+top_level = true
+position = Vector2(301, -9)
+curve = SubResource("Curve2D_ci77g")
+
+[editable path="Map/s1-2"]
+[editable path="Map/s1-1"]
+[editable path="Map/s1-3"]
+[editable path="Map/s1-4"]
+[editable path="Map/s1-5"]
+[editable path="BoxerFish2"]
+[editable path="BoxerFish"]

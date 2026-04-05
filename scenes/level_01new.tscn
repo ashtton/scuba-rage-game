@@ -25,10 +25,39 @@ pivot_sweep_degrees = 50.0
 pivot_cycles_per_second = 0.05
 size = Vector2(800, 200)
 
+[node name="FanZone" parent="World/Hazards/FanZone" unique_id=503500280 instance=ExtResource("5_3c1xy")]
+position = Vector2(6093.211, 1763.0493)
+rotation = -3.6436162
+pivot_origin = 1
+pivot_sweep_degrees = 50.0
+pivot_cycles_per_second = 0.05
+size = Vector2(800, 200)
+flow_vector = Vector2(0, -500)
+
 [node name="SlipStreamZone4" parent="World/Hazards" unique_id=1689949833 instance=ExtResource("4_hwihd")]
 position = Vector2(5140, -144)
 rotation = -0.2818977
 size = Vector2(1000, 250)
+flow_vector = Vector2(-300, 0)
+
+[node name="SlipStreamZone6" parent="World/Hazards" unique_id=632539065 instance=ExtResource("4_hwihd")]
+position = Vector2(9093, -24.999573)
+rotation = 0.13065784
+scale = Vector2(0.99999994, 0.99999994)
+size = Vector2(2000, 1000)
+flow_vector = Vector2(-300, 0)
+
+[node name="SlipStreamZone7" parent="World/Hazards" unique_id=2104945696 instance=ExtResource("4_hwihd")]
+position = Vector2(10260, 869.9995)
+rotation = 1.0896947
+scale = Vector2(0.9999999, 0.9999999)
+size = Vector2(2000, 1000)
+flow_vector = Vector2(-300, 0)
+
+[node name="SlipStreamZone5" parent="World/Hazards" unique_id=1183875417 instance=ExtResource("4_hwihd")]
+position = Vector2(11038, 2321)
+rotation = -5.1984296
+size = Vector2(2000, 800)
 flow_vector = Vector2(-300, 0)
 
 [node name="SlipStreamZone" parent="World/Hazards" unique_id=1867774872 instance=ExtResource("4_hwihd")]
@@ -91,11 +120,47 @@ contact_mode = 1
 jellyfish_bounce_speed = 1120.0
 jellyfish_stun_duration = 2.45
 
+[node name="L1GiantJellyRidgeA5" parent="World/Hazards" unique_id=264373259 instance=ExtResource("1_vlcp2")]
+position = Vector2(11338, 711.0001)
+rotation = 2.9903736
+scale = Vector2(0.99999934, 0.99999934)
+size = Vector2(1100, 52)
+contact_mode = 1
+jellyfish_bounce_speed = 1020.0
+jellyfish_stun_duration = 2.2
+
+[node name="L1GiantJellyRidgeA6" parent="World/Hazards" unique_id=1094826656 instance=ExtResource("1_vlcp2")]
+position = Vector2(11346, 732.00024)
+rotation = 2.9903736
+scale = Vector2(0.99999934, 0.99999934)
+size = Vector2(1100, 52)
+contact_mode = 1
+jellyfish_bounce_speed = 1020.0
+jellyfish_stun_duration = 2.2
+
+[node name="L1GiantJellyRidgeA6" parent="World/Hazards/L1GiantJellyRidgeA6" unique_id=1857350942 instance=ExtResource("1_vlcp2")]
+position = Vector2(-1353.0955, -539.9972)
+rotation = 1.947154
+scale = Vector2(0.99999934, 0.99999934)
+size = Vector2(1100, 52)
+contact_mode = 1
+jellyfish_bounce_speed = 1020.0
+jellyfish_stun_duration = 2.2
+
+[node name="L1GiantJellyRidgeA4" parent="World/Hazards" unique_id=253840695 instance=ExtResource("1_vlcp2")]
+position = Vector2(12461.999, 2221)
+rotation = -3.205332
+scale = Vector2(0.9999997, 0.9999997)
+size = Vector2(800, 52)
+contact_mode = 1
+jellyfish_bounce_speed = 1020.0
+jellyfish_stun_duration = 2.2
+
 [node name="L1GiantJellyRidgeA3" parent="World/Hazards" unique_id=1990869591 instance=ExtResource("1_vlcp2")]
-position = Vector2(10687.947, 11802.5)
-rotation = 2.0999513
+position = Vector2(11900.999, 3748.0005)
+rotation = 2.934927
 scale = Vector2(0.9999999, 0.9999999)
-size = Vector2(4800, 52)
+size = Vector2(800, 52)
 contact_mode = 1
 jellyfish_bounce_speed = 1020.0
 jellyfish_stun_duration = 2.2
@@ -149,17 +214,17 @@ size = Vector2(1200, 120)
 
 [node name="second-area1" parent="World/Walls" unique_id=1392034398 instance=ExtResource("3_t6k03")]
 position = Vector2(4988, -141)
-polygon_points = PackedVector2Array(2664.1064, 4292.1157, 2308, 1355, 1323, 720, -639, 540, -915, 116, -541, -30, 2290.1563, -49.603363, 2965.861, -41.160477, 3620, 4643)
+polygon_points = PackedVector2Array(2644, 787, 2254, 285, 1375, 158, -639, 540, -915, 116, -541, -30, 2290.1563, -49.603363, 2965.861, -41.160477, 3058, 1311)
 
 [node name="CollisionPolygon2D" parent="World/Walls/second-area1" index="0"]
-polygon = PackedVector2Array(2664.1064, 4292.1157, 2308, 1355, 1323, 720, -639, 540, -915, 116, -541, -30, 2290.1563, -49.603363, 2965.861, -41.160477, 3620, 4643)
+polygon = PackedVector2Array(2644, 787, 2254, 285, 1375, 158, -639, 540, -915, 116, -541, -30, 2290.1563, -49.603363, 2965.861, -41.160477, 3058, 1311)
 
 [node name="VisualFill" parent="World/Walls/second-area1" index="1"]
 color = Color(0.101960786, 0.23137255, 0.3019608, 1)
-polygon = PackedVector2Array(2664.1064, 4292.1157, 2308, 1355, 1323, 720, -639, 540, -915, 116, -541, -30, 2290.1563, -49.603363, 2965.861, -41.160477, 3620, 4643)
+polygon = PackedVector2Array(2644, 787, 2254, 285, 1375, 158, -639, 540, -915, 116, -541, -30, 2290.1563, -49.603363, 2965.861, -41.160477, 3058, 1311)
 
 [node name="VisualBorder" parent="World/Walls/second-area1" index="2"]
-points = PackedVector2Array(2664.1064, 4292.1157, 2308, 1355, 1323, 720, -639, 540, -915, 116, -541, -30, 2290.1563, -49.603363, 2965.861, -41.160477, 3620, 4643)
+points = PackedVector2Array(2644, 787, 2254, 285, 1375, 158, -639, 540, -915, 116, -541, -30, 2290.1563, -49.603363, 2965.861, -41.160477, 3058, 1311)
 width = 5.0
 default_color = Color(0.32941177, 0.7411765, 0.8509804, 1)
 
@@ -265,17 +330,19 @@ default_color = Color(0.32941177, 0.7411765, 0.8509804, 1)
 
 [node name="third-area2-shelf3" parent="World/Walls" unique_id=1013919954 instance=ExtResource("3_t6k03")]
 position = Vector2(8198, 834)
-polygon_points = PackedVector2Array(1170.3606, -6.300354, 988.39966, 269.16843, 288.35498, 395.53024, 53, 1299, -134, 53.5, -134, -21.5, -130.01831, -199.91716, -232.33276, -740.53284, 283.30054, -339.89557, 1038.9443, -271.6602)
+polygon_points = PackedVector2Array(1170.3606, -6.300354, 988.39966, 269.16843, 288.35498, 395.53024, -71, 436, -163, 323, -210, -2, -185, -203, -232.33276, -740.53284, 283.30054, -339.89557, 1038.9443, -271.6602)
 
 [node name="CollisionPolygon2D" parent="World/Walls/third-area2-shelf3" index="0"]
-polygon = PackedVector2Array(1170.3606, -6.300354, 988.39966, 269.16843, 288.35498, 395.53024, 53, 1299, -134, 53.5, -134, -21.5, -130.01831, -199.91716, -232.33276, -740.53284, 283.30054, -339.89557, 1038.9443, -271.6602)
+polygon = PackedVector2Array(1170.3606, -6.300354, 988.39966, 269.16843, 288.35498, 395.53024, -71, 436, -163, 323, -210, -2, -185, -203, -232.33276, -740.53284, 283.30054, -339.89557, 1038.9443, -271.6602)
 
 [node name="VisualFill" parent="World/Walls/third-area2-shelf3" index="1"]
 color = Color(0.101960786, 0.23137255, 0.3019608, 1)
-polygon = PackedVector2Array(1170.3606, -6.300354, 988.39966, 269.16843, 288.35498, 395.53024, 53, 1299, -134, 53.5, -134, -21.5, -130.01831, -199.91716, -232.33276, -740.53284, 283.30054, -339.89557, 1038.9443, -271.6602)
+polygon = PackedVector2Array(1170.3606, -6.300354, 988.39966, 269.16843, 288.35498, 395.53024, -71, 436, -163, 323, -210, -2, -185, -203, -232.33276, -740.53284, 283.30054, -339.89557, 1038.9443, -271.6602)
 
 [node name="VisualBorder" parent="World/Walls/third-area2-shelf3" index="2"]
-points = PackedVector2Array(1170.3606, -6.300354, 988.39966, 269.16843, 288.35498, 395.53024, 53, 1299, -134, 53.5, -134, -21.5, -130.01831, -199.91716, -232.33276, -740.53284, 283.30054, -339.89557, 1038.9443, -271.6602)
+position = Vector2(0.44340515, 0)
+scale = Vector2(1.0018684, 1)
+points = PackedVector2Array(1170.3606, -6.300354, 988.39966, 269.16843, 288.35498, 395.53024, -71, 436, -163, 323, -210, -2, -185, -203, -232.33276, -740.53284, 283.30054, -339.89557, 1038.9443, -271.6602)
 width = 5.0
 default_color = Color(0.32941177, 0.7411765, 0.8509804, 1)
 
@@ -298,17 +365,18 @@ default_color = Color(0.32941177, 0.7411765, 0.8509804, 1)
 
 [node name="third-area2-shelf" parent="World/Walls" unique_id=1135580427 instance=ExtResource("3_t6k03")]
 position = Vector2(8626, 3868)
-polygon_points = PackedVector2Array(1170.3606, -6.300354, 988.39966, 269.16843, 288.35498, 395.53024, -29, 633, -134, 53.5, -134, -21.5, -130.01831, -199.91716, -420.38916, -1558.918, 283.30054, -339.89557, 1038.9443, -271.6602)
+polygon_points = PackedVector2Array(1170.3606, -6.300354, 988.39966, 269.16843, 288.35498, 395.53024, -381, 719, -1762, -2866, -3383, -3060, -1795, -3252, -420.38916, -1558.918, 283.30054, -339.89557, 1038.9443, -271.6602)
 
 [node name="CollisionPolygon2D" parent="World/Walls/third-area2-shelf" index="0"]
-polygon = PackedVector2Array(1170.3606, -6.300354, 988.39966, 269.16843, 288.35498, 395.53024, -29, 633, -134, 53.5, -134, -21.5, -130.01831, -199.91716, -420.38916, -1558.918, 283.30054, -339.89557, 1038.9443, -271.6602)
+polygon = PackedVector2Array(1170.3606, -6.300354, 988.39966, 269.16843, 288.35498, 395.53024, -381, 719, -1762, -2866, -3383, -3060, -1795, -3252, -420.38916, -1558.918, 283.30054, -339.89557, 1038.9443, -271.6602)
 
 [node name="VisualFill" parent="World/Walls/third-area2-shelf" index="1"]
 color = Color(0.101960786, 0.23137255, 0.3019608, 1)
-polygon = PackedVector2Array(1170.3606, -6.300354, 988.39966, 269.16843, 288.35498, 395.53024, -29, 633, -134, 53.5, -134, -21.5, -130.01831, -199.91716, -420.38916, -1558.918, 283.30054, -339.89557, 1038.9443, -271.6602)
+polygon = PackedVector2Array(1170.3606, -6.300354, 988.39966, 269.16843, 288.35498, 395.53024, -381, 719, -1762, -2866, -3383, -3060, -1795, -3252, -420.38916, -1558.918, 283.30054, -339.89557, 1038.9443, -271.6602)
 
 [node name="VisualBorder" parent="World/Walls/third-area2-shelf" index="2"]
-points = PackedVector2Array(1170.3606, -6.300354, 988.39966, 269.16843, 288.35498, 395.53024, -29, 633, -134, 53.5, -134, -21.5, -130.01831, -199.91716, -420.38916, -1558.918, 283.30054, -339.89557, 1038.9443, -271.6602)
+position = Vector2(-1, -1)
+points = PackedVector2Array(1170.3606, -6.300354, 988.39966, 269.16843, 288.35498, 395.53024, -381, 719, -1762, -2866, -3383, -3060, -1795, -3252, -420.38916, -1558.918, 283.30054, -339.89557, 1038.9443, -271.6602)
 width = 5.0
 default_color = Color(0.32941177, 0.7411765, 0.8509804, 1)
 

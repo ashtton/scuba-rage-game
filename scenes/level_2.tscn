@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" path="res://scenes/components/piranha_patrol.tscn" id="6_piranha"]
 [ext_resource type="PackedScene" path="res://scenes/components/camera_limit_zone.tscn" id="7_camera_zone"]
 [ext_resource type="PackedScene" path="res://scenes/components/recharge_cell.tscn" id="9_recharge_cell"]
+[ext_resource type="PackedScene" path="res://scenes/components/beach_exit_zone.tscn" id="10_beach_exit"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y0kc7"]
 radius = 18.0
@@ -369,6 +370,11 @@ polygon = PackedVector2Array(0, 0, 3360, 0, 3360, 1920, 0, 1920)
 
 [node name="Player" parent="World" unique_id=88900373 instance=ExtResource("2_player_scene")]
 position = Vector2(3010, 1460)
+
+[node name="BeachExitZone" parent="World" unique_id=951274003 instance=ExtResource("10_beach_exit")]
+position = Vector2(-4160, -260)
+size = Vector2(15500, 320)
+next_scene_path = "res://scenes/demo_complete.tscn"
 
 [node name="CameraZones" type="Node2D" parent="World" unique_id=950216122]
 
