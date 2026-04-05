@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/components/cave_wall.gd" id="1_script"]
+
+[node name="CaveWall" type="StaticBody2D"]
+script = ExtResource("1_script")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+
+[node name="VisualFill" type="Polygon2D" parent="."]
+
+[node name="VisualBorder" type="Line2D" parent="."]
+joint_mode = 1
+closed = true

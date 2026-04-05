@@ -270,6 +270,10 @@ func _apply_collision_bounce(incoming_velocity: Vector2) -> void:
 	if collision == null:
 		return
 
+	var collider := collision.get_collider()
+	if collider != null and bool(collider.get("disable_submarine_bounce")):
+		return
+
 	var normal := collision.get_normal()
 	if incoming_velocity.dot(normal) >= 0.0:
 		return
