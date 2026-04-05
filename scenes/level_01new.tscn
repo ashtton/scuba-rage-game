@@ -22,6 +22,10 @@ flow_mode = 1
 pivot_origin = 1
 pivot_sweep_degrees = 50.0
 pivot_cycles_per_second = 0.05
+show_movement_path = null
+movement_path_color = null
+movement_path_width = null
+movement_endpoint_radius = null
 size = Vector2(800, 200)
 
 [node name="SlipStreamZone4" parent="World/Hazards" unique_id=1689949833 instance=ExtResource("4_hwihd")]
@@ -117,31 +121,47 @@ jellyfish_stun_duration = 2.6
 [node name="Walls" type="Node2D" parent="World" unique_id=1345264029]
 
 [node name="Ceiling" parent="World/Walls" unique_id=265458051 instance=ExtResource("2_xixfx")]
-position = Vector2(4018, -53)
-size = Vector2(10000, 120)
+position = Vector2(2353, -137)
+size = Vector2(5000, 120)
 
 [node name="Floor" parent="World/Walls" unique_id=1369240518 instance=ExtResource("2_xixfx")]
-position = Vector2(4137, 1092)
-size = Vector2(10000, 120)
+position = Vector2(2264, 1161)
+size = Vector2(5000, 120)
 
 [node name="Left Wall" parent="World/Walls" unique_id=1033195109 instance=ExtResource("2_xixfx")]
 position = Vector2(42.999992, 519)
 rotation = -1.5606186
 size = Vector2(1200, 120)
 
-[node name="first-area3" parent="World/Walls" unique_id=1354042501 instance=ExtResource("3_t6k03")]
-position = Vector2(3333, -19)
-polygon_points = PackedVector2Array(1536.0848, -84.63323, 1005.6644, 421.14667, 319.72296, 234.79828, -308.23596, -7.18396, -625.2173, -84.07547, -227.66052, -72.96139, 40.79187, -84.63323)
+[node name="second-area1" parent="World/Walls" unique_id=1392034398 instance=ExtResource("3_t6k03")]
+position = Vector2(4988, -141)
+polygon_points = PackedVector2Array(2664.1064, 4292.1157, 2465.77, 2116.7104, 1708.4199, 93.84473, -915, 116, -541, -30, 2290.1563, -49.603363, 2965.861, -41.160477, 3582.8564, 4749.918)
 
-[node name="CollisionPolygon2D" parent="World/Walls/first-area3" index="0"]
-polygon = PackedVector2Array(1536.0848, -84.63323, 1005.6644, 421.14667, 319.72296, 234.79828, -308.23596, -7.18396, -625.2173, -84.07547, -227.66052, -72.96139, 40.79187, -84.63323)
+[node name="CollisionPolygon2D" parent="World/Walls/second-area1" index="0"]
+polygon = PackedVector2Array(2664.1064, 4292.1157, 2465.77, 2116.7104, 1708.4199, 93.84473, -915, 116, -541, -30, 2290.1563, -49.603363, 2965.861, -41.160477, 3582.8564, 4749.918)
 
-[node name="VisualFill" parent="World/Walls/first-area3" index="1"]
+[node name="VisualFill" parent="World/Walls/second-area1" index="1"]
 color = Color(0.101960786, 0.23137255, 0.3019608, 1)
-polygon = PackedVector2Array(1536.0848, -84.63323, 1005.6644, 421.14667, 319.72296, 234.79828, -308.23596, -7.18396, -625.2173, -84.07547, -227.66052, -72.96139, 40.79187, -84.63323)
+polygon = PackedVector2Array(2664.1064, 4292.1157, 2465.77, 2116.7104, 1708.4199, 93.84473, -915, 116, -541, -30, 2290.1563, -49.603363, 2965.861, -41.160477, 3582.8564, 4749.918)
 
-[node name="VisualBorder" parent="World/Walls/first-area3" index="2"]
-points = PackedVector2Array(1536.0848, -84.63323, 1005.6644, 421.14667, 319.72296, 234.79828, -308.23596, -7.18396, -625.2173, -84.07547, -227.66052, -72.96139, 40.79187, -84.63323)
+[node name="VisualBorder" parent="World/Walls/second-area1" index="2"]
+points = PackedVector2Array(2664.1064, 4292.1157, 2465.77, 2116.7104, 1708.4199, 93.84473, -915, 116, -541, -30, 2290.1563, -49.603363, 2965.861, -41.160477, 3582.8564, 4749.918)
+width = 5.0
+default_color = Color(0.32941177, 0.7411765, 0.8509804, 1)
+
+[node name="second-area2" parent="World/Walls" unique_id=1024558580 instance=ExtResource("3_t6k03")]
+position = Vector2(4778, 1287)
+polygon_points = PackedVector2Array(-267.86914, -65.40393, 120, -60, 2220.6035, 3675.0337, 3956.565, 4019.3235, 2112.4082, 4045.9863)
+
+[node name="CollisionPolygon2D" parent="World/Walls/second-area2" index="0"]
+polygon = PackedVector2Array(-267.86914, -65.40393, 120, -60, 2220.6035, 3675.0337, 3956.565, 4019.3235, 2112.4082, 4045.9863)
+
+[node name="VisualFill" parent="World/Walls/second-area2" index="1"]
+color = Color(0.101960786, 0.23137255, 0.3019608, 1)
+polygon = PackedVector2Array(-267.86914, -65.40393, 120, -60, 2220.6035, 3675.0337, 3956.565, 4019.3235, 2112.4082, 4045.9863)
+
+[node name="VisualBorder" parent="World/Walls/second-area2" index="2"]
+points = PackedVector2Array(-267.86914, -65.40393, 120, -60, 2220.6035, 3675.0337, 3956.565, 4019.3235, 2112.4082, 4045.9863)
 width = 5.0
 default_color = Color(0.32941177, 0.7411765, 0.8509804, 1)
 
@@ -181,6 +201,22 @@ points = PackedVector2Array(261.49976, -45.00045, 122.664734, 329.77777, 87.4819
 width = 5.0
 default_color = Color(0.32941177, 0.7411765, 0.8509804, 1)
 
+[node name="first-area3" parent="World/Walls" unique_id=1354042501 instance=ExtResource("3_t6k03")]
+position = Vector2(3333, -19)
+polygon_points = PackedVector2Array(1536.0848, -84.63323, 1005.6644, 421.14667, 319.72296, 234.79828, -308.23596, -7.18396, -625.2173, -84.07547, -227.66052, -72.96139, 40.79187, -84.63323)
+
+[node name="CollisionPolygon2D" parent="World/Walls/first-area3" index="0"]
+polygon = PackedVector2Array(1536.0848, -84.63323, 1005.6644, 421.14667, 319.72296, 234.79828, -308.23596, -7.18396, -625.2173, -84.07547, -227.66052, -72.96139, 40.79187, -84.63323)
+
+[node name="VisualFill" parent="World/Walls/first-area3" index="1"]
+color = Color(0.101960786, 0.23137255, 0.3019608, 1)
+polygon = PackedVector2Array(1536.0848, -84.63323, 1005.6644, 421.14667, 319.72296, 234.79828, -308.23596, -7.18396, -625.2173, -84.07547, -227.66052, -72.96139, 40.79187, -84.63323)
+
+[node name="VisualBorder" parent="World/Walls/first-area3" index="2"]
+points = PackedVector2Array(1536.0848, -84.63323, 1005.6644, 421.14667, 319.72296, 234.79828, -308.23596, -7.18396, -625.2173, -84.07547, -227.66052, -72.96139, 40.79187, -84.63323)
+width = 5.0
+default_color = Color(0.32941177, 0.7411765, 0.8509804, 1)
+
 [node name="first-area4" parent="World/Walls" unique_id=2048243759 instance=ExtResource("3_t6k03")]
 position = Vector2(4088, 1010)
 polygon_points = PackedVector2Array(-94.22974, -25.850647, 333.40234, -233.72903, 817.7822, 217.01376, -1400.8112, 209.18231, -1421.029, 95.456665)
@@ -215,7 +251,18 @@ drag_bottom_margin = 0.0
 
 [node name="HUD" parent="." unique_id=38961880 instance=ExtResource("6_0lcgs")]
 
-[editable path="World/Walls/first-area3"]
+[node name="FanZone" parent="." unique_id=62003109 instance=ExtResource("5_3c1xy")]
+position = Vector2(1250, 796)
+pivot_origin = 4
+movement_enabled = true
+show_movement_path = null
+movement_path_color = null
+movement_path_width = null
+movement_endpoint_radius = null
+
+[editable path="World/Walls/second-area1"]
+[editable path="World/Walls/second-area2"]
 [editable path="World/Walls/first-area1"]
 [editable path="World/Walls/first-area2"]
+[editable path="World/Walls/first-area3"]
 [editable path="World/Walls/first-area4"]

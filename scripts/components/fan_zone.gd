@@ -57,6 +57,7 @@ enum PivotOrigin {
 		if not movement_enabled:
 			position = _movement_base_position
 		else:
+			_reset_movement_phase()
 			_update_movement_offset()
 @export var movement_offset := Vector2(140.0, 0.0):
 	set(value):
@@ -66,6 +67,34 @@ enum PivotOrigin {
 @export var movement_cycles_per_second := 0.3:
 	set(value):
 		movement_cycles_per_second = maxf(value, 0.0)
+@export_range(0.0, 1.0, 0.01) var movement_start_phase := 0.0:
+	set(value):
+		movement_start_phase = clampf(value, 0.0, 1.0)
+		if _has_initialized_base and not randomize_movement_start:
+			_set_movement_phase_from_start()
+			_update_movement_offset()
+@export var randomize_movement_start := false:
+	set(value):
+		randomize_movement_start = value
+		if _has_initialized_base:
+			_reset_movement_phase()
+@export var randomize_movement_each_cycle := false
+@export var show_movement_path := true:
+	set(value):
+		show_movement_path = value
+		queue_redraw()
+@export var movement_path_color := Color(0.760784, 0.92549, 1.0, 0.75):
+	set(value):
+		movement_path_color = value
+		queue_redraw()
+@export var movement_path_width := 3.0:
+	set(value):
+		movement_path_width = maxf(value, 1.0)
+		queue_redraw()
+@export var movement_endpoint_radius := 6.0:
+	set(value):
+		movement_endpoint_radius = maxf(value, 2.0)
+		queue_redraw()
 
 @export_group("Prototype Visual")
 @export var show_prototype := true:
@@ -104,8 +133,9 @@ enum PivotOrigin {
 var _pivot_base_rotation := 0.0
 var _movement_base_position := Vector2.ZERO
 var _pivot_time := 0.0
-var _movement_time := 0.0
+var _movement_phase := 0.0
 var _has_initialized_base := false
+var _movement_rng := RandomNumberGenerator.new()
 
 
 func _ready() -> void:
@@ -113,7 +143,9 @@ func _ready() -> void:
 	_apply_pivot_origin()
 	_pivot_base_rotation = rotation
 	_movement_base_position = position
+	_movement_rng.seed = int(get_instance_id()) * 97 + 11
 	_has_initialized_base = true
+	_reset_movement_phase()
 	_update_pivot_rotation()
 	_update_movement_offset()
 
@@ -125,6 +157,7 @@ func _process(delta: float) -> void:
 
 func _draw() -> void:
 	super._draw()
+	_draw_movement_path()
 	if not show_prototype:
 		return
 
@@ -183,7 +216,12 @@ func _update_motion(delta: float) -> void:
 		rotation = _pivot_base_rotation
 
 	if movement_enabled and movement_cycles_per_second > 0.0 and movement_offset.length_squared() > 0.001:
-		_movement_time += delta
+		_movement_phase += delta * TAU * movement_cycles_per_second
+		if randomize_movement_each_cycle:
+			while _movement_phase >= TAU:
+				_movement_phase = _movement_rng.randf() * TAU
+		else:
+			_movement_phase = wrapf(_movement_phase, 0.0, TAU)
 		_update_movement_offset()
 	elif not movement_enabled:
 		position = _movement_base_position
@@ -202,8 +240,7 @@ func _update_movement_offset() -> void:
 	if not _has_initialized_base:
 		return
 
-	var phase := _movement_time * TAU * movement_cycles_per_second
-	position = _movement_base_position + movement_offset * sin(phase)
+	position = _movement_base_position + movement_offset * sin(_movement_phase)
 
 
 func _apply_pivot_origin() -> void:
@@ -241,3 +278,38 @@ func _get_local_edge_flow_direction() -> Vector2:
 			return Vector2.UP
 		_:
 			return flow_vector.normalized() if flow_vector.length_squared() > 0.001 else Vector2.RIGHT
+
+
+func _draw_movement_path() -> void:
+	if not show_movement_path or not movement_enabled:
+		return
+	if movement_offset.length_squared() <= 0.001:
+		return
+
+	var base_local_world := Vector2.ZERO
+	if not Engine.is_editor_hint():
+		base_local_world = _movement_base_position - position
+
+	var inv_rotation := -rotation
+	var base_local := base_local_world.rotated(inv_rotation)
+	var offset_local := movement_offset.rotated(inv_rotation)
+	var start := base_local - offset_local
+	var finish := base_local + offset_local
+
+	draw_line(start, finish, movement_path_color, movement_path_width, true)
+	draw_circle(start, movement_endpoint_radius, movement_path_color)
+	draw_circle(finish, movement_endpoint_radius, movement_path_color)
+
+	var marker_color := Color(1.0, 1.0, 1.0, 0.9)
+	draw_circle(base_local, movement_endpoint_radius * 0.55, marker_color)
+
+
+func _reset_movement_phase() -> void:
+	if randomize_movement_start:
+		_movement_phase = _movement_rng.randf() * TAU
+	else:
+		_set_movement_phase_from_start()
+
+
+func _set_movement_phase_from_start() -> void:
+	_movement_phase = movement_start_phase * TAU
