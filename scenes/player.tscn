@@ -18,10 +18,10 @@ shape = SubResource("1_collider")
 enabled = true
 position_smoothing_enabled = true
 position_smoothing_speed = 4.0
-limit_left = 0
-limit_top = 0
-limit_right = 2800
-limit_bottom = 1080
+limit_left = -10000000
+limit_top = -10000000
+limit_right = 10000000
+limit_bottom = 10000000
 
 [node name="AimLine" type="Line2D" parent="."]
 visible = false

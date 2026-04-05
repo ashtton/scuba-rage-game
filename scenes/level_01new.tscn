@@ -11,16 +11,8 @@
 [node name="Hazards" type="Node2D" parent="World" unique_id=455956040]
 position = Vector2(-2676, 485)
 
-[node name="L1GiantJellyCeiling" parent="World/Hazards" unique_id=1217200783 instance=ExtResource("1_vlcp2")]
-position = Vector2(1160, 1360)
-rotation = 3.1415927
-size = Vector2(980, 58)
-contact_mode = 1
-jellyfish_bounce_speed = 1180.0
-jellyfish_stun_duration = 2.5
-
 [node name="L1GiantJellyRidgeA" parent="World/Hazards" unique_id=338657896 instance=ExtResource("1_vlcp2")]
-position = Vector2(560, 1670)
+position = Vector2(4366.0005, 424.99988)
 rotation = -0.2617994
 size = Vector2(420, 52)
 contact_mode = 1
@@ -28,48 +20,25 @@ jellyfish_bounce_speed = 1020.0
 jellyfish_stun_duration = 2.2
 
 [node name="L1GiantJellyRidgeB" parent="World/Hazards" unique_id=792541133 instance=ExtResource("1_vlcp2")]
-position = Vector2(1380, 1600)
-rotation = 0.13962634
+position = Vector2(4454.0005, -299.00024)
+rotation = -2.2899468
 size = Vector2(460, 56)
 contact_mode = 1
 jellyfish_bounce_speed = 1060.0
 jellyfish_stun_duration = 2.35
 
 [node name="L1GiantJellyRightWall" parent="World/Hazards" unique_id=1553250556 instance=ExtResource("1_vlcp2")]
-position = Vector2(2280, 1490)
+position = Vector2(4574, -476)
 rotation = 1.5358897
 size = Vector2(760, 50)
 contact_mode = 1
 jellyfish_bounce_speed = 1120.0
 jellyfish_stun_duration = 2.6
 
-[node name="L2GiantJellyFloor" parent="World/Hazards" unique_id=2097818066 instance=ExtResource("1_vlcp2")]
-position = Vector2(1340, 360)
-size = Vector2(1160, 60)
-contact_mode = 1
-jellyfish_bounce_speed = 1140.0
-jellyfish_stun_duration = 2.6
-
-[node name="L2GiantJellyCeiling" parent="World/Hazards" unique_id=1669138432 instance=ExtResource("1_vlcp2")]
-position = Vector2(1300, -220)
-rotation = 3.1415927
-size = Vector2(1180, 60)
-contact_mode = 1
-jellyfish_bounce_speed = 1120.0
-jellyfish_stun_duration = 2.45
-
 [node name="L2WallJellyLeft" parent="World/Hazards" unique_id=1922873668 instance=ExtResource("1_vlcp2")]
-position = Vector2(480, -760)
+position = Vector2(4576, 594)
 rotation = -1.6057029
 size = Vector2(520, 46)
-contact_mode = 1
-jellyfish_bounce_speed = 1020.0
-jellyfish_stun_duration = 2.1
-
-[node name="L2WallJellyRight" parent="World/Hazards" unique_id=1919335441 instance=ExtResource("1_vlcp2")]
-position = Vector2(2090, -610)
-rotation = 1.5707964
-size = Vector2(540, 46)
 contact_mode = 1
 jellyfish_bounce_speed = 1020.0
 jellyfish_stun_duration = 2.1
@@ -77,17 +46,96 @@ jellyfish_stun_duration = 2.1
 [node name="Walls" type="Node2D" parent="World" unique_id=1345264029]
 
 [node name="Ceiling" parent="World/Walls" unique_id=265458051 instance=ExtResource("2_xixfx")]
-position = Vector2(1692, -112)
-size = Vector2(4000, 120)
+position = Vector2(4178, -30)
+size = Vector2(10000, 120)
 
 [node name="Floor" parent="World/Walls" unique_id=1369240518 instance=ExtResource("2_xixfx")]
-position = Vector2(1701, 1161)
-size = Vector2(4000, 120)
+position = Vector2(4137, 1092)
+size = Vector2(10000, 120)
 
 [node name="Left Wall" parent="World/Walls" unique_id=1033195109 instance=ExtResource("2_xixfx")]
-position = Vector2(87, 440)
+position = Vector2(42.999992, 519)
 rotation = -1.5606186
-size = Vector2(1000, 120)
+size = Vector2(1200, 120)
 
 [node name="Player" parent="World" unique_id=1886926597 instance=ExtResource("1_jt2hw")]
-position = Vector2(255, 829)
+position = Vector2(237, 836)
+
+[node name="Camera2D2" type="Camera2D" parent="World/Player" unique_id=1160842036]
+position = Vector2(-5, 0)
+offset = Vector2(750, -300)
+limit_left = -10000000
+limit_top = -10000000
+limit_right = 10000000
+limit_bottom = 10000000
+limit_smoothed = true
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_left_margin = 0.0
+drag_top_margin = 0.0
+drag_right_margin = 0.0
+drag_bottom_margin = 0.0
+
+[node name="L2GiantJellyFloor2" parent="World" unique_id=1100096671 instance=ExtResource("1_vlcp2")]
+position = Vector2(2343, 1009)
+size = Vector2(1160, 60)
+contact_mode = 1
+jellyfish_bounce_speed = 1140.0
+jellyfish_stun_duration = 2.6
+
+[node name="L2GiantJellyFloor" parent="World/L2GiantJellyFloor2" unique_id=428771423 instance=ExtResource("1_vlcp2")]
+position = Vector2(1156, -2)
+size = Vector2(1160, 60)
+contact_mode = 1
+jellyfish_bounce_speed = 1140.0
+jellyfish_stun_duration = 2.6
+
+[node name="L2GiantJellyFloor2" parent="World/L2GiantJellyFloor2/L2GiantJellyFloor" unique_id=2097818066 instance=ExtResource("1_vlcp2")]
+position = Vector2(-2312, 4)
+size = Vector2(1160, 60)
+contact_mode = 1
+jellyfish_bounce_speed = 1140.0
+jellyfish_stun_duration = 2.6
+
+[node name="L2GiantJellyFloor" parent="World/L2GiantJellyFloor2/L2GiantJellyFloor" unique_id=1264788475 instance=ExtResource("1_vlcp2")]
+position = Vector2(1164, -6)
+size = Vector2(1160, 60)
+contact_mode = 1
+jellyfish_bounce_speed = 1140.0
+jellyfish_stun_duration = 2.6
+
+[node name="L2GiantJellyCeiling" parent="World" unique_id=1669138432 instance=ExtResource("1_vlcp2")]
+position = Vector2(1185, 43)
+rotation = -3.1415925
+size = Vector2(1180, 60)
+contact_mode = 1
+jellyfish_bounce_speed = 1120.0
+jellyfish_stun_duration = 2.45
+
+[node name="L2GiantJellyCeiling2" parent="World/L2GiantJellyCeiling" unique_id=968375192 instance=ExtResource("1_vlcp2")]
+position = Vector2(-2347.0002, -4.999648)
+rotation = 0.0040455153
+scale = Vector2(0.99999994, 0.99999994)
+size = Vector2(1180, 60)
+contact_mode = 1
+jellyfish_bounce_speed = 1120.0
+jellyfish_stun_duration = 2.45
+
+[node name="L2GiantJellyCeiling2" parent="World/L2GiantJellyCeiling/L2GiantJellyCeiling2" unique_id=1868210955 instance=ExtResource("1_vlcp2")]
+position = Vector2(-1180.0065, 0.7739043)
+rotation = 0.0040455153
+scale = Vector2(0.99999994, 0.99999994)
+size = Vector2(1180, 60)
+contact_mode = 1
+jellyfish_bounce_speed = 1120.0
+jellyfish_stun_duration = 2.45
+
+[node name="L2GiantJellyCeiling" parent="World/L2GiantJellyCeiling/L2GiantJellyCeiling2" unique_id=171975263 instance=ExtResource("1_vlcp2")]
+position = Vector2(1164.0029, -1.7091637)
+rotation = -0.002309458
+size = Vector2(1180, 60)
+contact_mode = 1
+jellyfish_bounce_speed = 1120.0
+jellyfish_stun_duration = 2.45
