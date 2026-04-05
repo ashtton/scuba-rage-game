@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" path="res://scenes/player.tscn" id="1_jt2hw"]
 [ext_resource type="PackedScene" path="res://scenes/components/spike_strip.tscn" id="1_vlcp2"]
 [ext_resource type="PackedScene" path="res://scenes/components/solid_block.tscn" id="2_xixfx"]
+[ext_resource type="PackedScene" path="res://scenes/components/slip_stream_zone.tscn" id="4_hwihd"]
 
 [node name="Level 1 Redone" type="Node2D" unique_id=771356984]
 
@@ -46,7 +47,7 @@ jellyfish_stun_duration = 2.1
 [node name="Walls" type="Node2D" parent="World" unique_id=1345264029]
 
 [node name="Ceiling" parent="World/Walls" unique_id=265458051 instance=ExtResource("2_xixfx")]
-position = Vector2(4178, -30)
+position = Vector2(4018, -53)
 size = Vector2(10000, 120)
 
 [node name="Floor" parent="World/Walls" unique_id=1369240518 instance=ExtResource("2_xixfx")]
@@ -64,10 +65,6 @@ position = Vector2(237, 836)
 [node name="Camera2D2" type="Camera2D" parent="World/Player" unique_id=1160842036]
 position = Vector2(-5, 0)
 offset = Vector2(750, -300)
-limit_left = -10000000
-limit_top = -10000000
-limit_right = 10000000
-limit_bottom = 10000000
 limit_smoothed = true
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
@@ -114,28 +111,46 @@ contact_mode = 1
 jellyfish_bounce_speed = 1120.0
 jellyfish_stun_duration = 2.45
 
-[node name="L2GiantJellyCeiling2" parent="World/L2GiantJellyCeiling" unique_id=968375192 instance=ExtResource("1_vlcp2")]
-position = Vector2(-2347.0002, -4.999648)
-rotation = 0.0040455153
-scale = Vector2(0.99999994, 0.99999994)
+[node name="L2GiantJellyCeiling" parent="World/L2GiantJellyCeiling" unique_id=1129919786 instance=ExtResource("1_vlcp2")]
+position = Vector2(-1266, -129.99963)
+rotation = -0.32341123
 size = Vector2(1180, 60)
 contact_mode = 1
 jellyfish_bounce_speed = 1120.0
 jellyfish_stun_duration = 2.45
 
-[node name="L2GiantJellyCeiling2" parent="World/L2GiantJellyCeiling/L2GiantJellyCeiling2" unique_id=1868210955 instance=ExtResource("1_vlcp2")]
-position = Vector2(-1180.0065, 0.7739043)
-rotation = 0.0040455153
-scale = Vector2(0.99999994, 0.99999994)
+[node name="L2GiantJellyCeiling3" parent="World/L2GiantJellyCeiling" unique_id=545273468 instance=ExtResource("1_vlcp2")]
+position = Vector2(-1246.0001, -960.9998)
+rotation = -2.8641298
 size = Vector2(1180, 60)
 contact_mode = 1
 jellyfish_bounce_speed = 1120.0
 jellyfish_stun_duration = 2.45
 
-[node name="L2GiantJellyCeiling" parent="World/L2GiantJellyCeiling/L2GiantJellyCeiling2" unique_id=171975263 instance=ExtResource("1_vlcp2")]
-position = Vector2(1164.0029, -1.7091637)
-rotation = -0.002309458
+[node name="L2GiantJellyCeiling3" parent="World/L2GiantJellyCeiling/L2GiantJellyCeiling3" unique_id=1684221222 instance=ExtResource("1_vlcp2")]
+position = Vector2(52.39734, -403.7964)
+rotation = -3.3909156
 size = Vector2(1180, 60)
 contact_mode = 1
 jellyfish_bounce_speed = 1120.0
 jellyfish_stun_duration = 2.45
+
+[node name="L2GiantJellyCeiling3" parent="World/L2GiantJellyCeiling/L2GiantJellyCeiling3/L2GiantJellyCeiling3" unique_id=254324216 instance=ExtResource("1_vlcp2")]
+position = Vector2(2.7007542, 95.96202)
+rotation = -3.3193386
+size = Vector2(1180, 60)
+contact_mode = 1
+jellyfish_bounce_speed = 1120.0
+jellyfish_stun_duration = 2.45
+
+[node name="SlipStreamZone" parent="." unique_id=1867774872 instance=ExtResource("4_hwihd")]
+position = Vector2(2408, 833)
+rotation = 0.25490916
+size = Vector2(1000, 250)
+flow_vector = Vector2(-300, 0)
+
+[node name="SlipStreamZone" parent="SlipStreamZone" unique_id=1689949833 instance=ExtResource("4_hwihd")]
+position = Vector2(-69.87105, -490.22244)
+rotation = -0.5368068
+size = Vector2(1000, 250)
+flow_vector = Vector2(-300, 0)
