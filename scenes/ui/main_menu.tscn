@@ -1,57 +1,9 @@
-[gd_scene load_steps=9 format=3]
+[gd_scene load_steps=14 format=3]
 
 [ext_resource type="Script" path="res://scripts/ui/main_menu.gd" id="1_menu_script"]
 [ext_resource type="Texture2D" path="res://assets/ui/github_icon.svg" id="2_github_icon"]
 [ext_resource type="Texture2D" path="res://assets/ui/linkedin_icon.svg" id="3_linkedin_icon"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_shell"]
-bg_color = Color(0.0235294, 0.145098, 0.211765, 0.86)
-corner_radius_top_left = 32
-corner_radius_top_right = 32
-corner_radius_bottom_right = 32
-corner_radius_bottom_left = 32
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.32549, 0.815686, 0.898039, 0.24)
-shadow_color = Color(0, 0, 0, 0.42)
-shadow_size = 20
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_play"]
-bg_color = Color(0.0117647, 0.627451, 0.784314, 1)
-corner_radius_top_left = 14
-corner_radius_top_right = 14
-corner_radius_bottom_right = 14
-corner_radius_bottom_left = 14
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_play_hover"]
-bg_color = Color(0.152941, 0.729412, 0.878431, 1)
-corner_radius_top_left = 14
-corner_radius_top_right = 14
-corner_radius_bottom_right = 14
-corner_radius_bottom_left = 14
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_play_pressed"]
-bg_color = Color(0.0117647, 0.482353, 0.619608, 1)
-corner_radius_top_left = 14
-corner_radius_top_right = 14
-corner_radius_bottom_right = 14
-corner_radius_bottom_left = 14
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_social"]
-bg_color = Color(1, 1, 1, 0.09)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_social_hover"]
-bg_color = Color(1, 1, 1, 0.2)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
+[ext_resource type="Script" path="res://scripts/ui/bubble_background.gd" id="4_bubble_bg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_accent"]
 bg_color = Color(0.356863, 0.937255, 1, 0.2)
@@ -59,6 +11,74 @@ corner_radius_top_left = 600
 corner_radius_top_right = 600
 corner_radius_bottom_right = 600
 corner_radius_bottom_left = 600
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_shell"]
+bg_color = Color(0.0196078, 0.129412, 0.184314, 0.9)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.341176, 0.862745, 0.960784, 0.26)
+corner_radius_top_left = 34
+corner_radius_top_right = 34
+corner_radius_bottom_right = 34
+corner_radius_bottom_left = 34
+shadow_color = Color(0, 0, 0, 0.52)
+shadow_size = 24
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_play"]
+bg_color = Color(0.027451, 0.686275, 0.835294, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_play_pressed"]
+bg_color = Color(0.027451, 0.509804, 0.662745, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_play_hover"]
+bg_color = Color(0.207843, 0.772549, 0.905882, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_social"]
+bg_color = Color(1, 1, 1, 0.08)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_social_hover"]
+bg_color = Color(1, 1, 1, 0.18)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_creator_row"]
+bg_color = Color(1, 1, 1, 0.05)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_badge"]
+bg_color = Color(0.113725, 0.588235, 0.756863, 0.22)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.588235, 0.92549, 1, 0.5)
+corner_radius_top_left = 999
+corner_radius_top_right = 999
+corner_radius_bottom_right = 999
+corner_radius_bottom_left = 999
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -76,175 +96,216 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.00784314, 0.0823529, 0.121569, 1)
+color = Color(0.00392157, 0.0627451, 0.0980392, 1)
 
-[node name="AccentA" type="Panel" parent="." unique_name_in_owner=true]
-layout_mode = 0
-offset_left = -120.0
-offset_top = -80.0
-offset_right = 420.0
-offset_bottom = 460.0
+[node name="BubbleBackground" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_bubble_bg")
+
+[node name="AccentA" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 0
+anchor_left = 0.01
+anchor_top = 0.03
+anchor_right = 0.23
+anchor_bottom = 0.33
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_accent")
 
-[node name="AccentB" type="Panel" parent="." unique_name_in_owner=true]
-layout_mode = 0
-offset_left = 1300.0
-offset_top = 620.0
-offset_right = 1900.0
-offset_bottom = 1220.0
+[node name="AccentB" type="Panel" parent="."]
 modulate = Color(0.654902, 0.976471, 1, 0.6)
+layout_mode = 1
+anchors_preset = 0
+anchor_left = 0.74
+anchor_top = 0.58
+anchor_right = 0.99
+anchor_bottom = 0.96
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_accent")
 
-[node name="AccentC" type="Panel" parent="." unique_name_in_owner=true]
-layout_mode = 0
-offset_left = 860.0
-offset_top = -180.0
-offset_right = 1320.0
-offset_bottom = 280.0
+[node name="AccentC" type="Panel" parent="."]
 modulate = Color(0.4, 0.87451, 1, 0.45)
+layout_mode = 1
+anchors_preset = 0
+anchor_left = 0.68
+anchor_top = 0.02
+anchor_right = 0.9
+anchor_bottom = 0.3
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_accent")
 
-[node name="Center" type="MarginContainer" parent="."]
+[node name="SafeArea" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 240
-theme_override_constants/margin_top = 120
-theme_override_constants/margin_right = 240
-theme_override_constants/margin_bottom = 120
-
-[node name="Shell" type="Panel" parent="Center" unique_name_in_owner=true]
-custom_minimum_size = Vector2(760, 640)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_styles/panel = SubResource("StyleBoxFlat_shell")
-
-[node name="Content" type="MarginContainer" parent="Center/Shell"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 56
-theme_override_constants/margin_top = 44
-theme_override_constants/margin_right = 56
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 46
+theme_override_constants/margin_right = 64
 theme_override_constants/margin_bottom = 42
 
-[node name="RootVBox" type="VBoxContainer" parent="Center/Shell/Content"]
+[node name="Center" type="CenterContainer" parent="SafeArea"]
 layout_mode = 2
-theme_override_constants/separation = 28
 
-[node name="HeadingGroup" type="VBoxContainer" parent="Center/Shell/Content/RootVBox" unique_name_in_owner=true]
+[node name="Shell" type="Panel" parent="SafeArea/Center"]
+custom_minimum_size = Vector2(980, 760)
 layout_mode = 2
-theme_override_constants/separation = 6
+theme_override_styles/panel = SubResource("StyleBoxFlat_shell")
 
-[node name="GameTitle" type="Label" parent="Center/Shell/Content/RootVBox/HeadingGroup"]
+[node name="Content" type="MarginContainer" parent="SafeArea/Center/Shell"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 66
+theme_override_constants/margin_top = 44
+theme_override_constants/margin_right = 66
+theme_override_constants/margin_bottom = 44
+
+[node name="RootVBox" type="VBoxContainer" parent="SafeArea/Center/Shell/Content"]
+layout_mode = 2
+theme_override_constants/separation = 22
+
+[node name="HeadingGroup" type="VBoxContainer" parent="SafeArea/Center/Shell/Content/RootVBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="GameTitle" type="Label" parent="SafeArea/Center/Shell/Content/RootVBox/HeadingGroup"]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 76
+theme_override_font_sizes/font_size = 94
 text = "SCUBA RAGE"
 horizontal_alignment = 1
 
-[node name="Tagline" type="Label" parent="Center/Shell/Content/RootVBox/HeadingGroup"]
+[node name="Tagline" type="Label" parent="SafeArea/Center/Shell/Content/RootVBox/HeadingGroup"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.772549, 0.941176, 1, 0.86)
-theme_override_font_sizes/font_size = 24
+theme_override_colors/font_color = Color(0.780392, 0.952941, 1, 0.9)
+theme_override_font_sizes/font_size = 30
 text = "Dive fast. Dodge hazards. Ride the current."
 horizontal_alignment = 1
 
-[node name="JamLine" type="Label" parent="Center/Shell/Content/RootVBox/HeadingGroup"]
+[node name="JamLine" type="Label" parent="SafeArea/Center/Shell/Content/RootVBox/HeadingGroup"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.552941, 0.839216, 1, 0.94)
-theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(0.572549, 0.847059, 1, 0.95)
+theme_override_font_sizes/font_size = 22
 text = "Created for Knox Game Design Jam 2026"
 horizontal_alignment = 1
 
-[node name="PlayButton" type="Button" parent="Center/Shell/Content/RootVBox" unique_name_in_owner=true]
-custom_minimum_size = Vector2(0, 84)
+[node name="PlayButton" type="Button" parent="SafeArea/Center/Shell/Content/RootVBox"]
+custom_minimum_size = Vector2(430, 92)
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_colors/font_color = Color(0.0196078, 0.14902, 0.219608, 1)
-theme_override_font_sizes/font_size = 34
+theme_override_colors/font_color = Color(0.0117647, 0.129412, 0.196078, 1)
+theme_override_font_sizes/font_size = 36
 theme_override_styles/normal = SubResource("StyleBoxFlat_play")
-theme_override_styles/hover = SubResource("StyleBoxFlat_play_hover")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_play_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_play_hover")
 text = "PLAY"
 
-[node name="CreditsGroup" type="VBoxContainer" parent="Center/Shell/Content/RootVBox" unique_name_in_owner=true]
+[node name="CreditsGroup" type="VBoxContainer" parent="SafeArea/Center/Shell/Content/RootVBox"]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="CreatedBy" type="Label" parent="Center/Shell/Content/RootVBox/CreditsGroup"]
+[node name="CreatedBy" type="Label" parent="SafeArea/Center/Shell/Content/RootVBox/CreditsGroup"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 22
-text = "Created by: Robert Ormand and Ashton inman"
+theme_override_font_sizes/font_size = 24
+text = "Created by: Robert Ormand and Ashton Inman"
 horizontal_alignment = 1
 
-[node name="RobertRow" type="HBoxContainer" parent="Center/Shell/Content/RootVBox/CreditsGroup"]
+[node name="RobertCard" type="PanelContainer" parent="SafeArea/Center/Shell/Content/RootVBox/CreditsGroup"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_creator_row")
+
+[node name="RobertPad" type="MarginContainer" parent="SafeArea/Center/Shell/Content/RootVBox/CreditsGroup/RobertCard"]
+layout_mode = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 8
+
+[node name="RobertRow" type="HBoxContainer" parent="SafeArea/Center/Shell/Content/RootVBox/CreditsGroup/RobertCard/RobertPad"]
 layout_mode = 2
 theme_override_constants/separation = 10
-alignment = 1
 
-[node name="RobertLabel" type="Label" parent="Center/Shell/Content/RootVBox/CreditsGroup/RobertRow"]
+[node name="RobertLabel" type="Label" parent="SafeArea/Center/Shell/Content/RootVBox/CreditsGroup/RobertCard/RobertPad/RobertRow"]
+custom_minimum_size = Vector2(280, 56)
 layout_mode = 2
-custom_minimum_size = Vector2(190, 40)
-theme_override_font_sizes/font_size = 20
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 22
 text = "Robert Ormand"
 vertical_alignment = 1
 
-[node name="RobertGithubButton" type="Button" parent="Center/Shell/Content/RootVBox/CreditsGroup/RobertRow" unique_name_in_owner=true]
-custom_minimum_size = Vector2(54, 54)
+[node name="RobertGithubButton" type="Button" parent="SafeArea/Center/Shell/Content/RootVBox/CreditsGroup/RobertCard/RobertPad/RobertRow"]
+custom_minimum_size = Vector2(56, 56)
 layout_mode = 2
-icon = ExtResource("2_github_icon")
-expand_icon = true
-flat = true
 tooltip_text = "Robert GitHub"
 theme_override_styles/normal = SubResource("StyleBoxFlat_social")
 theme_override_styles/hover = SubResource("StyleBoxFlat_social_hover")
-
-[node name="RobertLinkedInButton" type="Button" parent="Center/Shell/Content/RootVBox/CreditsGroup/RobertRow" unique_name_in_owner=true]
-custom_minimum_size = Vector2(54, 54)
-layout_mode = 2
-icon = ExtResource("3_linkedin_icon")
-expand_icon = true
+icon = ExtResource("2_github_icon")
 flat = true
+expand_icon = true
+
+[node name="RobertLinkedInButton" type="Button" parent="SafeArea/Center/Shell/Content/RootVBox/CreditsGroup/RobertCard/RobertPad/RobertRow"]
+custom_minimum_size = Vector2(56, 56)
+layout_mode = 2
 tooltip_text = "Robert LinkedIn"
 theme_override_styles/normal = SubResource("StyleBoxFlat_social")
 theme_override_styles/hover = SubResource("StyleBoxFlat_social_hover")
+icon = ExtResource("3_linkedin_icon")
+flat = true
+expand_icon = true
 
-[node name="AshtonRow" type="HBoxContainer" parent="Center/Shell/Content/RootVBox/CreditsGroup"]
+[node name="AshtonCard" type="PanelContainer" parent="SafeArea/Center/Shell/Content/RootVBox/CreditsGroup"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_creator_row")
+
+[node name="AshtonPad" type="MarginContainer" parent="SafeArea/Center/Shell/Content/RootVBox/CreditsGroup/AshtonCard"]
+layout_mode = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 8
+
+[node name="AshtonRow" type="HBoxContainer" parent="SafeArea/Center/Shell/Content/RootVBox/CreditsGroup/AshtonCard/AshtonPad"]
 layout_mode = 2
 theme_override_constants/separation = 10
-alignment = 1
 
-[node name="AshtonLabel" type="Label" parent="Center/Shell/Content/RootVBox/CreditsGroup/AshtonRow"]
+[node name="AshtonLabel" type="Label" parent="SafeArea/Center/Shell/Content/RootVBox/CreditsGroup/AshtonCard/AshtonPad/AshtonRow"]
+custom_minimum_size = Vector2(280, 56)
 layout_mode = 2
-custom_minimum_size = Vector2(190, 40)
-theme_override_font_sizes/font_size = 20
-text = "Ashton inman"
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 22
+text = "Ashton Inman"
 vertical_alignment = 1
 
-[node name="AshtonGithubButton" type="Button" parent="Center/Shell/Content/RootVBox/CreditsGroup/AshtonRow" unique_name_in_owner=true]
-custom_minimum_size = Vector2(54, 54)
+[node name="AshtonGithubButton" type="Button" parent="SafeArea/Center/Shell/Content/RootVBox/CreditsGroup/AshtonCard/AshtonPad/AshtonRow"]
+custom_minimum_size = Vector2(56, 56)
 layout_mode = 2
-icon = ExtResource("2_github_icon")
-expand_icon = true
-flat = true
 tooltip_text = "Ashton GitHub"
 theme_override_styles/normal = SubResource("StyleBoxFlat_social")
 theme_override_styles/hover = SubResource("StyleBoxFlat_social_hover")
-
-[node name="AshtonLinkedInButton" type="Button" parent="Center/Shell/Content/RootVBox/CreditsGroup/AshtonRow" unique_name_in_owner=true]
-custom_minimum_size = Vector2(54, 54)
-layout_mode = 2
-icon = ExtResource("3_linkedin_icon")
-expand_icon = true
+icon = ExtResource("2_github_icon")
 flat = true
+expand_icon = true
+
+[node name="AshtonLinkedInButton" type="Button" parent="SafeArea/Center/Shell/Content/RootVBox/CreditsGroup/AshtonCard/AshtonPad/AshtonRow"]
+custom_minimum_size = Vector2(56, 56)
+layout_mode = 2
 tooltip_text = "Ashton LinkedIn"
 theme_override_styles/normal = SubResource("StyleBoxFlat_social")
 theme_override_styles/hover = SubResource("StyleBoxFlat_social_hover")
+icon = ExtResource("3_linkedin_icon")
+flat = true
+expand_icon = true

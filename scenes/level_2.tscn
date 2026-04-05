@@ -99,6 +99,256 @@ _data = {
 }
 point_count = 2
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g2hoc"]
+radius = 18.0
+height = 58.0
+
+[sub_resource type="Curve2D" id="Curve2D_fldb1"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -180, 0, 0, 0, 0, 0, -1040, -147)
+}
+point_count = 2
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_guvtl"]
+radius = 18.0
+height = 58.0
+
+[sub_resource type="Curve2D" id="Curve2D_igmy8"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -180, 0, 0, 0, 0, 0, 443, 111)
+}
+point_count = 2
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wdtqu"]
+radius = 18.0
+height = 58.0
+
+[sub_resource type="Curve2D" id="Curve2D_7qsfm"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -180, 0, 0, 0, 0, 0, -654, -63)
+}
+point_count = 2
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bv48q"]
+radius = 18.0
+height = 58.0
+
+[sub_resource type="Curve2D" id="Curve2D_k22d5"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -180, 0, 0, 0, 0, 0, -726, -89)
+}
+point_count = 2
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vhnap"]
+radius = 18.0
+height = 58.0
+
+[sub_resource type="Curve2D" id="Curve2D_vwfin"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -180, 0, 0, 0, 0, 0, -538, 85, 0, 0, 0, 0, -427, 283)
+}
+point_count = 3
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_63d2t"]
+radius = 18.0
+height = 58.0
+
+[sub_resource type="Curve2D" id="Curve2D_va6c3"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -180, 0, 0, 0, 0, 0, -149, -77, 0, 0, 0, 0, 44, -194, 0, 0, 0, 0, 481, -512)
+}
+point_count = 4
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pc3at"]
+radius = 18.0
+height = 58.0
+
+[sub_resource type="Curve2D" id="Curve2D_bgibu"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -352, 100, 0, 0, 0, 0, -611, 264, 0, 0, 0, 0, -890, 548)
+}
+point_count = 3
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_73m23"]
+radius = 18.0
+height = 58.0
+
+[sub_resource type="Curve2D" id="Curve2D_45kkt"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -180, 0, 0, 0, 0, 0, 399, -463)
+}
+point_count = 2
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_taw0e"]
+radius = 18.0
+height = 58.0
+
+[sub_resource type="Curve2D" id="Curve2D_7egwj"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -180, 0, 0, 0, 0, 0, -874, 7)
+}
+point_count = 2
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vwjju"]
+radius = 18.0
+height = 58.0
+
+[sub_resource type="Curve2D" id="Curve2D_rur20"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -180, 0, 0, 0, 0, 0, 19, 194, 0, 0, 0, 0, -349, 192, 0, 0, 0, 0, -122, 351)
+}
+point_count = 4
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_srjk8"]
+radius = 18.0
+height = 58.0
+
+[sub_resource type="Curve2D" id="Curve2D_0na3t"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -180, 0, 0, 0, 0, 0, -183, 403)
+}
+point_count = 2
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xc1pa"]
+radius = 18.0
+height = 58.0
+
+[sub_resource type="Curve2D" id="Curve2D_j2jmx"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -180, 0, 0, 0, 0, 0, -1, -224, 0, 0, 0, 0, 15, -444)
+}
+point_count = 3
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bbkd8"]
+radius = 18.0
+height = 58.0
+
+[sub_resource type="Curve2D" id="Curve2D_kqn1b"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -180, 0, 0, 0, 0, 0, -412, 420)
+}
+point_count = 2
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y6uxt"]
+radius = 18.0
+height = 58.0
+
+[sub_resource type="Curve2D" id="Curve2D_r72fi"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -180, 0, 0, 0, 0, 0, -20, -724)
+}
+point_count = 2
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_00rct"]
+radius = 18.0
+height = 58.0
+
+[sub_resource type="Curve2D" id="Curve2D_tv75f"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -180, 0, 0, 0, 0, 0, -82, 378)
+}
+point_count = 2
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0qg6v"]
+radius = 18.0
+height = 58.0
+
+[sub_resource type="Curve2D" id="Curve2D_osflp"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -48, -12, 0, 0, 0, 0, -171, -412)
+}
+point_count = 2
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ngxfi"]
+radius = 18.0
+height = 58.0
+
+[sub_resource type="Curve2D" id="Curve2D_kq2c3"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -180, 0, 0, 0, 0, 0, -25, 66, 0, 0, 0, 0, 95, -21, 0, 0, 0, 0, -47, -117)
+}
+point_count = 4
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v8uj3"]
+radius = 18.0
+height = 58.0
+
+[sub_resource type="Curve2D" id="Curve2D_ujbrj"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -180, 0, 0, 0, 0, 0, 244, 0)
+}
+point_count = 2
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m6wqs"]
+radius = 18.0
+height = 58.0
+
+[sub_resource type="Curve2D" id="Curve2D_vfjea"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -180, 0, 0, 0, 0, 0, 255, 0)
+}
+point_count = 2
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mx6g7"]
+radius = 18.0
+height = 58.0
+
+[sub_resource type="Curve2D" id="Curve2D_8ky4j"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -180, 0, 0, 0, 0, 0, -694, 1)
+}
+point_count = 2
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6jdxa"]
+radius = 18.0
+height = 58.0
+
+[sub_resource type="Curve2D" id="Curve2D_gnx6a"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -242, -21, 0, 0, 0, 0, 276, -16)
+}
+point_count = 2
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_32olf"]
+radius = 18.0
+height = 58.0
+
+[sub_resource type="Curve2D" id="Curve2D_s7a0h"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -180, 0, 0, 0, 0, 0, 283, 1)
+}
+point_count = 2
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qmoov"]
+radius = 18.0
+height = 58.0
+
+[sub_resource type="Curve2D" id="Curve2D_dtala"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -180, 0, 0, 0, 0, 0, -177, -595, 0, 0, 0, 0, -693, -586, 0, 0, 0, 0, -684, 11)
+}
+point_count = 4
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fw1tk"]
+radius = 18.0
+height = 58.0
+
+[sub_resource type="Curve2D" id="Curve2D_7i8ch"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -180, 0, 0, 0, 0, 0, 180, 0)
+}
+point_count = 2
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i4lni"]
+radius = 18.0
+height = 58.0
+
+[sub_resource type="Curve2D" id="Curve2D_urkhs"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -180, 0, 0, 0, 0, 0, 180, 0)
+}
+point_count = 2
+
 [node name="Level2" type="Node2D" unique_id=1544132612]
 script = ExtResource("1_level_script")
 next_scene_path = "res://scenes/demo_complete.tscn"
@@ -303,26 +553,6 @@ points = PackedVector2Array(-1674, -96.31583, -1232, -125.52634, -897, -128.9473
 width = 5.0
 default_color = Color(0.329412, 0.741176, 0.85098, 0.6)
 
-[node name="BoundaryFloor5" parent="World" unique_id=2109034326 instance=ExtResource("4_cave_wall")]
-position = Vector2(-10048, 1573)
-scale = Vector2(1, 3.8)
-fill_color = Color(0.0627451, 0.223529, 0.286275, 1)
-border_color = Color(0.329412, 0.741176, 0.85098, 0.6)
-disable_submarine_bounce = true
-polygon_points = PackedVector2Array(-1674, -96.31583, -1232, -125.52634, -897, -128.94739, -559, -163.68422, -335, -155, 48, -147.36844, 464, -168.1579, 1105, -141.8421, 1709, -92.36844, 1700, 92, -1700, 92)
-
-[node name="CollisionPolygon2D" parent="World/BoundaryFloor5" index="0"]
-polygon = PackedVector2Array(-1674, -96.31583, -1232, -125.52634, -897, -128.94739, -559, -163.68422, -335, -155, 48, -147.36844, 464, -168.1579, 1105, -141.8421, 1709, -92.36844, 1700, 92, -1700, 92)
-
-[node name="VisualFill" parent="World/BoundaryFloor5" index="1"]
-color = Color(0.0627451, 0.223529, 0.286275, 1)
-polygon = PackedVector2Array(-1674, -96.31583, -1232, -125.52634, -897, -128.94739, -559, -163.68422, -335, -155, 48, -147.36844, 464, -168.1579, 1105, -141.8421, 1709, -92.36844, 1700, 92, -1700, 92)
-
-[node name="VisualBorder" parent="World/BoundaryFloor5" index="2"]
-points = PackedVector2Array(-1674, -96.31583, -1232, -125.52634, -897, -128.94739, -559, -163.68422, -335, -155, 48, -147.36844, 464, -168.1579, 1105, -141.8421, 1709, -92.36844, 1700, 92, -1700, 92)
-width = 5.0
-default_color = Color(0.329412, 0.741176, 0.85098, 0.6)
-
 [node name="BoundaryFloor2" parent="World" unique_id=1007178686 instance=ExtResource("4_cave_wall")]
 position = Vector2(1248.0001, 2163)
 fill_color = Color(0.0627451, 0.223529, 0.286275, 1)
@@ -331,8 +561,8 @@ disable_submarine_bounce = true
 polygon_points = PackedVector2Array(-1468, -50, -1120, -78, -760, -42, -340, -88, 60, -36, 560, -80, 980, -44, 1300, -70, 1468, -38, 1468, 50, -1468, 50)
 
 [node name="BoundaryLeft" parent="World" unique_id=342387223 instance=ExtResource("4_cave_wall")]
-position = Vector2(-11677.001, 416)
-scale = Vector2(1.0399997, 0.79999876)
+position = Vector2(-11682, 1694)
+scale = Vector2(0.95999974, -1.4400003)
 fill_color = Color(0.0627451, 0.223529, 0.286275, 1)
 border_color = Color(0.329412, 0.741176, 0.85098, 0.6)
 polygon_points = PackedVector2Array(-86, -960, 86, -960, 60, -620, 108, -220, 46, 160, 110, 560, 50, 960, -86, 960)
@@ -355,16 +585,16 @@ polygon_points = PackedVector2Array(-60, -188, 60, -188, 22, -102, 52, -6, 18, 9
 position = Vector2(772, 1676)
 scale = Vector2(2.347978, 0.9397001)
 size = Vector2(1500, 180)
-flow_vector = Vector2(520, 0)
+flow_vector = Vector2(520, 250)
 fill_color = Color(0.14902, 0.670588, 0.835294, 0.18)
 edge_color = Color(0.568627, 0.913725, 1, 1)
 
 [node name="BottomCurrentMedium3" parent="World" unique_id=42085642 instance=ExtResource("5_stream_zone")]
 position = Vector2(-2742, 1362.0001)
 rotation = 0.17332129
-scale = Vector2(2.10648, -3.1995187)
+scale = Vector2(2.1940396, -2.6520925)
 size = Vector2(1500, 180)
-flow_vector = Vector2(520, 0)
+flow_vector = Vector2(520, 250)
 fill_color = Color(0.14902, 0.670588, 0.835294, 0.18)
 edge_color = Color(0.568627, 0.913725, 1, 1)
 
@@ -373,16 +603,16 @@ position = Vector2(-6359, 1022.0001)
 rotation = 0.010929495
 scale = Vector2(2.3064702, -1.957408)
 size = Vector2(1500, 180)
-flow_vector = Vector2(520, 0)
+flow_vector = Vector2(520, 250)
 fill_color = Color(0.14902, 0.670588, 0.835294, 0.18)
 edge_color = Color(0.568627, 0.913725, 1, 1)
 
-[node name="BottomCurrentMedium5" parent="World" unique_id=1867712210 instance=ExtResource("5_stream_zone")]
-position = Vector2(-10057.001, 1021)
-rotation = 0.010929495
-scale = Vector2(2.3064702, -2.2378278)
+[node name="BottomCurrentMedium6" parent="World" unique_id=1841806427 instance=ExtResource("5_stream_zone")]
+position = Vector2(-9837.001, 1751)
+rotation = 0.004101089
+scale = Vector2(2.3870018, 1.9454195)
 size = Vector2(1500, 180)
-flow_vector = Vector2(520, 0)
+flow_vector = Vector2(0, 500)
 fill_color = Color(0.14902, 0.670588, 0.835294, 0.18)
 edge_color = Color(0.568627, 0.913725, 1, 1)
 
@@ -425,7 +655,8 @@ top_level = true
 curve = SubResource("Curve2D_que50")
 
 [node name="SlipStreamZone" parent="World" unique_id=21437109 instance=ExtResource("5_stream_zone")]
-position = Vector2(2625, 1769)
+position = Vector2(2564, 1766)
+scale = Vector2(1.6, 1)
 flow_vector = Vector2(0, 960)
 
 [node name="SlipStreamZone2" parent="World" unique_id=1744587902 instance=ExtResource("5_stream_zone")]
@@ -434,11 +665,6 @@ flow_vector = Vector2(0, 960)
 
 [node name="SlipStreamZone3" parent="World" unique_id=8471089 instance=ExtResource("5_stream_zone")]
 position = Vector2(-4517, 1593)
-scale = Vector2(1.54084, 2.0800023)
-flow_vector = Vector2(0, 960)
-
-[node name="SlipStreamZone4" parent="World" unique_id=46262452 instance=ExtResource("5_stream_zone")]
-position = Vector2(-8192, 1562)
 scale = Vector2(1.54084, 2.0800023)
 flow_vector = Vector2(0, 960)
 
@@ -536,6 +762,378 @@ curve = SubResource("Curve2D_172wr")
 
 [node name="HUD" parent="." unique_id=61515943 instance=ExtResource("3_hud_scene")]
 
+[node name="PiranhaPatrol4" parent="." unique_id=961430665 instance=ExtResource("6_piranha")]
+position = Vector2(-1171, 1348)
+scale = Vector2(-1, 1)
+
+[node name="CollisionShape2D" parent="PiranhaPatrol4" index="0"]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_g2hoc")
+
+[node name="PatrolPath" parent="PiranhaPatrol4" index="1"]
+top_level = true
+position = Vector2(-991, 1348)
+curve = SubResource("Curve2D_fldb1")
+
+[node name="PiranhaPatrol8" parent="." unique_id=276954035 instance=ExtResource("6_piranha")]
+position = Vector2(-2716, 1074)
+
+[node name="CollisionShape2D" parent="PiranhaPatrol8" index="0"]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_guvtl")
+
+[node name="PatrolPath" parent="PiranhaPatrol8" index="1"]
+top_level = true
+position = Vector2(-2536, 1074)
+curve = SubResource("Curve2D_igmy8")
+
+[node name="PiranhaPatrol9" parent="." unique_id=688491281 instance=ExtResource("6_piranha")]
+position = Vector2(-3548, 932)
+rotation = 3.1415925
+scale = Vector2(-1, -1)
+
+[node name="CollisionShape2D" parent="PiranhaPatrol9" index="0"]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_wdtqu")
+
+[node name="PatrolPath" parent="PiranhaPatrol9" index="1"]
+top_level = true
+position = Vector2(-3368, 932)
+curve = SubResource("Curve2D_7qsfm")
+
+[node name="PiranhaPatrol5" parent="." unique_id=684726195 instance=ExtResource("6_piranha")]
+position = Vector2(-2882, 1044)
+scale = Vector2(-1, 1)
+
+[node name="CollisionShape2D" parent="PiranhaPatrol5" index="0"]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_bv48q")
+
+[node name="PatrolPath" parent="PiranhaPatrol5" index="1"]
+top_level = true
+position = Vector2(-2702, 1044)
+curve = SubResource("Curve2D_k22d5")
+
+[node name="PiranhaPatrol6" parent="." unique_id=417814997 instance=ExtResource("6_piranha")]
+position = Vector2(-1377, 627)
+rotation = 3.1415925
+scale = Vector2(-1, -1)
+
+[node name="CollisionShape2D" parent="PiranhaPatrol6" index="0"]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_vhnap")
+
+[node name="PatrolPath" parent="PiranhaPatrol6" index="1"]
+top_level = true
+position = Vector2(-1197, 627)
+curve = SubResource("Curve2D_vwfin")
+
+[node name="PiranhaPatrol3" parent="." unique_id=1049656828 instance=ExtResource("6_piranha")]
+position = Vector2(-1716, 1123)
+
+[node name="CollisionShape2D" parent="PiranhaPatrol3" index="0"]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_63d2t")
+
+[node name="PatrolPath" parent="PiranhaPatrol3" index="1"]
+top_level = true
+position = Vector2(-1536, 1123)
+curve = SubResource("Curve2D_va6c3")
+
+[node name="PiranhaPatrol2" parent="." unique_id=1073070125 instance=ExtResource("6_piranha")]
+position = Vector2(-938, 710)
+scale = Vector2(-1, 1)
+
+[node name="CollisionShape2D" parent="PiranhaPatrol2" index="0"]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_pc3at")
+
+[node name="PatrolPath" parent="PiranhaPatrol2" index="1"]
+top_level = true
+position = Vector2(-586, 610)
+curve = SubResource("Curve2D_bgibu")
+
+[node name="PiranhaPatrol" parent="." unique_id=1073681423 instance=ExtResource("6_piranha")]
+position = Vector2(-1383, 1223)
+
+[node name="CollisionShape2D" parent="PiranhaPatrol" index="0"]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_73m23")
+
+[node name="PatrolPath" parent="PiranhaPatrol" index="1"]
+top_level = true
+position = Vector2(-1203, 1223)
+curve = SubResource("Curve2D_45kkt")
+
+[node name="RechargeCell" parent="." unique_id=347124747 instance=ExtResource("9_recharge_cell")]
+position = Vector2(-755, 1064)
+
+[node name="PiranhaPatrol20" parent="." unique_id=1224968130 instance=ExtResource("6_piranha")]
+position = Vector2(-4963, 751)
+scale = Vector2(-1, 1)
+
+[node name="CollisionShape2D" parent="PiranhaPatrol20" index="0"]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_taw0e")
+
+[node name="PatrolPath" parent="PiranhaPatrol20" index="1"]
+top_level = true
+position = Vector2(-4783, 751)
+curve = SubResource("Curve2D_7egwj")
+
+[node name="RechargeCell2" parent="." unique_id=661943035 instance=ExtResource("9_recharge_cell")]
+position = Vector2(-3728.9998, 745)
+
+[node name="PiranhaPatrol18" parent="." unique_id=1746995755 instance=ExtResource("6_piranha")]
+position = Vector2(-2926, 606)
+rotation = 3.1415925
+scale = Vector2(1, -1)
+
+[node name="CollisionShape2D" parent="PiranhaPatrol18" index="0"]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_vwjju")
+
+[node name="PatrolPath" parent="PiranhaPatrol18" index="1"]
+top_level = true
+position = Vector2(-2746, 606)
+curve = SubResource("Curve2D_rur20")
+
+[node name="PiranhaPatrol17" parent="." unique_id=959897640 instance=ExtResource("6_piranha")]
+position = Vector2(-2613, 588)
+scale = Vector2(-1, 1)
+
+[node name="CollisionShape2D" parent="PiranhaPatrol17" index="0"]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_srjk8")
+
+[node name="PatrolPath" parent="PiranhaPatrol17" index="1"]
+top_level = true
+position = Vector2(-2433, 588)
+curve = SubResource("Curve2D_0na3t")
+
+[node name="PiranhaPatrol15" parent="." unique_id=299715383 instance=ExtResource("6_piranha")]
+position = Vector2(-2413, 1047)
+
+[node name="CollisionShape2D" parent="PiranhaPatrol15" index="0"]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_xc1pa")
+
+[node name="PatrolPath" parent="PiranhaPatrol15" index="1"]
+top_level = true
+position = Vector2(-2233, 1047)
+curve = SubResource("Curve2D_j2jmx")
+
+[node name="PiranhaPatrol14" parent="." unique_id=1091563354 instance=ExtResource("6_piranha")]
+position = Vector2(-1886, 684)
+rotation = 3.1415925
+scale = Vector2(-1, -1)
+
+[node name="CollisionShape2D" parent="PiranhaPatrol14" index="0"]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_bbkd8")
+
+[node name="PatrolPath" parent="PiranhaPatrol14" index="1"]
+top_level = true
+position = Vector2(-1706, 684)
+curve = SubResource("Curve2D_kqn1b")
+
+[node name="PiranhaPatrol13" parent="." unique_id=1523959853 instance=ExtResource("6_piranha")]
+position = Vector2(-564, 1462)
+rotation = 3.1415925
+scale = Vector2(1, -1)
+
+[node name="CollisionShape2D" parent="PiranhaPatrol13" index="0"]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_y6uxt")
+
+[node name="PatrolPath" parent="PiranhaPatrol13" index="1"]
+top_level = true
+position = Vector2(-384, 1462)
+curve = SubResource("Curve2D_r72fi")
+
+[node name="PiranhaPatrol12" parent="." unique_id=1881511381 instance=ExtResource("6_piranha")]
+position = Vector2(-4597, 591)
+rotation = 3.1415925
+scale = Vector2(1, -1)
+
+[node name="CollisionShape2D" parent="PiranhaPatrol12" index="0"]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_00rct")
+
+[node name="PatrolPath" parent="PiranhaPatrol12" index="1"]
+top_level = true
+position = Vector2(-4417, 591)
+curve = SubResource("Curve2D_tv75f")
+
+[node name="PiranhaPatrol11" parent="." unique_id=1623319059 instance=ExtResource("6_piranha")]
+position = Vector2(-4362, 938)
+scale = Vector2(-1, 1)
+
+[node name="CollisionShape2D" parent="PiranhaPatrol11" index="0"]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_0qg6v")
+
+[node name="PatrolPath" parent="PiranhaPatrol11" index="1"]
+top_level = true
+position = Vector2(-4314, 950)
+curve = SubResource("Curve2D_osflp")
+
+[node name="PiranhaPatrol10" parent="." unique_id=1178616538 instance=ExtResource("6_piranha")]
+position = Vector2(-4279, 787)
+
+[node name="CollisionShape2D" parent="PiranhaPatrol10" index="0"]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_ngxfi")
+
+[node name="PatrolPath" parent="PiranhaPatrol10" index="1"]
+top_level = true
+position = Vector2(-4099, 787)
+curve = SubResource("Curve2D_kq2c3")
+
+[node name="PiranhaPatrol25" parent="." unique_id=210540323 instance=ExtResource("6_piranha")]
+position = Vector2(-7589, 776)
+rotation = 3.1415925
+scale = Vector2(1, -1)
+
+[node name="CollisionShape2D" parent="PiranhaPatrol25" index="0"]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_v8uj3")
+
+[node name="PatrolPath" parent="PiranhaPatrol25" index="1"]
+top_level = true
+position = Vector2(-7409, 776)
+curve = SubResource("Curve2D_ujbrj")
+
+[node name="RechargeCell" parent="PiranhaPatrol25" unique_id=193565373 instance=ExtResource("9_recharge_cell")]
+position = Vector2(301, -52.00006)
+
+[node name="PiranhaPatrol24" parent="." unique_id=1535706150 instance=ExtResource("6_piranha")]
+position = Vector2(-7168, 688)
+rotation = 3.1415925
+scale = Vector2(1, -1)
+
+[node name="CollisionShape2D" parent="PiranhaPatrol24" index="0"]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_m6wqs")
+
+[node name="PatrolPath" parent="PiranhaPatrol24" index="1"]
+top_level = true
+position = Vector2(-6988, 688)
+curve = SubResource("Curve2D_vfjea")
+
+[node name="PiranhaPatrol23" parent="." unique_id=1298236676 instance=ExtResource("6_piranha")]
+position = Vector2(-6340, 783)
+scale = Vector2(-1, 1)
+
+[node name="CollisionShape2D" parent="PiranhaPatrol23" index="0"]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_mx6g7")
+
+[node name="PatrolPath" parent="PiranhaPatrol23" index="1"]
+top_level = true
+position = Vector2(-6160, 783)
+curve = SubResource("Curve2D_8ky4j")
+
+[node name="PiranhaPatrol22" parent="." unique_id=568701884 instance=ExtResource("6_piranha")]
+position = Vector2(-6159, 704)
+
+[node name="CollisionShape2D" parent="PiranhaPatrol22" index="0"]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_6jdxa")
+
+[node name="PatrolPath" parent="PiranhaPatrol22" index="1"]
+top_level = true
+position = Vector2(-5917, 725)
+curve = SubResource("Curve2D_gnx6a")
+
+[node name="PiranhaPatrol21" parent="." unique_id=1039327065 instance=ExtResource("6_piranha")]
+position = Vector2(-5739, 619)
+
+[node name="CollisionShape2D" parent="PiranhaPatrol21" index="0"]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_32olf")
+
+[node name="PatrolPath" parent="PiranhaPatrol21" index="1"]
+top_level = true
+position = Vector2(-5559, 619)
+curve = SubResource("Curve2D_s7a0h")
+
+[node name="PiranhaPatrol26" parent="." unique_id=999498499 instance=ExtResource("6_piranha")]
+position = Vector2(-8395, 1492)
+scale = Vector2(1, 3.2800074)
+
+[node name="CollisionShape2D" parent="PiranhaPatrol26" index="0"]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_qmoov")
+
+[node name="PatrolPath" parent="PiranhaPatrol26" index="1"]
+top_level = true
+position = Vector2(-8215, 1492)
+curve = SubResource("Curve2D_dtala")
+
+[node name="PiranhaPatrol27" parent="." unique_id=362294363 instance=ExtResource("6_piranha")]
+position = Vector2(-9167, 1245)
+scale = Vector2(1, 3.2800074)
+
+[node name="CollisionShape2D" parent="PiranhaPatrol27" index="0"]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_qmoov")
+
+[node name="PatrolPath" parent="PiranhaPatrol27" index="1"]
+top_level = true
+position = Vector2(-8987, 1245)
+curve = SubResource("Curve2D_dtala")
+
+[node name="PiranhaPatrol30" parent="." unique_id=1814668204 instance=ExtResource("6_piranha")]
+position = Vector2(-9952, 1489)
+scale = Vector2(1, 3.2800074)
+
+[node name="CollisionShape2D" parent="PiranhaPatrol30" index="0"]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_qmoov")
+
+[node name="PatrolPath" parent="PiranhaPatrol30" index="1"]
+top_level = true
+position = Vector2(-9772, 1489)
+curve = SubResource("Curve2D_dtala")
+
+[node name="PiranhaPatrol31" parent="." unique_id=1709976616 instance=ExtResource("6_piranha")]
+position = Vector2(-10710, 1269)
+scale = Vector2(1, 3.2800074)
+
+[node name="CollisionShape2D" parent="PiranhaPatrol31" index="0"]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_qmoov")
+
+[node name="PatrolPath" parent="PiranhaPatrol31" index="1"]
+top_level = true
+position = Vector2(-10530, 1269)
+curve = SubResource("Curve2D_dtala")
+
+[node name="PiranhaPatrol28" parent="." unique_id=1626764132 instance=ExtResource("6_piranha")]
+position = Vector2(-9729, -191)
+
+[node name="CollisionShape2D" parent="PiranhaPatrol28" index="0"]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_fw1tk")
+
+[node name="PatrolPath" parent="PiranhaPatrol28" index="1"]
+top_level = true
+position = Vector2(-9549, -191)
+curve = SubResource("Curve2D_7i8ch")
+
+[node name="PiranhaPatrol29" parent="." unique_id=1343739644 instance=ExtResource("6_piranha")]
+position = Vector2(-10724, -179)
+
+[node name="CollisionShape2D" parent="PiranhaPatrol29" index="0"]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_i4lni")
+
+[node name="PatrolPath" parent="PiranhaPatrol29" index="1"]
+top_level = true
+position = Vector2(-10544, -179)
+curve = SubResource("Curve2D_urkhs")
+
 [editable path="World/BoundaryCeiling"]
 [editable path="World/BoundaryCeiling2"]
 [editable path="World/BoundaryCeiling3"]
@@ -543,7 +1141,6 @@ curve = SubResource("Curve2D_172wr")
 [editable path="World/BoundaryCeiling5"]
 [editable path="World/BoundaryFloor3"]
 [editable path="World/BoundaryFloor4"]
-[editable path="World/BoundaryFloor5"]
 [editable path="World/PiranhaTop"]
 [editable path="World/PiranhaMid"]
 [editable path="World/PiranhaLow"]
@@ -553,3 +1150,31 @@ curve = SubResource("Curve2D_172wr")
 [editable path="World/PiranhaPatrol4"]
 [editable path="World/PiranhaPatrol5"]
 [editable path="World/PiranhaPatrol6"]
+[editable path="PiranhaPatrol4"]
+[editable path="PiranhaPatrol8"]
+[editable path="PiranhaPatrol9"]
+[editable path="PiranhaPatrol5"]
+[editable path="PiranhaPatrol6"]
+[editable path="PiranhaPatrol3"]
+[editable path="PiranhaPatrol2"]
+[editable path="PiranhaPatrol"]
+[editable path="PiranhaPatrol20"]
+[editable path="PiranhaPatrol18"]
+[editable path="PiranhaPatrol17"]
+[editable path="PiranhaPatrol15"]
+[editable path="PiranhaPatrol14"]
+[editable path="PiranhaPatrol13"]
+[editable path="PiranhaPatrol12"]
+[editable path="PiranhaPatrol11"]
+[editable path="PiranhaPatrol10"]
+[editable path="PiranhaPatrol25"]
+[editable path="PiranhaPatrol24"]
+[editable path="PiranhaPatrol23"]
+[editable path="PiranhaPatrol22"]
+[editable path="PiranhaPatrol21"]
+[editable path="PiranhaPatrol26"]
+[editable path="PiranhaPatrol27"]
+[editable path="PiranhaPatrol30"]
+[editable path="PiranhaPatrol31"]
+[editable path="PiranhaPatrol28"]
+[editable path="PiranhaPatrol29"]
