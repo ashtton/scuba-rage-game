@@ -2,9 +2,9 @@ extends Control
 
 const GAME_SCENE := "res://scenes/game.tscn"
 
-@export var robert_github_url := "https://github.com/RobertOrmand"
-@export var robert_linkedin_url := "https://www.linkedin.com/in/robert-ormand/"
-@export var ashton_github_url := "https://github.com/ashtoninman"
+@export var robert_github_url := "https://github.com/ROrmand"
+@export var robert_linkedin_url := "https://www.linkedin.com/in/robertormand/"
+@export var ashton_github_url := "https://github.com/ashtton"
 @export var ashton_linkedin_url := "https://www.linkedin.com/in/ashton-inman/"
 
 @onready var start_game_button: Button = $ButtonLayer/StartGameButton
