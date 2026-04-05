@@ -11,10 +11,11 @@ extends Node2D
 @export var camera_right := 1920
 @export var camera_bottom := 2400
 @export var camera_limit_transition_duration := 0.35
+@export var controller_enabled := true
 
 const BATTERY_FILL_MAX_HEIGHT := 104.0
 
-@onready var player: SubmarinePlayer = $World/Player
+var player: SubmarinePlayer = null
 @onready var battery_fill: ColorRect = $HUD/BatteryHUD/BatteryShell/BatteryClip/BatteryFill
 @onready var battery_value: Label = $HUD/BatteryHUD/BatteryValue
 @onready var battery_status: Label = $HUD/BatteryHUD/BatteryStatus
@@ -26,7 +27,6 @@ const BATTERY_FILL_MAX_HEIGHT := 104.0
 var _message_time_left := 0.0
 var _battery_current := 0.0
 var _battery_max := 1.0
-var _transitioning := false
 var _active_checkpoint = null
 var _camera: Camera2D = null
 var _camera_zones: Array[CameraLimitZone] = []
@@ -40,6 +40,18 @@ var _camera_limits_target := Vector4.ZERO
 
 
 func _ready() -> void:
+	if not controller_enabled:
+		if has_node("HUD"):
+			get_node("HUD").visible = false
+		set_process(false)
+		return
+
+	player = _find_player()
+	if player == null:
+		push_warning("No SubmarinePlayer found for %s; skipping level initialization." % name)
+		set_process(false)
+		return
+
 	player.set_spawn_point(player.global_position)
 	_configure_camera()
 	_collect_camera_zones()
@@ -59,6 +71,18 @@ func _ready() -> void:
 	_on_player_battery_changed(player.current_battery, player.max_battery)
 	_on_player_cooldown_changed(0.0, player.boost_cooldown, false)
 	_show_message(intro_message, intro_duration)
+
+
+func _find_player() -> SubmarinePlayer:
+	var local_player := get_node_or_null("World/Player") as SubmarinePlayer
+	if local_player != null:
+		return local_player
+
+	var matches := get_tree().root.find_children("*", "SubmarinePlayer", true, false)
+	if matches.is_empty():
+		return null
+
+	return matches[0] as SubmarinePlayer
 
 
 func _process(delta: float) -> void:
@@ -148,18 +172,37 @@ func _refresh_battery_ui() -> void:
 
 
 func _configure_camera() -> void:
-	_camera = player.get_node("Camera2D") as Camera2D
+	var viewport_camera := get_viewport().get_camera_2d()
+	if viewport_camera != null and (viewport_camera == player or player.is_ancestor_of(viewport_camera)):
+		_camera = viewport_camera
+	else:
+		_camera = player.get_node_or_null("Camera2D") as Camera2D
+		if _camera == null:
+			var player_cameras := player.find_children("*", "Camera2D", true, false)
+			var enabled_player_camera: Camera2D = null
+			for candidate in player_cameras:
+				var player_camera := candidate as Camera2D
+				if player_camera != null and player_camera.enabled:
+					enabled_player_camera = player_camera
+			if enabled_player_camera != null:
+				_camera = enabled_player_camera
+			elif not player_cameras.is_empty():
+				_camera = player_cameras[player_cameras.size() - 1] as Camera2D
+		if _camera == null:
+			_camera = viewport_camera
 	if _camera == null:
+		push_warning("No Camera2D found for %s; camera limits disabled." % name)
 		return
 
-	_set_camera_limit_target(camera_left, camera_top, camera_right, camera_bottom, true)
+	_apply_default_camera_limits(true)
 
 
 func _collect_camera_zones() -> void:
 	_camera_zones.clear()
 	_camera_zones_with_player.clear()
 	for zone in get_tree().get_nodes_in_group("camera_limit_zone"):
-		if zone is CameraLimitZone and is_ancestor_of(zone):
+		# In combined scenes (e.g. game.tscn), camera zones can live outside this node's subtree.
+		if zone is CameraLimitZone:
 			_camera_zones.append(zone)
 			if not zone.player_entered_zone.is_connected(_on_camera_zone_entered):
 				zone.player_entered_zone.connect(_on_camera_zone_entered)
@@ -179,15 +222,10 @@ func _refresh_camera_limits_for_player(force_update: bool = false) -> void:
 	if _active_camera_zone == null:
 		if not _camera_zones.is_empty():
 			return
-		_apply_camera_limits(camera_left, camera_top, camera_right, camera_bottom)
+		_apply_default_camera_limits()
 		return
 
-	_apply_camera_limits(
-		_active_camera_zone.limit_left,
-		_active_camera_zone.limit_top,
-		_active_camera_zone.limit_right,
-		_active_camera_zone.limit_bottom
-	)
+	_apply_zone_camera_limits(_active_camera_zone)
 
 
 func _find_best_camera_zone() -> CameraLimitZone:
@@ -228,6 +266,27 @@ func _apply_camera_limits(left: int, top: int, right: int, bottom: int) -> void:
 		return
 
 	_set_camera_limit_target(left, top, right, bottom)
+
+
+func _apply_default_camera_limits(immediate: bool = false) -> void:
+	var limits := _get_default_camera_limits()
+	_set_camera_limit_target(
+		int(round(limits.x)),
+		int(round(limits.y)),
+		int(round(limits.z)),
+		int(round(limits.w)),
+		immediate
+	)
+
+
+func _apply_zone_camera_limits(zone: CameraLimitZone) -> void:
+	var limits := zone.get_resolved_limits()
+	_apply_camera_limits(
+		int(round(limits.x)),
+		int(round(limits.y)),
+		int(round(limits.z)),
+		int(round(limits.w))
+	)
 
 
 func _set_camera_limit_target(
@@ -296,6 +355,32 @@ func _find_nearest_camera_zone(point: Vector2) -> CameraLimitZone:
 			nearest_distance_sq = distance_sq
 
 	return nearest
+
+
+func _get_default_camera_limits() -> Vector4:
+	var scene_offset := _get_scene_root_global_offset()
+	return Vector4(
+		float(camera_left) + scene_offset.x,
+		float(camera_top) + scene_offset.y,
+		float(camera_right) + scene_offset.x,
+		float(camera_bottom) + scene_offset.y
+	)
+
+
+func _get_scene_root_global_offset() -> Vector2:
+	var scene_root := _find_scene_root()
+	if scene_root is Node2D:
+		return (scene_root as Node2D).global_position
+	return Vector2.ZERO
+
+
+func _find_scene_root() -> Node:
+	var current: Node = self
+	while current != null:
+		if not current.scene_file_path.is_empty():
+			return current
+		current = current.get_parent()
+	return self
 
 
 func _on_camera_zone_entered(zone: CameraLimitZone) -> void:

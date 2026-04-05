@@ -1,42 +1,33 @@
 extends Control
 
-const GAMEPLAY_HUB_SCENE := "res://scenes/ui/gameplay_hub.tscn"
+const GAME_SCENE := "res://scenes/game.tscn"
 
 @export var robert_github_url := "https://github.com/RobertOrmand"
 @export var robert_linkedin_url := "https://www.linkedin.com/in/robert-ormand/"
 @export var ashton_github_url := "https://github.com/ashtoninman"
 @export var ashton_linkedin_url := "https://www.linkedin.com/in/ashton-inman/"
 
-@onready var safe_area: MarginContainer = $SafeArea
-@onready var shell: Panel = $SafeArea/Center/Shell
-@onready var heading_group: VBoxContainer = $SafeArea/Center/Shell/Content/RootVBox/HeadingGroup
-@onready var play_button: Button = $SafeArea/Center/Shell/Content/RootVBox/PlayButton
-@onready var credits_group: VBoxContainer = $SafeArea/Center/Shell/Content/RootVBox/CreditsGroup
-@onready var game_title: Label = $SafeArea/Center/Shell/Content/RootVBox/HeadingGroup/GameTitle
-@onready var tagline: Label = $SafeArea/Center/Shell/Content/RootVBox/HeadingGroup/Tagline
-@onready var jam_line: Label = $SafeArea/Center/Shell/Content/RootVBox/HeadingGroup/JamLine
-@onready var created_by: Label = $SafeArea/Center/Shell/Content/RootVBox/CreditsGroup/CreatedBy
-@onready var robert_label: Label = $SafeArea/Center/Shell/Content/RootVBox/CreditsGroup/RobertCard/RobertPad/RobertRow/RobertLabel
-@onready var ashton_label: Label = $SafeArea/Center/Shell/Content/RootVBox/CreditsGroup/AshtonCard/AshtonPad/AshtonRow/AshtonLabel
-@onready var accent_a: Control = $AccentA
-@onready var accent_b: Control = $AccentB
-@onready var accent_c: Control = $AccentC
+@onready var start_game_button: Button = $ButtonLayer/StartGameButton
+@onready var quit_game_button: Button = $ButtonLayer/QuitGameButton
+@onready var footer: PanelContainer = $Footer
+@onready var jam_label: Label = $Footer/FooterMargin/FooterVBox/JamLabel
+@onready var robert_name: Label = $Footer/FooterMargin/FooterVBox/CreditsRow/RobertRow/RobertName
+@onready var ashton_name: Label = $Footer/FooterMargin/FooterVBox/CreditsRow/AshtonRow/AshtonName
 
 func _ready() -> void:
-	play_button.pressed.connect(_on_play_pressed)
+	start_game_button.pressed.connect(_on_play_pressed)
+	quit_game_button.pressed.connect(_on_quit_pressed)
 	_connect_social_buttons()
 	_apply_responsive_layout()
 	get_viewport().size_changed.connect(_apply_responsive_layout)
-	_setup_intro_state()
 	_play_intro_animation()
-	_start_ambient_motion()
 
 
 func _connect_social_buttons() -> void:
-	$SafeArea/Center/Shell/Content/RootVBox/CreditsGroup/RobertCard/RobertPad/RobertRow/RobertGithubButton.pressed.connect(func() -> void: _open_url(robert_github_url))
-	$SafeArea/Center/Shell/Content/RootVBox/CreditsGroup/RobertCard/RobertPad/RobertRow/RobertLinkedInButton.pressed.connect(func() -> void: _open_url(robert_linkedin_url))
-	$SafeArea/Center/Shell/Content/RootVBox/CreditsGroup/AshtonCard/AshtonPad/AshtonRow/AshtonGithubButton.pressed.connect(func() -> void: _open_url(ashton_github_url))
-	$SafeArea/Center/Shell/Content/RootVBox/CreditsGroup/AshtonCard/AshtonPad/AshtonRow/AshtonLinkedInButton.pressed.connect(func() -> void: _open_url(ashton_linkedin_url))
+	$Footer/FooterMargin/FooterVBox/CreditsRow/RobertRow/RobertGithubButton.pressed.connect(func() -> void: _open_url(robert_github_url))
+	$Footer/FooterMargin/FooterVBox/CreditsRow/RobertRow/RobertLinkedInButton.pressed.connect(func() -> void: _open_url(robert_linkedin_url))
+	$Footer/FooterMargin/FooterVBox/CreditsRow/AshtonRow/AshtonGithubButton.pressed.connect(func() -> void: _open_url(ashton_github_url))
+	$Footer/FooterMargin/FooterVBox/CreditsRow/AshtonRow/AshtonLinkedInButton.pressed.connect(func() -> void: _open_url(ashton_linkedin_url))
 
 
 func _apply_responsive_layout() -> void:
@@ -44,97 +35,55 @@ func _apply_responsive_layout() -> void:
 	if viewport_size.x <= 0.0 or viewport_size.y <= 0.0:
 		return
 
-	var short_edge := minf(viewport_size.x, viewport_size.y)
-	var ui_scale := clampf(short_edge / 1080.0, 0.68, 1.55)
+	var scale_factor := clampf(viewport_size.y / 1080.0, 0.55, 1.6)
+	var start_width := clampf(660.0 * scale_factor, 420.0, 1040.0)
+	var start_height := clampf(104.0 * scale_factor, 70.0, 164.0)
+	var quit_width := clampf(520.0 * scale_factor, 340.0, 860.0)
+	var quit_height := clampf(90.0 * scale_factor, 64.0, 132.0)
+	var vertical_gap := clampf(30.0 * scale_factor, 18.0, 56.0)
 
-	var margin_x := int(clampf(viewport_size.x * 0.04, 24.0, 140.0))
-	var margin_y := int(clampf(viewport_size.y * 0.04, 20.0, 108.0))
-	safe_area.add_theme_constant_override("margin_left", margin_x)
-	safe_area.add_theme_constant_override("margin_right", margin_x)
-	safe_area.add_theme_constant_override("margin_top", margin_y)
-	safe_area.add_theme_constant_override("margin_bottom", margin_y)
+	start_game_button.position = Vector2(viewport_size.x * 0.5 - start_width * 0.5, viewport_size.y * 0.40)
+	start_game_button.size = Vector2(start_width, start_height)
+	start_game_button.add_theme_font_size_override("font_size", int(clampf(54.0 * scale_factor, 28.0, 84.0)))
 
-	var shell_width := clampf(viewport_size.x * 0.62, 760.0, 1220.0)
-	var shell_height := clampf(viewport_size.y * 0.78, 620.0, 920.0)
-	shell.custom_minimum_size = Vector2(shell_width, shell_height)
+	quit_game_button.position = Vector2(viewport_size.x * 0.5 - quit_width * 0.5, start_game_button.position.y + start_height + vertical_gap)
+	quit_game_button.size = Vector2(quit_width, quit_height)
+	quit_game_button.add_theme_font_size_override("font_size", int(clampf(42.0 * scale_factor, 22.0, 68.0)))
 
-	var title_size := int(clampf(84.0 * ui_scale, 48.0, 132.0))
-	var subtitle_size := int(clampf(28.0 * ui_scale, 18.0, 42.0))
-	var jam_size := int(clampf(20.0 * ui_scale, 14.0, 30.0))
-	var button_text_size := int(clampf(34.0 * ui_scale, 22.0, 48.0))
-	var credit_text_size := int(clampf(22.0 * ui_scale, 15.0, 32.0))
+	footer.anchor_top = clampf(0.80, 0.72, 0.86)
+	jam_label.add_theme_font_size_override("font_size", int(clampf(62.0 * scale_factor, 24.0, 96.0)))
+	robert_name.add_theme_font_size_override("font_size", int(clampf(56.0 * scale_factor, 20.0, 84.0)))
+	ashton_name.add_theme_font_size_override("font_size", int(clampf(56.0 * scale_factor, 20.0, 84.0)))
 
-	game_title.add_theme_font_size_override("font_size", title_size)
-	tagline.add_theme_font_size_override("font_size", subtitle_size)
-	jam_line.add_theme_font_size_override("font_size", jam_size)
-	created_by.add_theme_font_size_override("font_size", credit_text_size)
-	robert_label.add_theme_font_size_override("font_size", credit_text_size)
-	ashton_label.add_theme_font_size_override("font_size", credit_text_size)
-	play_button.add_theme_font_size_override("font_size", button_text_size)
-
-	play_button.custom_minimum_size = Vector2(clampf(shell_width * 0.42, 280.0, 540.0), clampf(88.0 * ui_scale, 64.0, 110.0))
-
-	var icon_size := int(clampf(56.0 * ui_scale, 40.0, 74.0))
+	var icon_size := int(clampf(56.0 * scale_factor, 30.0, 86.0))
 	for button in [
-		$SafeArea/Center/Shell/Content/RootVBox/CreditsGroup/RobertCard/RobertPad/RobertRow/RobertGithubButton,
-		$SafeArea/Center/Shell/Content/RootVBox/CreditsGroup/RobertCard/RobertPad/RobertRow/RobertLinkedInButton,
-		$SafeArea/Center/Shell/Content/RootVBox/CreditsGroup/AshtonCard/AshtonPad/AshtonRow/AshtonGithubButton,
-		$SafeArea/Center/Shell/Content/RootVBox/CreditsGroup/AshtonCard/AshtonPad/AshtonRow/AshtonLinkedInButton
+		$Footer/FooterMargin/FooterVBox/CreditsRow/RobertRow/RobertLinkedInButton,
+		$Footer/FooterMargin/FooterVBox/CreditsRow/RobertRow/RobertGithubButton,
+		$Footer/FooterMargin/FooterVBox/CreditsRow/AshtonRow/AshtonLinkedInButton,
+		$Footer/FooterMargin/FooterVBox/CreditsRow/AshtonRow/AshtonGithubButton
 	]:
 		button.custom_minimum_size = Vector2(icon_size, icon_size)
 
-	_deferred_sync_pivots.call_deferred()
-
-
-func _deferred_sync_pivots() -> void:
-	shell.pivot_offset = shell.size * 0.5
-	play_button.pivot_offset = play_button.size * 0.5
-
-
-func _setup_intro_state() -> void:
-	shell.modulate.a = 0.0
-	shell.scale = Vector2(0.97, 0.97)
-	heading_group.modulate.a = 0.0
-	play_button.modulate.a = 0.0
-	play_button.scale = Vector2(0.95, 0.95)
-	credits_group.modulate.a = 0.0
-
 
 func _play_intro_animation() -> void:
-	var tween := create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
-	tween.tween_property(shell, "modulate:a", 1.0, 0.5)
-	tween.parallel().tween_property(shell, "scale", Vector2.ONE, 0.5)
-	tween.parallel().tween_property(heading_group, "modulate:a", 1.0, 0.46)
-	tween.tween_interval(0.06)
-	tween.tween_property(play_button, "modulate:a", 1.0, 0.36)
-	tween.parallel().tween_property(play_button, "scale", Vector2.ONE, 0.42)
-	tween.tween_interval(0.06)
-	tween.tween_property(credits_group, "modulate:a", 1.0, 0.45)
+	start_game_button.modulate.a = 0.0
+	quit_game_button.modulate.a = 0.0
+	footer.modulate.a = 0.0
 
-
-func _start_ambient_motion() -> void:
-	_pulse_control(accent_a, 14.0, 3.0)
-	_pulse_control(accent_b, -11.0, 3.6)
-	_pulse_control(accent_c, 9.0, 2.8)
-	_pulse_play_button()
-
-
-func _pulse_control(node: Control, travel: float, duration: float) -> void:
-	var start_y := node.position.y
-	var tween := create_tween().set_loops().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-	tween.tween_property(node, "position:y", start_y + travel, duration)
-	tween.tween_property(node, "position:y", start_y, duration)
-
-
-func _pulse_play_button() -> void:
-	var tween := create_tween().set_loops().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-	tween.tween_interval(1.4)
-	tween.tween_property(play_button, "scale", Vector2(1.02, 1.02), 0.65)
-	tween.tween_property(play_button, "scale", Vector2.ONE, 0.65)
+	var tween := create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	tween.tween_property(start_game_button, "modulate:a", 1.0, 0.4)
+	tween.tween_interval(0.04)
+	tween.tween_property(quit_game_button, "modulate:a", 1.0, 0.34)
+	tween.tween_interval(0.04)
+	tween.tween_property(footer, "modulate:a", 1.0, 0.42)
 
 
 func _on_play_pressed() -> void:
-	get_tree().change_scene_to_file(GAMEPLAY_HUB_SCENE)
+	get_tree().change_scene_to_file(GAME_SCENE)
+
+
+func _on_quit_pressed() -> void:
+	get_tree().quit()
 
 
 func _open_url(url: String) -> void:

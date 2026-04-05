@@ -1,0 +1,150 @@
+[gd_scene format=3 uid="uid://cunqv6bohp5uc"]
+
+[ext_resource type="PackedScene" path="res://scenes/components/cave_wall.tscn" id="1_lbhrr"]
+[ext_resource type="PackedScene" uid="uid://jnydgx6w57fr" path="res://scenes/level_01new.tscn" id="2_iywne"]
+[ext_resource type="PackedScene" uid="uid://dqavghgxfkx4v" path="res://scenes/level_2.tscn" id="3_p57ef"]
+[ext_resource type="PackedScene" path="res://scenes/components/slip_stream_zone.tscn" id="4_u5sy4"]
+[ext_resource type="PackedScene" path="res://scenes/components/camera_limit_zone.tscn" id="5_iywne"]
+[ext_resource type="Script" uid="uid://dmcq5eivitshc" path="res://scripts/game_camera_controller.gd" id="6_game_camera"]
+
+[node name="Game" type="Node2D" unique_id=1698055606]
+script = ExtResource("6_game_camera")
+
+[node name="CaveWall4" parent="." unique_id=1247166507 instance=ExtResource("1_lbhrr")]
+position = Vector2(-2469, 1300)
+scale = Vector2(27.111458, 1.0815204)
+polygon_points = PackedVector2Array(-120, -60, 120, -60, 120, 60, -120, 60)
+
+[node name="Level 1 Redone" parent="." unique_id=771356984 instance=ExtResource("2_iywne")]
+position = Vector2(776, 1501)
+
+[node name="Level2" parent="." unique_id=1544132612 instance=ExtResource("3_p57ef")]
+position = Vector2(5915, -901)
+controller_enabled = false
+
+[node name="CaveWall2" parent="." unique_id=82389123 instance=ExtResource("1_lbhrr")]
+position = Vector2(8746, 1256)
+polygon_points = PackedVector2Array(-125, 53, -111, -243, 1, -235, -22, 62)
+
+[node name="CollisionPolygon2D" parent="CaveWall2" index="0"]
+polygon = PackedVector2Array(-125, 53, -111, -243, 1, -235, -22, 62)
+
+[node name="VisualFill" parent="CaveWall2" index="1"]
+color = Color(0.101960786, 0.23137255, 0.3019608, 1)
+polygon = PackedVector2Array(-125, 53, -111, -243, 1, -235, -22, 62)
+
+[node name="VisualBorder" parent="CaveWall2" index="2"]
+points = PackedVector2Array(-125, 53, -111, -243, 1, -235, -22, 62)
+width = 5.0
+default_color = Color(0.32941177, 0.7411765, 0.8509804, 1)
+
+[node name="CaveWall3" parent="." unique_id=1562072743 instance=ExtResource("1_lbhrr")]
+position = Vector2(860, 1431)
+polygon_points = PackedVector2Array(-124, -193, 101, -195, 81, 83, -120, 60)
+
+[node name="CollisionPolygon2D" parent="CaveWall3" index="0"]
+polygon = PackedVector2Array(-124, -193, 101, -195, 81, 83, -120, 60)
+
+[node name="VisualFill" parent="CaveWall3" index="1"]
+color = Color(0.101960786, 0.23137255, 0.3019608, 1)
+polygon = PackedVector2Array(-124, -193, 101, -195, 81, 83, -120, 60)
+
+[node name="VisualBorder" parent="CaveWall3" index="2"]
+points = PackedVector2Array(-124, -193, 101, -195, 81, 83, -120, 60)
+width = 5.0
+default_color = Color(0.32941177, 0.7411765, 0.8509804, 1)
+
+[node name="SlipStreamZone" parent="CaveWall3" unique_id=664157182 instance=ExtResource("4_u5sy4")]
+position = Vector2(4003, -196)
+scale = Vector2(1, 1.16)
+size = Vector2(7500, 350)
+flow_vector = Vector2(-1000, 150)
+
+[node name="SlipStreamZone2" parent="CaveWall3" unique_id=2112077669 instance=ExtResource("4_u5sy4")]
+position = Vector2(-3294, -305)
+scale = Vector2(1, 0.67999995)
+size = Vector2(6800, 350)
+flow_vector = Vector2(1000, 150)
+
+[node name="SlipStreamZone3" parent="CaveWall3" unique_id=1630899165 instance=ExtResource("4_u5sy4")]
+position = Vector2(349, -191)
+size = Vector2(500, 450)
+flow_vector = Vector2(0, 1000)
+
+[node name="CaveWall5" parent="." unique_id=1961992234 instance=ExtResource("1_lbhrr")]
+position = Vector2(-5755, 1091)
+polygon_points = PackedVector2Array(63, -72, 106, 266, -109, 276, -115, -64)
+
+[node name="CollisionPolygon2D" parent="CaveWall5" index="0"]
+polygon = PackedVector2Array(63, -72, 106, 266, -109, 276, -115, -64)
+
+[node name="VisualFill" parent="CaveWall5" index="1"]
+color = Color(0.101960786, 0.23137255, 0.3019608, 1)
+polygon = PackedVector2Array(63, -72, 106, 266, -109, 276, -115, -64)
+
+[node name="VisualBorder" parent="CaveWall5" index="2"]
+points = PackedVector2Array(63, -72, 106, 266, -109, 276, -115, -64)
+width = 5.0
+default_color = Color(0.32941177, 0.7411765, 0.8509804, 1)
+
+[node name="CaveWall6" parent="." unique_id=1351037452 instance=ExtResource("1_lbhrr")]
+position = Vector2(10373, -512)
+polygon_points = PackedVector2Array(-120, -60, 1264, 89, 1451, 1820, 384, 1824, -92, 106)
+
+[node name="CollisionPolygon2D" parent="CaveWall6" index="0"]
+polygon = PackedVector2Array(-120, -60, 1264, 89, 1451, 1820, 384, 1824, -92, 106)
+
+[node name="VisualFill" parent="CaveWall6" index="1"]
+color = Color(0.101960786, 0.23137255, 0.3019608, 1)
+polygon = PackedVector2Array(-120, -60, 1264, 89, 1451, 1820, 384, 1824, -92, 106)
+
+[node name="VisualBorder" parent="CaveWall6" index="2"]
+points = PackedVector2Array(-120, -60, 1264, 89, 1451, 1820, 384, 1824, -92, 106)
+width = 5.0
+default_color = Color(0.32941177, 0.7411765, 0.8509804, 1)
+
+[node name="CameraZones" type="Node2D" parent="." unique_id=731349820]
+
+[node name="CameraLimitZone" parent="CameraZones" unique_id=1847934469 instance=ExtResource("5_iywne")]
+position = Vector2(-2489.5, 1195.5)
+size = Vector2(6531, 209)
+limit_left = -5755
+limit_top = 1091
+limit_right = 776
+limit_bottom = 1300
+
+[node name="CameraLimitZone2" parent="CameraZones" unique_id=231319094 instance=ExtResource("5_iywne")]
+position = Vector2(4521, -1098)
+size = Vector2(7970, 2402)
+limit_left = 776
+limit_top = -901
+limit_right = 8746
+limit_bottom = 1501
+
+[node name="CameraLimitZone3" parent="CameraZones" unique_id=1164131295 instance=ExtResource("5_iywne")]
+position = Vector2(4375, 2050)
+size = Vector2(7250, 1100)
+limit_top = 1500
+limit_right = 8000
+limit_bottom = 2600
+
+[node name="CameraLimitZone4" parent="CameraZones" unique_id=1971513333 instance=ExtResource("5_iywne")]
+position = Vector2(10125, 3550)
+size = Vector2(4250, 4100)
+limit_left = 8000
+limit_top = 1500
+limit_right = 12250
+limit_bottom = 5600
+
+[node name="CameraLimitZone5" parent="CameraZones" unique_id=1718201920 instance=ExtResource("5_iywne")]
+position = Vector2(10498, 300)
+size = Vector2(3504, 2402)
+limit_left = 8746
+limit_top = -901
+limit_right = 12250
+limit_bottom = 1501
+
+[editable path="CaveWall2"]
+[editable path="CaveWall3"]
+[editable path="CaveWall5"]
+[editable path="CaveWall6"]
