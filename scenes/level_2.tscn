@@ -112,22 +112,10 @@ camera_bottom = 1920
 [node name="World" type="Node2D" parent="." unique_id=1765536663]
 
 [node name="Backdrop" type="Polygon2D" parent="World" unique_id=388785770]
-position = Vector2(-595, 333)
-scale = Vector2(1.1520834, 0.8265625)
+position = Vector2(-11709.001, 333)
+scale = Vector2(4.4598217, 0.8265625)
 color = Color(0.0196078, 0.117647, 0.176471, 1)
 polygon = PackedVector2Array(0, 0, 3360, 0, 3360, 1920, 0, 1920)
-
-[node name="GlowBandTop" type="Polygon2D" parent="World" unique_id=81881884]
-position = Vector2(-496.99997, 0)
-scale = Vector2(1.1065476, 1)
-color = Color(0.231373, 0.6, 0.65098, 0.2)
-polygon = PackedVector2Array(0, 420, 3360, 380, 3268.5295, 567, 3360, 760, 0, 700)
-
-[node name="GlowBandBottom" type="Polygon2D" parent="World" unique_id=510785968]
-position = Vector2(-528, 0)
-scale = Vector2(1.1571429, 1)
-color = Color(0.14902, 0.521569, 0.611765, 0.18)
-polygon = PackedVector2Array(0, 1320, 3360, 1260, 3360, 1780, 0, 1720)
 
 [node name="Player" parent="World" unique_id=88900373 instance=ExtResource("2_player_scene")]
 position = Vector2(3010, 1460)
@@ -135,10 +123,10 @@ position = Vector2(3010, 1460)
 [node name="CameraZones" type="Node2D" parent="World" unique_id=950216122]
 
 [node name="UpperRouteCameraZone" parent="World/CameraZones" unique_id=955329072 instance=ExtResource("7_camera_zone")]
-position = Vector2(1413.0001, 1131)
-scale = Vector2(1.1599951, 0.87999874)
+position = Vector2(-4190, 1131)
+scale = Vector2(4.440004, 0.87999874)
 size = Vector2(3360, 1800)
-limit_left = -536
+limit_left = -11677
 limit_top = 468
 limit_right = 3360
 limit_bottom = 1920
@@ -167,7 +155,103 @@ polygon = PackedVector2Array(-1700, -130, 1700, -130, 1699.9999, 45.811523, 1700
 color = Color(0.0470588, 0.2, 0.27451, 1)
 polygon = PackedVector2Array(-1700, -130, 1700, -130, 1699.9999, 45.811523, 1700, 150, 1340, 120, 900, 176, 436, 34, -120, 188, -527, 93, -922, -1, -1700, 136, -1690, 4)
 
-[node name="VisualBorder" parent="World/BoundaryCeiling" index="2"]
+[node name="VisualFill2" type="Polygon2D" parent="World/BoundaryCeiling" unique_id=181886287]
+color = Color(0.0470588, 0.2, 0.27451, 1)
+polygon = PackedVector2Array(-1700, -130, 1700, -130, 1699.9999, 45.811523, 1700, 150, 1340, 120, 900, 176, 436, 34, -120, 188, -527, 93, -922, -1, -1700, 136, -1690, 4)
+
+[node name="VisualBorder" parent="World/BoundaryCeiling" index="3"]
+points = PackedVector2Array(-1700, -130, 1700, -130, 1699.9999, 45.811523, 1700, 150, 1340, 120, 900, 176, 436, 34, -120, 188, -527, 93, -922, -1, -1700, 136, -1690, 4)
+width = 5.0
+default_color = Color(0.235294, 0.682353, 0.831373, 0.65)
+
+[node name="BoundaryCeiling2" parent="World" unique_id=1469839394 instance=ExtResource("4_cave_wall")]
+position = Vector2(-1604.9999, 468)
+scale = Vector2(0.96, 1)
+fill_color = Color(0.0470588, 0.2, 0.27451, 1)
+border_color = Color(0.235294, 0.682353, 0.831373, 0.65)
+polygon_points = PackedVector2Array(-1700, -130, 1700, -130, 1699.9999, 45.811523, 1700, 150, 1340, 120, 900, 176, 436, 34, -120, 188, -527, 93, -922, -1, -1700, 136, -1690, 4)
+
+[node name="CollisionPolygon2D" parent="World/BoundaryCeiling2" index="0"]
+polygon = PackedVector2Array(-1700, -130, 1700, -130, 1699.9999, 45.811523, 1700, 150, 1340, 120, 900, 176, 436, 34, -120, 188, -527, 93, -922, -1, -1700, 136, -1690, 4)
+
+[node name="VisualFill" parent="World/BoundaryCeiling2" index="1"]
+color = Color(0.0470588, 0.2, 0.27451, 1)
+polygon = PackedVector2Array(-1700, -130, 1700, -130, 1699.9999, 45.811523, 1700, 150, 1340, 120, 900, 176, 436, 34, -120, 188, -527, 93, -922, -1, -1700, 136, -1690, 4)
+
+[node name="VisualFill2" type="Polygon2D" parent="World/BoundaryCeiling2" unique_id=1696108301]
+color = Color(0.0470588, 0.2, 0.27451, 1)
+polygon = PackedVector2Array(-1700, -130, 1700, -130, 1699.9999, 45.811523, 1700, 150, 1340, 120, 900, 176, 436, 34, -120, 188, -527, 93, -922, -1, -1700, 136, -1690, 4)
+
+[node name="VisualBorder" parent="World/BoundaryCeiling2" index="3"]
+points = PackedVector2Array(-1700, -130, 1700, -130, 1699.9999, 45.811523, 1700, 150, 1340, 120, 900, 176, 436, 34, -120, 188, -527, 93, -922, -1, -1700, 136, -1690, 4)
+width = 5.0
+default_color = Color(0.235294, 0.682353, 0.831373, 0.65)
+
+[node name="BoundaryCeiling3" parent="World" unique_id=706946689 instance=ExtResource("4_cave_wall")]
+position = Vector2(-4858, 455)
+scale = Vector2(0.96, 1)
+fill_color = Color(0.0470588, 0.2, 0.27451, 1)
+border_color = Color(0.235294, 0.682353, 0.831373, 0.65)
+polygon_points = PackedVector2Array(-1700, -130, 1700, -130, 1699.9999, 45.811523, 1700, 150, 1340, 120, 900, 176, 436, 34, -120, 188, -527, 93, -922, -1, -1700, 136, -1690, 4)
+
+[node name="CollisionPolygon2D" parent="World/BoundaryCeiling3" index="0"]
+polygon = PackedVector2Array(-1700, -130, 1700, -130, 1699.9999, 45.811523, 1700, 150, 1340, 120, 900, 176, 436, 34, -120, 188, -527, 93, -922, -1, -1700, 136, -1690, 4)
+
+[node name="VisualFill" parent="World/BoundaryCeiling3" index="1"]
+color = Color(0.0470588, 0.2, 0.27451, 1)
+polygon = PackedVector2Array(-1700, -130, 1700, -130, 1699.9999, 45.811523, 1700, 150, 1340, 120, 900, 176, 436, 34, -120, 188, -527, 93, -922, -1, -1700, 136, -1690, 4)
+
+[node name="VisualFill2" type="Polygon2D" parent="World/BoundaryCeiling3" unique_id=645896380]
+color = Color(0.0470588, 0.2, 0.27451, 1)
+polygon = PackedVector2Array(-1700, -130, 1700, -130, 1699.9999, 45.811523, 1700, 150, 1340, 120, 900, 176, 436, 34, -120, 188, -527, 93, -922, -1, -1700, 136, -1690, 4)
+
+[node name="VisualBorder" parent="World/BoundaryCeiling3" index="3"]
+points = PackedVector2Array(-1700, -130, 1700, -130, 1699.9999, 45.811523, 1700, 150, 1340, 120, 900, 176, 436, 34, -120, 188, -527, 93, -922, -1, -1700, 136, -1690, 4)
+width = 5.0
+default_color = Color(0.235294, 0.682353, 0.831373, 0.65)
+
+[node name="BoundaryCeiling4" parent="World" unique_id=727220120 instance=ExtResource("4_cave_wall")]
+position = Vector2(-8120, 446)
+scale = Vector2(0.96, 1)
+fill_color = Color(0.0470588, 0.2, 0.27451, 1)
+border_color = Color(0.235294, 0.682353, 0.831373, 0.65)
+polygon_points = PackedVector2Array(-1700, -130, 1700, -130, 1699.9999, 45.811523, 1700, 150, 1340, 120, 900, 176, 436, 34, -120, 188, -527, 93, -922, -1, -1700, 136, -1690, 4)
+
+[node name="CollisionPolygon2D" parent="World/BoundaryCeiling4" index="0"]
+polygon = PackedVector2Array(-1700, -130, 1700, -130, 1699.9999, 45.811523, 1700, 150, 1340, 120, 900, 176, 436, 34, -120, 188, -527, 93, -922, -1, -1700, 136, -1690, 4)
+
+[node name="VisualFill" parent="World/BoundaryCeiling4" index="1"]
+color = Color(0.0470588, 0.2, 0.27451, 1)
+polygon = PackedVector2Array(-1700, -130, 1700, -130, 1699.9999, 45.811523, 1700, 150, 1340, 120, 900, 176, 436, 34, -120, 188, -527, 93, -922, -1, -1700, 136, -1690, 4)
+
+[node name="VisualFill2" type="Polygon2D" parent="World/BoundaryCeiling4" unique_id=549631625]
+color = Color(0.0470588, 0.2, 0.27451, 1)
+polygon = PackedVector2Array(-1700, -130, 1700, -130, 1699.9999, 45.811523, 1700, 150, 1340, 120, 900, 176, 436, 34, -120, 188, -527, 93, -922, -1, -1700, 136, -1690, 4)
+
+[node name="VisualBorder" parent="World/BoundaryCeiling4" index="3"]
+points = PackedVector2Array(-1700, -130, 1700, -130, 1699.9999, 45.811523, 1700, 150, 1340, 120, 900, 176, 436, 34, -120, 188, -527, 93, -922, -1, -1700, 136, -1690, 4)
+width = 5.0
+default_color = Color(0.235294, 0.682353, 0.831373, 0.65)
+
+[node name="BoundaryCeiling5" parent="World" unique_id=1378974881 instance=ExtResource("4_cave_wall")]
+position = Vector2(-10558.001, 438)
+scale = Vector2(0.48, 1)
+fill_color = Color(0.0470588, 0.2, 0.27451, 1)
+border_color = Color(0.235294, 0.682353, 0.831373, 0.65)
+polygon_points = PackedVector2Array(-1700, -130, 1700, -130, 1699.9999, 45.811523, 1700, 150, 1340, 120, 900, 176, 436, 34, -120, 188, -527, 93, -922, -1, -1700, 136, -1690, 4)
+
+[node name="CollisionPolygon2D" parent="World/BoundaryCeiling5" index="0"]
+polygon = PackedVector2Array(-1700, -130, 1700, -130, 1699.9999, 45.811523, 1700, 150, 1340, 120, 900, 176, 436, 34, -120, 188, -527, 93, -922, -1, -1700, 136, -1690, 4)
+
+[node name="VisualFill" parent="World/BoundaryCeiling5" index="1"]
+color = Color(0.0470588, 0.2, 0.27451, 1)
+polygon = PackedVector2Array(-1700, -130, 1700, -130, 1699.9999, 45.811523, 1700, 150, 1340, 120, 900, 176, 436, 34, -120, 188, -527, 93, -922, -1, -1700, 136, -1690, 4)
+
+[node name="VisualFill2" type="Polygon2D" parent="World/BoundaryCeiling5" unique_id=983409206]
+color = Color(0.0470588, 0.2, 0.27451, 1)
+polygon = PackedVector2Array(-1700, -130, 1700, -130, 1699.9999, 45.811523, 1700, 150, 1340, 120, 900, 176, 436, 34, -120, 188, -527, 93, -922, -1, -1700, 136, -1690, 4)
+
+[node name="VisualBorder" parent="World/BoundaryCeiling5" index="3"]
 points = PackedVector2Array(-1700, -130, 1700, -130, 1699.9999, 45.811523, 1700, 150, 1340, 120, 900, 176, 436, 34, -120, 188, -527, 93, -922, -1, -1700, 136, -1690, 4)
 width = 5.0
 default_color = Color(0.235294, 0.682353, 0.831373, 0.65)
@@ -179,6 +263,66 @@ border_color = Color(0.329412, 0.741176, 0.85098, 0.6)
 disable_submarine_bounce = true
 polygon_points = PackedVector2Array(-1700, -96, -1360, -138, -960, -70, -550, -126, -120, -72, 350, -140, 860, -76, 1260, -122, 1700, -80, 1700, 92, -1700, 92)
 
+[node name="BoundaryFloor3" parent="World" unique_id=1876404023 instance=ExtResource("4_cave_wall")]
+position = Vector2(-2693, 1573.0001)
+scale = Vector2(1, 3.8)
+fill_color = Color(0.0627451, 0.223529, 0.286275, 1)
+border_color = Color(0.329412, 0.741176, 0.85098, 0.6)
+disable_submarine_bounce = true
+polygon_points = PackedVector2Array(-1674, -96.31583, -1254, -88.15793, -768, -131.31583, -242, -83.42108, -18, -36.842133, 306, -33.15793, 851, -43.94742, 1077, -1.5789795, 1487, 21.052612, 1496, 91.84207, -1700, 92)
+
+[node name="CollisionPolygon2D" parent="World/BoundaryFloor3" index="0"]
+polygon = PackedVector2Array(-1674, -96.31583, -1254, -88.15793, -768, -131.31583, -242, -83.42108, -18, -36.842133, 306, -33.15793, 851, -43.94742, 1077, -1.5789795, 1487, 21.052612, 1496, 91.84207, -1700, 92)
+
+[node name="VisualFill" parent="World/BoundaryFloor3" index="1"]
+color = Color(0.0627451, 0.223529, 0.286275, 1)
+polygon = PackedVector2Array(-1674, -96.31583, -1254, -88.15793, -768, -131.31583, -242, -83.42108, -18, -36.842133, 306, -33.15793, 851, -43.94742, 1077, -1.5789795, 1487, 21.052612, 1496, 91.84207, -1700, 92)
+
+[node name="VisualBorder" parent="World/BoundaryFloor3" index="2"]
+points = PackedVector2Array(-1674, -96.31583, -1254, -88.15793, -768, -131.31583, -242, -83.42108, -18, -36.842133, 306, -33.15793, 851, -43.94742, 1077, -1.5789795, 1487, 21.052612, 1496, 91.84207, -1700, 92)
+width = 5.0
+default_color = Color(0.329412, 0.741176, 0.85098, 0.6)
+
+[node name="BoundaryFloor4" parent="World" unique_id=1166691506 instance=ExtResource("4_cave_wall")]
+position = Vector2(-6355, 1573)
+scale = Vector2(1, 3.8)
+fill_color = Color(0.0627451, 0.223529, 0.286275, 1)
+border_color = Color(0.329412, 0.741176, 0.85098, 0.6)
+disable_submarine_bounce = true
+polygon_points = PackedVector2Array(-1674, -96.31583, -1232, -125.52634, -897, -128.94739, -559, -163.68422, -335, -155, 53, -145, 464, -168.1579, 1105, -141.8421, 1709, -92.36844, 1700, 92, -1700, 92)
+
+[node name="CollisionPolygon2D" parent="World/BoundaryFloor4" index="0"]
+polygon = PackedVector2Array(-1674, -96.31583, -1232, -125.52634, -897, -128.94739, -559, -163.68422, -335, -155, 53, -145, 464, -168.1579, 1105, -141.8421, 1709, -92.36844, 1700, 92, -1700, 92)
+
+[node name="VisualFill" parent="World/BoundaryFloor4" index="1"]
+color = Color(0.0627451, 0.223529, 0.286275, 1)
+polygon = PackedVector2Array(-1674, -96.31583, -1232, -125.52634, -897, -128.94739, -559, -163.68422, -335, -155, 53, -145, 464, -168.1579, 1105, -141.8421, 1709, -92.36844, 1700, 92, -1700, 92)
+
+[node name="VisualBorder" parent="World/BoundaryFloor4" index="2"]
+points = PackedVector2Array(-1674, -96.31583, -1232, -125.52634, -897, -128.94739, -559, -163.68422, -335, -155, 53, -145, 464, -168.1579, 1105, -141.8421, 1709, -92.36844, 1700, 92, -1700, 92)
+width = 5.0
+default_color = Color(0.329412, 0.741176, 0.85098, 0.6)
+
+[node name="BoundaryFloor5" parent="World" unique_id=2109034326 instance=ExtResource("4_cave_wall")]
+position = Vector2(-10048, 1573)
+scale = Vector2(1, 3.8)
+fill_color = Color(0.0627451, 0.223529, 0.286275, 1)
+border_color = Color(0.329412, 0.741176, 0.85098, 0.6)
+disable_submarine_bounce = true
+polygon_points = PackedVector2Array(-1674, -96.31583, -1232, -125.52634, -897, -128.94739, -559, -163.68422, -335, -155, 48, -147.36844, 464, -168.1579, 1105, -141.8421, 1709, -92.36844, 1700, 92, -1700, 92)
+
+[node name="CollisionPolygon2D" parent="World/BoundaryFloor5" index="0"]
+polygon = PackedVector2Array(-1674, -96.31583, -1232, -125.52634, -897, -128.94739, -559, -163.68422, -335, -155, 48, -147.36844, 464, -168.1579, 1105, -141.8421, 1709, -92.36844, 1700, 92, -1700, 92)
+
+[node name="VisualFill" parent="World/BoundaryFloor5" index="1"]
+color = Color(0.0627451, 0.223529, 0.286275, 1)
+polygon = PackedVector2Array(-1674, -96.31583, -1232, -125.52634, -897, -128.94739, -559, -163.68422, -335, -155, 48, -147.36844, 464, -168.1579, 1105, -141.8421, 1709, -92.36844, 1700, 92, -1700, 92)
+
+[node name="VisualBorder" parent="World/BoundaryFloor5" index="2"]
+points = PackedVector2Array(-1674, -96.31583, -1232, -125.52634, -897, -128.94739, -559, -163.68422, -335, -155, 48, -147.36844, 464, -168.1579, 1105, -141.8421, 1709, -92.36844, 1700, 92, -1700, 92)
+width = 5.0
+default_color = Color(0.329412, 0.741176, 0.85098, 0.6)
+
 [node name="BoundaryFloor2" parent="World" unique_id=1007178686 instance=ExtResource("4_cave_wall")]
 position = Vector2(1248.0001, 2163)
 fill_color = Color(0.0627451, 0.223529, 0.286275, 1)
@@ -187,7 +331,7 @@ disable_submarine_bounce = true
 polygon_points = PackedVector2Array(-1468, -50, -1120, -78, -760, -42, -340, -88, 60, -36, 560, -80, 980, -44, 1300, -70, 1468, -38, 1468, 50, -1468, 50)
 
 [node name="BoundaryLeft" parent="World" unique_id=342387223 instance=ExtResource("4_cave_wall")]
-position = Vector2(-536, 1101)
+position = Vector2(-11677.001, 416)
 scale = Vector2(1.0399997, 0.79999876)
 fill_color = Color(0.0627451, 0.223529, 0.286275, 1)
 border_color = Color(0.329412, 0.741176, 0.85098, 0.6)
@@ -208,8 +352,35 @@ border_color = Color(0.329412, 0.741176, 0.85098, 0.6)
 polygon_points = PackedVector2Array(-60, -188, 60, -188, 22, -102, 52, -6, 18, 92, 56, 188, -60, 188)
 
 [node name="BottomCurrentMedium" parent="World" unique_id=2126141449 instance=ExtResource("5_stream_zone")]
-position = Vector2(1029, 1679)
-scale = Vector2(1.9879789, 0.9397001)
+position = Vector2(772, 1676)
+scale = Vector2(2.347978, 0.9397001)
+size = Vector2(1500, 180)
+flow_vector = Vector2(520, 0)
+fill_color = Color(0.14902, 0.670588, 0.835294, 0.18)
+edge_color = Color(0.568627, 0.913725, 1, 1)
+
+[node name="BottomCurrentMedium3" parent="World" unique_id=42085642 instance=ExtResource("5_stream_zone")]
+position = Vector2(-2742, 1362.0001)
+rotation = 0.17332129
+scale = Vector2(2.10648, -3.1995187)
+size = Vector2(1500, 180)
+flow_vector = Vector2(520, 0)
+fill_color = Color(0.14902, 0.670588, 0.835294, 0.18)
+edge_color = Color(0.568627, 0.913725, 1, 1)
+
+[node name="BottomCurrentMedium4" parent="World" unique_id=1266368736 instance=ExtResource("5_stream_zone")]
+position = Vector2(-6359, 1022.0001)
+rotation = 0.010929495
+scale = Vector2(2.3064702, -1.957408)
+size = Vector2(1500, 180)
+flow_vector = Vector2(520, 0)
+fill_color = Color(0.14902, 0.670588, 0.835294, 0.18)
+edge_color = Color(0.568627, 0.913725, 1, 1)
+
+[node name="BottomCurrentMedium5" parent="World" unique_id=1867712210 instance=ExtResource("5_stream_zone")]
+position = Vector2(-10057.001, 1021)
+rotation = 0.010929495
+scale = Vector2(2.3064702, -2.2378278)
 size = Vector2(1500, 180)
 flow_vector = Vector2(520, 0)
 fill_color = Color(0.14902, 0.670588, 0.835294, 0.18)
@@ -255,6 +426,20 @@ curve = SubResource("Curve2D_que50")
 
 [node name="SlipStreamZone" parent="World" unique_id=21437109 instance=ExtResource("5_stream_zone")]
 position = Vector2(2625, 1769)
+flow_vector = Vector2(0, 960)
+
+[node name="SlipStreamZone2" parent="World" unique_id=1744587902 instance=ExtResource("5_stream_zone")]
+position = Vector2(-1086, 1768)
+flow_vector = Vector2(0, 960)
+
+[node name="SlipStreamZone3" parent="World" unique_id=8471089 instance=ExtResource("5_stream_zone")]
+position = Vector2(-4517, 1593)
+scale = Vector2(1.54084, 2.0800023)
+flow_vector = Vector2(0, 960)
+
+[node name="SlipStreamZone4" parent="World" unique_id=46262452 instance=ExtResource("5_stream_zone")]
+position = Vector2(-8192, 1562)
+scale = Vector2(1.54084, 2.0800023)
 flow_vector = Vector2(0, 960)
 
 [node name="PiranhaLow" parent="World" unique_id=1339752821 instance=ExtResource("6_piranha")]
@@ -352,6 +537,13 @@ curve = SubResource("Curve2D_172wr")
 [node name="HUD" parent="." unique_id=61515943 instance=ExtResource("3_hud_scene")]
 
 [editable path="World/BoundaryCeiling"]
+[editable path="World/BoundaryCeiling2"]
+[editable path="World/BoundaryCeiling3"]
+[editable path="World/BoundaryCeiling4"]
+[editable path="World/BoundaryCeiling5"]
+[editable path="World/BoundaryFloor3"]
+[editable path="World/BoundaryFloor4"]
+[editable path="World/BoundaryFloor5"]
 [editable path="World/PiranhaTop"]
 [editable path="World/PiranhaMid"]
 [editable path="World/PiranhaLow"]

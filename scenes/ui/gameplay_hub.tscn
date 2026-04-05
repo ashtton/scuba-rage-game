@@ -1,0 +1,113 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/gameplay_hub.gd" id="1_hub_script"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hub"]
+bg_color = Color(0.0196078, 0.137255, 0.196078, 0.9)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.333333, 0.847059, 0.960784, 0.28)
+shadow_color = Color(0, 0, 0, 0.45)
+shadow_size = 18
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn"]
+bg_color = Color(0.0784314, 0.611765, 0.768627, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_hover"]
+bg_color = Color(0.2, 0.72549, 0.878431, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[node name="GameplayHub" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hub_script")
+
+[node name="Backdrop" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.00784314, 0.0705882, 0.109804, 1)
+
+[node name="Center" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HubPanel" type="Panel" parent="Center" unique_name_in_owner=true]
+custom_minimum_size = Vector2(640, 430)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hub")
+
+[node name="Padding" type="MarginContainer" parent="Center/HubPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 34
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 34
+
+[node name="Actions" type="VBoxContainer" parent="Center/HubPanel/Padding" unique_name_in_owner=true]
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="Title" type="Label" parent="Center/HubPanel/Padding/Actions"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 44
+text = "Select Gameplay Scene"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="Center/HubPanel/Padding/Actions"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.780392, 0.933333, 1, 0.86)
+theme_override_font_sizes/font_size = 20
+text = "Choose one of the existing levels"
+horizontal_alignment = 1
+
+[node name="LevelOneButton" type="Button" parent="Center/HubPanel/Padding/Actions" unique_name_in_owner=true]
+custom_minimum_size = Vector2(0, 66)
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+text = "Play level_01new.tscn"
+
+[node name="LevelTwoButton" type="Button" parent="Center/HubPanel/Padding/Actions" unique_name_in_owner=true]
+custom_minimum_size = Vector2(0, 66)
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+text = "Play level_2.tscn"
+
+[node name="BackButton" type="Button" parent="Center/HubPanel/Padding/Actions" unique_name_in_owner=true]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Back to Main Menu"

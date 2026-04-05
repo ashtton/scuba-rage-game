@@ -31,6 +31,7 @@ class_name SlipStreamZone
 
 var _rng := RandomNumberGenerator.new()
 var _visual_particles: Array[Dictionary] = []
+const VISUAL_PARTICLE_SPEED_SCALE := 0.42
 
 
 func _ready() -> void:
@@ -70,8 +71,6 @@ func _draw() -> void:
 		tint.a = clampf(alpha * 0.8, 0.0, 1.0)
 
 		draw_circle(pos, radius, tint)
-		var tail := pos - direction * (radius * 4.2)
-		draw_line(tail, pos, tint, maxf(radius * 0.9, 1.0), true)
 
 
 func _sync_geometry() -> void:
@@ -108,9 +107,9 @@ func _rebuild_visual_particles() -> void:
 		_visual_particles.append({
 			"progress": _rng.randf(),
 			"lane": _rng.randf(),
-			"speed": lerpf(0.55, 1.35, _rng.randf()),
-			"radius": lerpf(1.1, 2.4, _rng.randf()),
-			"alpha": lerpf(0.35, 0.85, _rng.randf())
+			"speed": lerpf(0.5, 1.05, _rng.randf()),
+			"radius": lerpf(3.4, 6.6, _rng.randf()),
+			"alpha": lerpf(0.72, 1.0, _rng.randf())
 		})
 
 
@@ -125,7 +124,7 @@ func _advance_visual_particles(delta: float) -> void:
 	var horizontal_flow := absf(direction.x) >= absf(direction.y)
 	var flow_span := size.x if horizontal_flow else size.y
 	var speed := maxf(_get_effective_flow_vector().length() * speed_scale, 120.0)
-	var normalized_step := speed * delta / maxf(flow_span, 1.0)
+	var normalized_step := speed * delta * VISUAL_PARTICLE_SPEED_SCALE / maxf(flow_span, 1.0)
 
 	for particle in _visual_particles:
 		var signed_step := normalized_step * (particle["speed"] as float)
